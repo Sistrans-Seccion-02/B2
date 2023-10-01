@@ -11,9 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import uniandes.edu.co.proyecto.Modelo.Reserva;
 
 
-
-
-
 public interface ReservaRepository extends JpaRepository<Reserva, Integer>{
     
     @Query(value = "SELECT * FROM reservas", nativeQuery = true)
