@@ -9,16 +9,16 @@ import jakarta.persistence.Table;
 public abstract class Consumo {
     @Id
     private int idConsumo;
-    private float precioTotal;
+    private double precioTotal;
     private boolean pazYSalvo;
 
     public Consumo() {;}
 
-    public float getPrecioTotal() {
+    public double getPrecioTotal() {
         return precioTotal;
     }
 
-    public void setPrecioTotal(float precioTotal) {
+    public void setPrecioTotal(double precioTotal) {
         this.precioTotal = precioTotal;
     }
 

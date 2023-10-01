@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 public abstract class Producto  {
     @Id
     private String nombre;
-    private long precio;
+    private double precio;
 
     public Producto() {;}
 
@@ -21,11 +21,11 @@ public abstract class Producto  {
         this.nombre = nombre;
     }
 
-    public long getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(long precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
     

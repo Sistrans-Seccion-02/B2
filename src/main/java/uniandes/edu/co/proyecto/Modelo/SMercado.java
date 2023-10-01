@@ -6,15 +6,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Superms")
-public abstract class Superm  {
+@Table(name = "SMercados")
+public abstract class SMercado  {
     @Id
     private String nombre;
     private LocalTime horarioApertura;
     private LocalTime horarioCierre;
     private int capacidad;
 
-    public Superm() {;}
+    public SMercado() {;}
 
     public String getNombre() {
         return nombre;
