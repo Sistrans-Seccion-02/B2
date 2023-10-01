@@ -15,12 +15,12 @@ import org.hibernate.annotations.Check;
 @Table(name="tiposHabitacion")
 
 
-public abstract class TipoHabitacion {
+public  class TipoHabitacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private Integer id;
+    
     
     @Column(name = "tipo")
     @Check(constraints = "tipo IN ('PRESIDENCIAL', 'SUITE', 'FAMILIAR', 'DOBLE', 'SENCILLA')")
@@ -34,18 +34,14 @@ public abstract class TipoHabitacion {
     public TipoHabitacion() 
     {;}
 
-    public Integer getId() {
-        return id;
-    }
+    
     public String getTipo() {
         return tipo;
     }
     public String getDescripcion() {
         return descripcion;
     }
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }

@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.Modelo;
 
+import org.hibernate.annotations.Check;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,16 +11,19 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="usuarios")
 
-public abstract class Usuario {
+public  class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Check(constraints = "tipo IN ('ADMINISTRADOR', 'CLIENTE', 'EMPLEADO', 'GERENTE', 'RECEPSIONISTA')")
     private Integer id;
     private String nombre;
     private String cedula;
+    private String tipo;
     
-    public Usuario(String nombre, String cedula) {
+    public Usuario(String nombre, String cedula, String tipo) {
         this.nombre = nombre;
         this.cedula = cedula;
+        this.tipo = tipo;
     }
     public Usuario() 
     {;}
@@ -40,6 +45,12 @@ public abstract class Usuario {
     }
     public void setCedula(String cedula) {
         this.cedula = cedula;
+    }
+    public String getTipo() {
+        return tipo;
+    }
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
 }

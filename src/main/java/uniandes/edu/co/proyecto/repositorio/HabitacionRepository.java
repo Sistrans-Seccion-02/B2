@@ -17,7 +17,7 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
     
     @Query(value = "SELECT * FROM habitaciones", nativeQuery = true)
 
-    Collection<Habitacion> darhabitaciones();
+    Collection<Habitacion> darHabitaciones();
     
 
     @Query(value = "SELECT * FROM habitaciones WHERE id = :id", nativeQuery = true)

@@ -9,22 +9,24 @@ import jakarta.persistence.Table;
 @Table(name="planesConsumo")
 
 
-public abstract class PlanConsumo {
-    @Id
+public  class PlanConsumo {
+    
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private Integer id;
     private String tipo;
     private double descuento;
+    private String descripcion;
     private boolean descuentoBar;
     private boolean descuentoRestaurante;
     private boolean descuentoSpa;
     private int limiteBebidas;
     private boolean descuentoLavado;
 
-    public PlanConsumo(String tipo, double descuento, boolean descuentoBar, boolean descuentoRestaurante, boolean descuentoSpa, int limiteBebidas, boolean descuentoLavado) {
+    public PlanConsumo(String tipo, double descuento,String descripcion , boolean descuentoBar, boolean descuentoRestaurante, boolean descuentoSpa, int limiteBebidas, boolean descuentoLavado) {
         this.tipo = tipo;
+
         this.descuento = descuento;
+        this.descripcion = descripcion;
         this.descuentoBar = descuentoBar;
         this.descuentoRestaurante = descuentoRestaurante;
         this.descuentoSpa = descuentoSpa;
@@ -35,9 +37,7 @@ public abstract class PlanConsumo {
     public PlanConsumo() 
     {;}
 
-    public Integer getId() {
-        return id;
-    }
+   
 
     public String getTipo() {
         return tipo;
@@ -67,9 +67,7 @@ public abstract class PlanConsumo {
         return descuentoLavado;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
@@ -97,6 +95,14 @@ public abstract class PlanConsumo {
 
     public void setDescuentoLavado(boolean descuentoLavado) {
         this.descuentoLavado = descuentoLavado;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     } 
     
 }
