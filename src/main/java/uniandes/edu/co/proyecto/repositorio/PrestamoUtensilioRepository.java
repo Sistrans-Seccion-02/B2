@@ -20,13 +20,13 @@ public interface PrestamoUtensilioRepository extends JpaRepository<PrestamoUtens
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO PrestamosUtensilios (cantidad, precio, tipo, estado) VALUES (B2_sequence.nextval, :cantidad, :precio, :tipo, :estado)", nativeQuery = true)
-    void insertarPrestamoUtensilio(@Param("cantidad") Integer cantidad, @Param("precio") double precio, @Param("tipo") String tipo, @Param("estado") Boolean estado);
+    @Query(value = "INSERT INTO PrestamosUtensilios (cantidad, precio, tipo, estado, Comsumos_idConsumo) VALUES (B2_sequence.nextval, :cantidad, :precio, :tipo, :estado, :Comsumos_idConsumo)", nativeQuery = true)
+    void insertarPrestamoUtensilio(@Param("cantidad") Integer cantidad, @Param("precio") double precio, @Param("tipo") String tipo, @Param("estado") Boolean estado, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE PrestamosUtensilios SET cantidad = :cantidad, precio = :precio, tipo = :tipo, estado =: estado WHERE idutensilio =: idutensilio", nativeQuery = true)
-    void actualizarPrestamoUtensilio(@Param("idutensilio") Integer idutensilio, @Param("cantidad") Integer cantidad, @Param("precio") double precio, @Param("tipo") String tipo, @Param("estado") Boolean estado);
+    @Query(value = "UPDATE PrestamosUtensilios SET cantidad = :cantidad, precio = :precio, tipo = :tipo, estado =: estado, Comsumos_idConsumo =: Comsumos_idConsumo WHERE idutensilio =: idutensilio", nativeQuery = true)
+    void actualizarPrestamoUtensilio(@Param("idutensilio") Integer idutensilio, @Param("cantidad") Integer cantidad, @Param("precio") double precio, @Param("tipo") String tipo, @Param("estado") Boolean estado, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
 
     @Modifying
     @Transactional
