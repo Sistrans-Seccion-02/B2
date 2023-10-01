@@ -7,7 +7,7 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "Bares")
-public abstract class Bar {
+public class Bar {
     
     @Id
     private String nombre;
