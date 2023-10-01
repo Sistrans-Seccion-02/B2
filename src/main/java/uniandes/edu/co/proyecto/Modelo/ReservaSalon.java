@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "ReservaSalon")
+@Table(name = "ReservasSalon")
 public abstract class ReservaSalon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
