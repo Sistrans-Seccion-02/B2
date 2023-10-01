@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "ReservaSpa")
+@Table(name = "ReservasSpa")
 public abstract class ReservaSpa {
     
     @Id

@@ -1,14 +1,17 @@
 package uniandes.edu.co.proyecto.Modelo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 
 @Entity
-@Table(name = "Lavanderia")
+@Table(name = "PrestamosUtensilios")
 public abstract class PrestamoUtensilio {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idutensilio;
     private Integer cantidad;
     private double precio;

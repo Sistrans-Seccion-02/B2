@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 
 
 @Entity
-@Table(name = "Bebida")
+@Table(name = "Bebidas")
 public abstract class Bebida {
     
     @Id
