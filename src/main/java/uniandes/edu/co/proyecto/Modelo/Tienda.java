@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Tiendas")
-public abstract class Tienda  {
+public class Tienda  {
     @Id
     private String nombre;
     private LocalTime horarioApertura;

@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 
 @Entity
 @Table(name = "Internets")
-public abstract class Internet {
+public class Internet {
     @Id
     private int capacidad;
     private float precio;

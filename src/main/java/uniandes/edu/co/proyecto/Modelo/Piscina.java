@@ -7,7 +7,7 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "Piscinas")
-public abstract class Piscina {
+public class Piscina {
     @Id
     private String nombre;
     private LocalTime horarioApertura;
