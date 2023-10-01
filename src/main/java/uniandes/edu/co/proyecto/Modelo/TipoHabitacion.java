@@ -17,12 +17,10 @@ import org.hibernate.annotations.Check;
 
 public  class TipoHabitacion {
 
-    @Id
+    
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    
-    
-    @Column(name = "tipo")
+    @Id
     @Check(constraints = "tipo IN ('PRESIDENCIAL', 'SUITE', 'FAMILIAR', 'DOBLE', 'SENCILLA')")
     private String tipo;
     private String descripcion;

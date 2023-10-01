@@ -41,7 +41,7 @@ public class PlanConsumoController {
     }
 
     @GetMapping("/planesConsumo/{id/edit}")
-    public String PlanConsumoEditarForm(@PathVariable("id") int id, Model model){
+    public String PlanConsumoEditarForm(@PathVariable("id") String id, Model model){
         PlanConsumo planConsumo= planConsumoRepository.darPlanConsumo(id);
         if(planConsumo != null){
             model.addAttribute("PlanConsumo", planConsumo);
@@ -52,13 +52,13 @@ public class PlanConsumoController {
         }
     }
     @PostMapping("/planesConsumo/{id}/edit/save")
-     public String PlanConsumoEditarGuardar(@PathVariable("id") int id, @ModelAttribute PlanConsumo planConsumo){
-        planConsumoRepository.actualizarPlanConsumo(id, planConsumo.getTipo(), planConsumo.getDescripcion(),planConsumo.getDescuento(),  planConsumo.isDescuentoBar(), planConsumo.isDescuentoRestaurante(), planConsumo.isDescuentoSpa(), planConsumo.getLimiteBebidas(), planConsumo.isDescuentoLavado());
+     public String PlanConsumoEditarGuardar(@PathVariable("id") String id, @ModelAttribute PlanConsumo planConsumo){
+        planConsumoRepository.actualizarPlanConsumo( planConsumo.getTipo(), planConsumo.getDescripcion(),planConsumo.getDescuento(),  planConsumo.isDescuentoBar(), planConsumo.isDescuentoRestaurante(), planConsumo.isDescuentoSpa(), planConsumo.getLimiteBebidas(), planConsumo.isDescuentoLavado());
         return "redirect:/planesConsumo";
     }
 
     @GetMapping("/planesConsumo/{id}/delete")
-    public String PlanConsumoEliminar(@PathVariable("id") int id){
+    public String PlanConsumoEliminar(@PathVariable("id") String  id){
         planConsumoRepository.eliminarPlanConsumo(id);
         return "redirect:/planesConsumo";
     }
