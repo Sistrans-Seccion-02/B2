@@ -6,8 +6,8 @@ import jakarta.persistence.Id;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "Restaurantes")
-public abstract class Restaurante {
+@Table(name = "Rests")
+public class Restaurante {
     
     @Id
     private String nombre;

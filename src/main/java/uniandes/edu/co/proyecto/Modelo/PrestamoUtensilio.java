@@ -5,10 +5,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @Table(name = "PrestamosUtensilios")
-public abstract class PrestamoUtensilio {
+public  class PrestamoUtensilio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,12 +19,16 @@ public abstract class PrestamoUtensilio {
     private double precio;
     private String tipo;
     private Boolean estado;
+    @ManyToOne
+    @JoinColumn(name = "Comsumos_idConsumo", referencedColumnName = "idConsumo")
+    private Consumo Comsumos_idConsumo;
 
-    public PrestamoUtensilio(Integer cantidad, double precio, String tipo, Boolean estado) {
+    public PrestamoUtensilio(Integer cantidad, double precio, String tipo, Boolean estado, Consumo Comsumos_idConsumo) {
         this.cantidad = cantidad;
         this.precio = precio;
         this.tipo = tipo;
         this.estado = estado;
+        this.Comsumos_idConsumo = Comsumos_idConsumo;
     }
 
     public PrestamoUtensilio() 
@@ -67,8 +73,14 @@ public abstract class PrestamoUtensilio {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
-
     
+    public Consumo getComsumos_idConsumo() {
+        return Comsumos_idConsumo;
+    }
 
+    public void setComsumos_idConsumo(Consumo Comsumos_idConsumo) {
+        this.Comsumos_idConsumo = Comsumos_idConsumo;
+    }
+    
     
 }

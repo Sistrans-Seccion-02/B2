@@ -3,6 +3,8 @@ package uniandes.edu.co.proyecto.Modelo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
@@ -10,19 +12,21 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "ReservasSpa")
-public abstract class ReservaSpa {
+public  class ReservaSpa {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idReserva;
     private Integer duracion;
     private LocalDateTime fecha;
-    private String nombreSpa;
+    @ManyToOne
+    @JoinColumn(name = "SpasNombre", referencedColumnName = "nombre")
+    private Spa SpasNombre;
 
-    public ReservaSpa(Integer duracion, LocalDateTime fecha, String nombreSpa) {
+    public ReservaSpa(Integer duracion, LocalDateTime fecha, Spa SpasNombre) {
         this.duracion = duracion;
         this.fecha = fecha;
-        this.nombreSpa = nombreSpa;
+        this.SpasNombre = SpasNombre;
     }       
 
     public ReservaSpa() 
@@ -48,11 +52,11 @@ public abstract class ReservaSpa {
         this.fecha = fecha;
     }
     
-    public String getNombreSpa() {
-        return nombreSpa;
+    public Spa getNombreSpa() {
+        return SpasNombre;
     }
 
-    public void setNombreSpa(String nombreSpa) {
-        this.nombreSpa = nombreSpa;
+    public void setNombreSpa(Spa SpasNombre) {
+        this.SpasNombre = SpasNombre;
     }
 }

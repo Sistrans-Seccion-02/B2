@@ -5,10 +5,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @Table(name = "Lavanderias")
-public abstract class Lavanderia {
+public  class Lavanderia {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,12 +19,17 @@ public abstract class Lavanderia {
     private Integer numZapatos;
     private String tipoLavado;
     private double costo;
+    @ManyToOne
+    @JoinColumn(name = "Comsumos_idConsumo", referencedColumnName = "idConsumo")
+    private Consumo Comsumos_idConsumo;
+    
 
-    public Lavanderia(Integer numPrendas, Integer numZapatos, String tipoLavado, double costo) {
+    public Lavanderia(Integer numPrendas, Integer numZapatos, String tipoLavado, double costo, Consumo Comsumos_idConsumo) {
         this.numPrendas = numPrendas;
         this.numZapatos = numZapatos;
         this.tipoLavado = tipoLavado;
         this.costo = costo;
+        this.Comsumos_idConsumo = Comsumos_idConsumo;
     }
 
     public Lavanderia() 
@@ -68,5 +75,12 @@ public abstract class Lavanderia {
         this.costo = costo;
     }
 
+    public Consumo getComsumos_idConsumo() {
+        return Comsumos_idConsumo;
+    }
+
+    public void setComsumos_idConsumo(Consumo Comsumos_idConsumo) {
+        this.Comsumos_idConsumo = Comsumos_idConsumo;
+    }
     
 }
