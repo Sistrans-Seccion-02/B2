@@ -1,12 +1,14 @@
 package uniandes.edu.co.proyecto.Modelo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Consumos")
 public abstract class Consumo {
-    
+    @Id
+    private int idConsumo;
     private float precioTotal;
     private boolean pazYSalvo;
 
@@ -28,4 +30,12 @@ public abstract class Consumo {
         this.pazYSalvo = pazYSalvo;
     }
 
+    public int getIdConsumo() {
+        return idConsumo;
+    }
+
+    public void setIdConsumo(int idConsumo) {
+        this.idConsumo = idConsumo;
+    }
+    
 }
