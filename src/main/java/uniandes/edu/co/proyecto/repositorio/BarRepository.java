@@ -13,24 +13,24 @@ import uniandes.edu.co.proyecto.Modelo.Bar;
 
 public interface BarRepository extends JpaRepository<Bar, String>{
     
-    @Query(value = "SELECT * FROM Bar", nativeQuery = true)
+    @Query(value = "SELECT * FROM Bares", nativeQuery = true)
     Collection<Bar> darBares();
 
-    @Query(value = "SELECT * FROM Bar WHERE nombre = :nombre", nativeQuery = true)
+    @Query(value = "SELECT * FROM Bares WHERE nombre = :nombre", nativeQuery = true)
     Bar darBar(@Param("nombre") String nombre);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Bar (nombre, horaApertura, horaCierre, capacidad) VALUES (:nombre, :horaApertura, :horaCierre, :capacidad)", nativeQuery = true)
+    @Query(value = "INSERT INTO Bares (nombre, horaApertura, horaCierre, capacidad) VALUES (:nombre, :horaApertura, :horaCierre, :capacidad)", nativeQuery = true)
     void insertarBar(@Param("nombre") String nombre, @Param("horaApertura") LocalTime horaApertura, @Param("horaCierre") LocalTime horaCierre, @Param("capacidad") Integer capacidad);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Bar SET horaApertura = :horaApertura, horaCierre = :horaCierre, capacidad = :capacidad WHERE nombre = :nombre", nativeQuery = true)      
+    @Query(value = "UPDATE Bares SET horaApertura = :horaApertura, horaCierre = :horaCierre, capacidad = :capacidad WHERE nombre = :nombre", nativeQuery = true)      
     void actualizarBar(@Param("nombre") String nombre, @Param("horaApertura") LocalTime horaApertura, @Param("horaCierre") LocalTime horaCierre, @Param("capacidad") Integer capacidad);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM Bar WHERE nombre = :nombre", nativeQuery = true)
+    @Query(value = "DELETE FROM Bares WHERE nombre = :nombre", nativeQuery = true)
     void eleminarBar(@Param("nombre") String nombre);
 }

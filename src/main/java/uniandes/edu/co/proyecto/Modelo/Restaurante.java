@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "Rest")
+@Table(name = "Restaurantes")
 public abstract class Restaurante {
     
     @Id

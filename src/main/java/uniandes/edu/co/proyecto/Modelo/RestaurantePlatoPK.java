@@ -8,31 +8,31 @@ import jakarta.persistence.ManyToOne;
 public class RestaurantePlatoPK implements Serializable{
     @ManyToOne
     @JoinColumn(name = "nombreRestaurante", referencedColumnName = "nombre")
-    private Bar nombreRestaurante;
+    private Restaurante nombreRestaurante;
 
     @ManyToOne
     @JoinColumn(name = "nombrePlato", referencedColumnName = "nombre")
-    private Bebida nombrePlato;
+    private Plato nombrePlato;
 
-    public RestaurantePlatoPK(Bar nombreRestaurante, Bebida nombrePlato) {
+    public RestaurantePlatoPK(Restaurante nombreRestaurante, Plato nombrePlato) {
         super();
         this.nombreRestaurante = nombreRestaurante;
         this.nombrePlato = nombrePlato;
     }
 
-    public Bar getNombreRestaurante() {
+    public Restaurante getNombreRestaurante() {
         return nombreRestaurante;
     }
 
-    public void setNombreRestaurante(Bar nombreRestaurante) {
+    public void setNombreRestaurante(Restaurante nombreRestaurante) {
         this.nombreRestaurante = nombreRestaurante;
     }
 
-    public Bebida getNombrePlato() {
+    public Plato getNombrePlato() {
         return nombrePlato;
     }
 
-    public void setNombrePlato(Bebida nombrePlato) {
+    public void setNombrePlato(Plato nombrePlato) {
         this.nombrePlato = nombrePlato;
     }
 }

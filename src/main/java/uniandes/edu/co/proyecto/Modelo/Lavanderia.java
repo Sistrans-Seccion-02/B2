@@ -1,20 +1,21 @@
 package uniandes.edu.co.proyecto.Modelo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 
 @Entity
-@Table(name = "Lavanderia")
+@Table(name = "Lavanderias")
 public abstract class Lavanderia {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idLavanderia;
     private Integer numPrendas;
-    @Id
     private Integer numZapatos;
-    @Id
     private String tipoLavado;
-    @Id
     private double costo;
 
     public Lavanderia(Integer numPrendas, Integer numZapatos, String tipoLavado, double costo) {
@@ -26,6 +27,14 @@ public abstract class Lavanderia {
 
     public Lavanderia() 
     {;}
+
+    public Integer getIdLavanderia() {
+        return idLavanderia;
+    }
+
+    public void setIdLavanderia(Integer idLavanderia) {
+        this.idLavanderia = idLavanderia;
+    }
 
     public Integer getNumPrendas() {
         return numPrendas;
