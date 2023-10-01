@@ -11,24 +11,24 @@ import uniandes.edu.co.proyecto.Modelo.PlatosConsumidos;
 
 public interface PlatosConsumidosRepository extends JpaRepository<PlatosConsumidos, Integer>{
     
-    @Query(value = "SELECT * FROM PlatosConsumidos", nativeQuery = true)
+    @Query(value = "SELECT * FROM platosConsumidos", nativeQuery = true)
     Collection<PlatosConsumidos> darPlatosConsumidos();
 
-    @Query(value = "SELECT * FROM PlatosConsumidos WHERE Consumos_IdConsumo = :Consumos_IdConsumo AND Platos_nombre = :Platos_nombre", nativeQuery = true)
+    @Query(value = "SELECT * FROM platosConsumidos WHERE Consumos_IdConsumo = :Consumos_IdConsumo AND Platos_nombre = :Platos_nombre", nativeQuery = true)
     PlatosConsumidos darPlatoConsumido(@Param("Consumos_IdConsumo") Integer Consumos_IdConsumo, @Param("Platos_nombre") String Platos_nombre);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO PlatosConsumidos (Consumos_IdConsumo, Platos_nombre) VALUES (:Consumos_IdConsumo, :Platos_nombre)", nativeQuery = true)
+    @Query(value = "INSERT INTO platosConsumidos (Consumos_IdConsumo, Platos_nombre) VALUES (:Consumos_IdConsumo, :Platos_nombre)", nativeQuery = true)
     void insertarPlatoConsumido(@Param("Consumos_IdConsumo") Integer Consumos_IdConsumo, @Param("Platos_nombre") String Platos_nombre);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE PlatosConsumidos SET Consumos_IdConsumo = :Consumos_IdConsumo, Platos_nombre = :Platos_nombre WHERE Consumos_IdConsumo = :Consumos_IdConsumo AND Platos_nombre = :Platos_nombre", nativeQuery = true)
+    @Query(value = "UPDATE platosConsumidos SET Consumos_IdConsumo = :Consumos_IdConsumo, Platos_nombre = :Platos_nombre WHERE Consumos_IdConsumo = :Consumos_IdConsumo AND Platos_nombre = :Platos_nombre", nativeQuery = true)
     void actualizarPlatoConsumido(@Param("Consumos_IdConsumo") Integer Consumos_IdConsumo, @Param("Platos_nombre") String Platos_nombre);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM PlatosConsumidos WHERE Consumos_IdConsumo = :Consumos_IdConsumo AND Platos_nombre = :Platos_nombre", nativeQuery = true)
+    @Query(value = "DELETE FROM platosConsumidos WHERE Consumos_IdConsumo = :Consumos_IdConsumo AND Platos_nombre = :Platos_nombre", nativeQuery = true)
     void eleminarPlatoConsumido(@Param("Consumos_IdConsumo") Integer Consumos_IdConsumo, @Param("Platos_nombre") String Platos_nombre);
 }

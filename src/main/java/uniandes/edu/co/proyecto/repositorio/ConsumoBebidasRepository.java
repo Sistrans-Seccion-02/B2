@@ -11,24 +11,24 @@ import uniandes.edu.co.proyecto.Modelo.ConsumoBebidas;
 
 public interface ConsumoBebidasRepository extends JpaRepository<ConsumoBebidas, Integer>{
     
-    @Query(value = "SELECT * FROM ConsumosBebidas", nativeQuery = true)
+    @Query(value = "SELECT * FROM consumoBebida", nativeQuery = true)
     Collection<ConsumoBebidas> darConsumoBebidas();
 
-    @Query(value = "SELECT * FROM ConsumosBebidas WHERE Consumos_IdConsumo = :Consumos_IdConsumo AND Bebidas_nombre = :Bebidas_nombre", nativeQuery = true)
+    @Query(value = "SELECT * FROM consumoBebida WHERE Consumos_IdConsumo = :Consumos_IdConsumo AND Bebidas_nombre = :Bebidas_nombre", nativeQuery = true)
     ConsumoBebidas darConsumoBebida(@Param("Consumos_IdConsumo") Integer Consumos_IdConsumo, @Param("Bebidas_nombre") String Bebidas_nombre);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO ConsumosBebidas (Consumos_IdConsumo, Bebidas_nombre) VALUES (:Consumos_IdConsumo, :Bebidas_nombre)", nativeQuery = true)
+    @Query(value = "INSERT INTO consumoBebida (Consumos_IdConsumo, Bebidas_nombre) VALUES (:Consumos_IdConsumo, :Bebidas_nombre)", nativeQuery = true)
     void insertarConsumoBebida(@Param("Consumos_IdConsumo") Integer Consumos_IdConsumo, @Param("Bebidas_nombre") String Bebidas_nombre);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE ConsumosBebidas SET Consumos_IdConsumo = :Consumos_IdConsumo, Bebidas_nombre = :Bebidas_nombre WHERE Consumos_IdConsumo = :Consumos_IdConsumo AND Bebidas_nombre = :Bebidas_nombre", nativeQuery = true)
+    @Query(value = "UPDATE consumoBebida SET Consumos_IdConsumo = :Consumos_IdConsumo, Bebidas_nombre = :Bebidas_nombre WHERE Consumos_IdConsumo = :Consumos_IdConsumo AND Bebidas_nombre = :Bebidas_nombre", nativeQuery = true)
     void actualizarConsumoBebida(@Param("Consumos_IdConsumo") Integer Consumos_IdConsumo, @Param("Bebidas_nombre") String Bebidas_nombre);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM ConsumosBebidas WHERE Consumos_IdConsumo = :Consumos_IdConsumo AND Bebidas_nombre = :Bebidas_nombre", nativeQuery = true)
+    @Query(value = "DELETE FROM consumoBebida WHERE Consumos_IdConsumo = :Consumos_IdConsumo AND Bebidas_nombre = :Bebidas_nombre", nativeQuery = true)
     void eleminarConsumoBebida(@Param("Consumos_IdConsumo") Integer Consumos_IdConsumo, @Param("Bebidas_nombre") String Bebidas_nombre);
 }
