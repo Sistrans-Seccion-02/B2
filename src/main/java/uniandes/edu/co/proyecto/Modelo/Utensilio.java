@@ -16,10 +16,10 @@ public class Utensilio {
     private int id;
     private String nombre;
     @ManyToOne
-    @JoinColumn(name = "PrestamosUt_idUtensilio", referencedColumnName = "idutensilio")
-    private Utensilio PrestamosUt_idUtensilio;
+    @JoinColumn(name = "PrestamosUt_idUtensilio", referencedColumnName = "idUtensilio")
+    private PrestamoUtensilio PrestamosUt_idUtensilio;
 
-    public Utensilio(String nombre, Utensilio PrestamosUt_idUtensilio) {
+    public Utensilio(String nombre, PrestamoUtensilio PrestamosUt_idUtensilio) {
         this.nombre = nombre;
         this.PrestamosUt_idUtensilio = PrestamosUt_idUtensilio;
     }
@@ -42,11 +42,11 @@ public class Utensilio {
         this.nombre = nombre;
     }
 
-    public Utensilio getPrestamosUt_idUtensilio() {
+    public PrestamoUtensilio getPrestamosUt_idUtensilio() {
         return PrestamosUt_idUtensilio;
     }
 
-    public void setPrestamosUt_idUtensilio(Utensilio PrestamosUt_idUtensilio) {
+    public void setPrestamosUt_idUtensilio(PrestamoUtensilio PrestamosUt_idUtensilio) {
         this.PrestamosUt_idUtensilio = PrestamosUt_idUtensilio;
     }
 
