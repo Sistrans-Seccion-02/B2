@@ -13,10 +13,10 @@
         <form>
             <label class="col-form-label">Id</label>
             <input class="form-control" type="text" id="id"
-            name="capacidad" required th:value="${habitacion.id}"/> 
+            name="Id" required th:value="${habitacion.id}"/> 
             <label class="col-form-label">capacidad</label>
             <input class="form-control" type="text" id="capacidad"
-            name="nombre" required th:value="${habitacion.capacidad}"/>
+            name="capacidad" required th:value="${habitacion.capacidad}"/>
             <th:block th:each="tipo : ${tipos}" >
                 <option th:value="${tipo.id}" th:text="${tipo.nombre}" th:selected="${habitacion!=null || habitacion.tipo.nombre == tipo.nombre}"></option>
             </th:block>
