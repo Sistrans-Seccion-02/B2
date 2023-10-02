@@ -18,13 +18,13 @@ public interface LavanderiaRepository extends JpaRepository<Lavanderia, Integer>
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO lavanderias (B2_sequence.nextval, numPrendas, numZapatos, tipoLavado, costo, Comsumos_idConsumo) VALUES (:numPrendas, :numZapatos, :tipoLavado, :costo, :Comsumos_idConsumo)", nativeQuery = true)
-    void insertarLavanderia(@Param("numPrendas") Integer numPrendas, @Param("numZapatos") Integer numZapatos, @Param("tipoLavado") String tipoLavado, @Param("costo") Integer costo, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
+    @Query(value = "INSERT INTO lavanderias (numPrendas, numZapatos, tipoLavado, costo, Comsumos_idConsumo) VALUES (B2_sequence.nextval, :numPrendas, :numZapatos, :tipoLavado, :costo, :Comsumos_idConsumo)", nativeQuery = true)
+    void insertarLavanderia(@Param("numPrendas") Integer numPrendas, @Param("numZapatos") Integer numZapatos, @Param("tipoLavado") String tipoLavado, @Param("costo") double costo, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
 
     @Modifying
     @Transactional
     @Query(value = "UPDATE Lavanderias SET numPrendas = :numPrendas, numZapatos = :numZapatos, tipoLavado = :tipoLavado, costo = :costo, Comsumos_idConsumo = :Comsumos_idConsumo WHERE idLavanderia = :idLavanderia", nativeQuery = true)
-    void actualizarLavanderia(@Param("idLavanderia") Integer idLavanderia, @Param("numPrendas") Integer numPrendas, @Param("numZapatos") Integer numZapatos, @Param("tipoLavado") String tipoLavado, @Param("costo") Integer costo, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
+    void actualizarLavanderia(@Param("idLavanderia") Integer idLavanderia, @Param("numPrendas") Integer numPrendas, @Param("numZapatos") Integer numZapatos, @Param("tipoLavado") String tipoLavado, @Param("costo") double costo, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
 
     @Modifying
     @Transactional
