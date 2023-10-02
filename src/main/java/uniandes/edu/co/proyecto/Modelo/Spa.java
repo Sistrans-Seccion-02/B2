@@ -13,6 +13,7 @@ public class Spa  {
     private LocalTime horarioApertura;
     private LocalTime horarioCierre;
     private int capacidad;
+    private double precio;
 
     public Spa() {;}
 
@@ -48,4 +49,12 @@ public class Spa  {
         this.capacidad = capacidad;
     }
 
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+    
 }

@@ -22,7 +22,7 @@ public class Consumo {
         this.precioTotal = precioTotal;
     }
 
-    public boolean isPazYSalvo() {
+    public boolean getPazYSalvo() {
         return pazYSalvo;
     }
 

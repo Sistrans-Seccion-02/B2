@@ -19,13 +19,13 @@ public interface SpaRepository extends JpaRepository<Spa, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Spas (nombre, horarioApertura, horarioCierre, capacidad) VALUES (B2_sequence.nextval, :nombre, :horarioApertura, :horarioCierre, :capacidad)")
-    void insertarSpa(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("capacidad") int capacidad);
+    @Query(value = "INSERT INTO Spas (nombre, horarioApertura, horarioCierre, capacidad, precio) VALUES (B2_sequence.nextval, :nombre, :horarioApertura, :horarioCierre, :capacidad, :precio)")
+    void insertarSpa(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("capacidad") int capacidad, @Param("precio") double precio);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Spas SET nombre=:nombre, horarioApertura=:horarioApertura, horarioCierre=:horarioCierre, capacidad=:capacidad WHERE nombre=:nombre", nativeQuery = true)
-    void actualizarSpa(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("capacidad") int capacidad);
+    @Query(value = "UPDATE Spas SET nombre=:nombre, horarioApertura=:horarioApertura, horarioCierre=:horarioCierre, capacidad=:capacidad, precio=:precio WHERE nombre=:nombre", nativeQuery = true)
+    void actualizarSpa(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("capacidad") int capacidad, @Param("precio") double precio);
    
     @Modifying
     @Transactional

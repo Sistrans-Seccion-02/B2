@@ -23,11 +23,11 @@ public interface MaquinaRepository extends JpaRepository<Maquina, Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Maquinas SET nombre = :nombre, Gimnasios_nombre = :Gimnasios_nombre WHERE idMaquina = :idMaquina", nativeQuery = true)
+    @Query(value = "UPDATE Maquinas SET nombre = :nombre, capacidad = :capacidad, tipo = :tipo WHERE idMaquina = :idMaquina", nativeQuery = true)
     void actualizarMaquina(@Param("idMaquina") Integer idMaquina, @Param("nombre") String nombre, @Param("Gimnasios_nombre") String Gimnasios_nombre);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Maquinas WHERE idMaquina = :idMaquina", nativeQuery = true)
-    void eleminarMaquina(@Param("idMaquina") Integer idMaquina);
+    void eliminarMaquina(@Param("idMaquina") Integer idMaquina);
 }

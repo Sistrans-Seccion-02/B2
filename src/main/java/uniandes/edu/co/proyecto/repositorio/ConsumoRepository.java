@@ -18,7 +18,7 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Consumos (idConsumo, precioTotal, pazYSalvo) VALUES (B2_sequence.nextval, :idConsumo, :precioTotal, :pazYSalvo)")
+    @Query(value = "INSERT INTO Consumos (idConsumo, precioTotal, pazYSalvo) VALUES (B2_sequence.nextval, :precioTotal, :pazYSalvo)")
     void insertarConsumo(@Param("idConsumo") int idConsumo, @Param("precioTotal") double precioTotal, @Param("pazYSalvo") boolean pazYSalvo);
 
     @Modifying
