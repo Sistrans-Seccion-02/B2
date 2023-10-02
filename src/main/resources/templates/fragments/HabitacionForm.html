@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <title>Fragmento</title>
+    
+</head>
+<body>
+    <div th:fragment="habitacionForm(titulo)" class="container border border-2 w-25">
+        <h1 class="text-center" th:text="${titulo}"></h1>
+        <form>
+            <label class="col-form-label">Id</label>
+            <input class="form-control" type="text" id="id"
+            name="capacidad" required th:value="${habitacion.id}"/> 
+            <label class="col-form-label">capacidad</label>
+            <input class="form-control" type="text" id="capacidad"
+            name="nombre" required th:value="${habitacion.capacidad}"/>
+            <th:block th:each="tipo : ${tipos}" >
+                <option th:value="${tipo.id}" th:text="${tipo.nombre}" th:selected="${habitacion!=null || habitacion.tipo.nombre == tipo.nombre}"></option>
+            </th:block>
+            <th:block th:each="idReserva : ${idReserva}" >
+                <option th:value="${idReserva.id}" th:text="${idReserva.id}" th:selected="${habitacion!=null || habitacion.idReserva.id == idReserva.id}"></option>
+            </th:block>
+
+ 
+           
+
+
+            <div class="text_center">
+                <input type="submit" value="Guardar" class="btn btn-primary"/>
+                <a th:href="@{/tiposHabitacion}" class="btn btn-primary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+
+
+    
+</body>
+</html>
