@@ -10,6 +10,24 @@ public class Producto  {
     @Id
     private String nombre;
     private double precio;
+    private Tienda tienda;
+    private SMercado sMercado;
+
+    public Tienda getTienda() {
+        return tienda;
+    }
+
+    public void setTienda(Tienda tienda) {
+        this.tienda = tienda;
+    }
+
+    public SMercado getsMercado() {
+        return sMercado;
+    }
+
+    public void setsMercado(SMercado sMercado) {
+        this.sMercado = sMercado;
+    }
 
     public Producto() {;}
 
