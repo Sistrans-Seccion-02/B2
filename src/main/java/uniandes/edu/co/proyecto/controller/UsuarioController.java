@@ -50,7 +50,7 @@ public class UsuarioController {
             return "redirect:/usuarios";
         }
     }
-    @PostMapping("/usuarios/{id}/edit/save")
+    @PostMapping("/usuarios/{id}/editar/save")
      public String usuarioEditarGuardar(@PathVariable("id") int id, @ModelAttribute Usuario usuario){
         usuarioRepository.actualizarUsuario(id, usuario.getNombre(), usuario.getCedula(), usuario.getTipo());
         return "redirect:/usuarios";
