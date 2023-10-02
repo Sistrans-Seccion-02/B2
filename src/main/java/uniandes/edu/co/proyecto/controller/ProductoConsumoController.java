@@ -46,18 +46,18 @@ public class ProductoConsumoController {
         return "productoConsumoNuevo";
     }
 
-    /* 
     @PostMapping("/productos/new/save")
     public String productoConsumoGuardar(@ModelAttribute("idConsumo") int idConsumo, @ModelAttribute("nombre") String nombre) {
         Consumo consumo = consumoRepository.darConsumo(idConsumo);
         Producto producto = productoRepository.darProducto(nombre);
-        ProductoConsumoPK pk = new ProductoConsumoPK(consumo.getIdConsumo(), producto.getNombre());
+        ProductoConsumoPK pk = new ProductoConsumoPK(consumo, producto);
         ProductoConsumo productoConsumo = new ProductoConsumo();
+        productoConsumo.setPk(pk);
+        productoConsumoRepository.insertarProductoConsumo(productoConsumo.getPk().getIdConsumo().getIdConsumo(), productoConsumo.getPk().getNombre().getNombre());
 
-        productoRepository.insertarProductoConsumo(producto.getPk().getIdConsumo().getIdConsumo(), producto.getPk().getNombre().getNombre());
         return "redirect:/productos";
     }
-    */
+    
     /*
     @GetMapping("/productos/{nombre}/edit") 
     public String productoEditarForm(@PathVariable("nombre") String nombre, Model model) {
