@@ -33,7 +33,7 @@ public class PlanConsumoController {
 
     @PostMapping("/planesConsumo/new/save")
     public String planConsumoGuardar(@ModelAttribute PlanConsumo planConsumo){
-        planConsumoRepository.insertarPlanConsumo(planConsumo.getTipo(), planConsumo.getDescripcion(),planConsumo.getDescuento(),  planConsumo.isDescuentoBar(), planConsumo.isDescuentoRestaurante(), planConsumo.isDescuentoSpa(), planConsumo.getLimiteBebidas(), planConsumo.isDescuentoLavado() );
+        planConsumoRepository.insertarPlanConsumo(planConsumo.getDescripcion(),planConsumo.getDescuento(),  planConsumo.isDescuentoBar(), planConsumo.isDescuentoRestaurante(), planConsumo.isDescuentoSpa(), planConsumo.getLimiteBebidas(), planConsumo.isDescuentoLavado(), planConsumo.getComsumos_idConsumo().getIdConsumo(), planConsumo.getReservas_idReservas().getId() );
         return "redirect:/planesConsumo";
     
     }
@@ -51,7 +51,7 @@ public class PlanConsumoController {
     }
     @PostMapping("/planesConsumo/{id}/edit/save")
      public String PlanConsumoEditarGuardar(@PathVariable("id") String id, @ModelAttribute PlanConsumo planConsumo){
-        planConsumoRepository.actualizarPlanConsumo( planConsumo.getTipo(), planConsumo.getDescripcion(),planConsumo.getDescuento(),  planConsumo.isDescuentoBar(), planConsumo.isDescuentoRestaurante(), planConsumo.isDescuentoSpa(), planConsumo.getLimiteBebidas(), planConsumo.isDescuentoLavado());
+        planConsumoRepository.actualizarPlanConsumo( planConsumo.getTipo(), planConsumo.getDescripcion(),planConsumo.getDescuento(),  planConsumo.isDescuentoBar(), planConsumo.isDescuentoRestaurante(), planConsumo.isDescuentoSpa(), planConsumo.getLimiteBebidas(), planConsumo.isDescuentoLavado(), planConsumo.getComsumos_idConsumo().getIdConsumo(), planConsumo.getReservas_idReservas().getId());
         return "redirect:/planesConsumo";
     }
 

@@ -14,22 +14,22 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
     Collection<Consumo> darConsumos();
     
     @Query(value = "SELECT * FROM Consumos WHERE idConsumo = :idConsumo", nativeQuery = true)
-    Consumo darConsumo(@Param("idConsumo") int idConsumo);
+    Consumo darConsumo(@Param("idConsumo") Integer idConsumo);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Consumos (idConsumo, precioTotal, pazYSalvo) VALUES (B2_sequence.nextval, :precioTotal, :pazYSalvo)")
-    void insertarConsumo(@Param("idConsumo") int idConsumo, @Param("precioTotal") double precioTotal, @Param("pazYSalvo") boolean pazYSalvo);
+    @Query(value = "INSERT INTO Consumos (idConsumo, precioTotal, pazYSalvo) VALUES (B2_sequence, :precioTotal, :pazYSalvo)", nativeQuery = true)
+    void insertarConsumo(@Param("precioTotal") double precioTotal, @Param("pazYSalvo") boolean pazYSalvo);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Consumos SET idConsumo=:idConsumo, precioTotal=:precioTotal, pazYSalvo=:pazYSalvo WHERE idConsumo=:idConsumo", nativeQuery = true)
-    void actualizarConsumo(@Param("idConsumo") int idConsumo, @Param("precioTotal") double precioTotal, @Param("pazYSalvo") boolean pazYSalvo);
+    @Query(value = "UPDATE Consumos SET precioTotal=:precioTotal, pazYSalvo=:pazYSalvo WHERE idConsumo=:idConsumo", nativeQuery = true)
+    void actualizarConsumo(@Param("idConsumo") Integer idConsumo, @Param("precioTotal") double precioTotal, @Param("pazYSalvo") boolean pazYSalvo);
    
     @Modifying
     @Transactional
     @Query(value= "DELETE FROM Consumos WHERE idConsumo=:idConsumo", nativeQuery = true)
-    void eliminarConsumo(@Param("idConsumo") int idConsumo);
+    void eliminarConsumo(@Param("idConsumo") Integer idConsumo);
 }
 
 

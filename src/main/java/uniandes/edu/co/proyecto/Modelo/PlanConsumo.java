@@ -3,6 +3,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -11,8 +13,9 @@ import jakarta.persistence.Table;
 
 public  class PlanConsumo {
     
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String tipo;
     private double descuento;
     private String descripcion;
@@ -21,8 +24,16 @@ public  class PlanConsumo {
     private boolean descuentoSpa;
     private int limiteBebidas;
     private boolean descuentoLavado;
+    @ManyToOne
+    @JoinColumn(name = "Comsumos_idConsumo", referencedColumnName = "idConsumo")
+    private Consumo Comsumos_idConsumo;
+    @ManyToOne
+    @JoinColumn(name = "Reservas_idReservas", referencedColumnName = "idReserva")
+    private Reserva Reservas_idReservas;
 
-    public PlanConsumo(String tipo, double descuento,String descripcion , boolean descuentoBar, boolean descuentoRestaurante, boolean descuentoSpa, int limiteBebidas, boolean descuentoLavado) {
+
+    public PlanConsumo(String tipo, double descuento,String descripcion , boolean descuentoBar, boolean descuentoRestaurante, 
+                        boolean descuentoSpa, int limiteBebidas, boolean descuentoLavado, Consumo Comsumos_idConsumo, Reserva Reservas_idReservas) {
         this.tipo = tipo;
 
         this.descuento = descuento;
@@ -32,6 +43,8 @@ public  class PlanConsumo {
         this.descuentoSpa = descuentoSpa;
         this.limiteBebidas = limiteBebidas;
         this.descuentoLavado = descuentoLavado;
+        this.Comsumos_idConsumo = Comsumos_idConsumo;
+        this.Reservas_idReservas = Reservas_idReservas;
     }
 
     public PlanConsumo() 
@@ -105,4 +118,20 @@ public  class PlanConsumo {
         this.descripcion = descripcion;
     } 
     
+    public Consumo getComsumos_idConsumo() {
+        return Comsumos_idConsumo;
+    }
+
+    public void setComsumos_idConsumo(Consumo Comsumos_idConsumo) {
+        this.Comsumos_idConsumo = Comsumos_idConsumo;
+    }
+
+    public Reserva getReservas_idReservas() {
+        return Reservas_idReservas;
+    }
+
+    public void setReservas_idReservas(Reserva Reservas_idReservas) {
+        this.Reservas_idReservas = Reservas_idReservas;
+    }
+
 }

@@ -14,7 +14,7 @@ import uniandes.edu.co.proyecto.Modelo.Piscina;
 import uniandes.edu.co.proyecto.repositorio.PiscinaRepository;
 
 /*@Controller*/
-@RestController
+@Controller
 public class PiscinaController {
     @Autowired
     private PiscinaRepository piscinaRepository;
@@ -33,7 +33,7 @@ public class PiscinaController {
 
     @PostMapping("/piscinas/new/save")
     public String piscinaGuardar(@ModelAttribute Piscina piscina) {
-        piscinaRepository.insertarPiscina(piscina.getNombre(), piscina.getHorarioApertura(), piscina.getHorarioCierre(), piscina.getProfundidad());
+        piscinaRepository.insertarPiscina(piscina.getNombre(), piscina.getHorarioApertura(), piscina.getHorarioCierre(), piscina.getProfundidad(), piscina.getComsumos_idConsumo().getIdConsumo());
         return "redirect:/piscinas";
     }
 
@@ -50,7 +50,7 @@ public class PiscinaController {
 
     @PostMapping("/piscinas/{nombre}/edit/save")
     public String piscinaEditarGuardar(@PathVariable("nombre") String nombre, @ModelAttribute Piscina piscina) {
-        piscinaRepository.actualizarPiscina(nombre, piscina.getHorarioApertura(), piscina.getHorarioCierre(), piscina.getProfundidad());
+        piscinaRepository.actualizarPiscina(nombre, piscina.getHorarioApertura(), piscina.getHorarioCierre(), piscina.getProfundidad(), piscina.getComsumos_idConsumo().getIdConsumo());
         return "redirect:/piscinas";
     }
 

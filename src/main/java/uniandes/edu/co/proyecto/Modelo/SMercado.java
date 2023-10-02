@@ -12,7 +12,14 @@ public class SMercado  {
     private String nombre;
     private LocalTime horarioApertura;
     private LocalTime horarioCierre;
-    private int capacidad;
+    private Integer capacidad;
+
+    public SMercado(String nombre, LocalTime horarioApertura, LocalTime horarioCierre, Integer capacidad) {
+        this.nombre = nombre;
+        this.horarioApertura = horarioApertura;
+        this.horarioCierre = horarioCierre;
+        this.capacidad = capacidad;
+    }
 
     public SMercado() {;}
 
@@ -40,7 +47,7 @@ public class SMercado  {
         this.horarioCierre = horarioCierre;
     }
 
-    public int getCapacidad() {
+    public Integer getCapacidad() {
         return capacidad;
     }
 

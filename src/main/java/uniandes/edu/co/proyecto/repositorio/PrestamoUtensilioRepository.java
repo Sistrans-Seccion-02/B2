@@ -25,7 +25,7 @@ public interface PrestamoUtensilioRepository extends JpaRepository<PrestamoUtens
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE PrestamosUt SET cantidad = :cantidad, precio = :precio, tipo = :tipo, estado =: estado, Comsumos_idConsumo =: Comsumos_idConsumo WHERE idutensilio =: idutensilio", nativeQuery = true)
+    @Query(value = "UPDATE PrestamosUt SET cantidad = :cantidad, precio = :precio, tipo = :tipo, estado = :estado, Comsumos_idConsumo = :Comsumos_idConsumo WHERE idutensilio =:idutensilio", nativeQuery = true)
     void actualizarPrestamoUtensilio(@Param("idutensilio") Integer idutensilio, @Param("cantidad") Integer cantidad, @Param("precio") double precio, @Param("tipo") String tipo, @Param("estado") Boolean estado, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
 
     @Modifying

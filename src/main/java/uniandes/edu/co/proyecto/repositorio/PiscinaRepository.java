@@ -19,13 +19,13 @@ public interface PiscinaRepository extends JpaRepository<Piscina, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Piscinas (nombre, horarioApertura, horarioCierre, profundidad) VALUES (B2_sequence.nextval, :nombre, :horarioApertura, :horarioCierre, :profundidad)")
-    void insertarPiscina(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("profundidad") int profundidad);
+    @Query(value = "INSERT INTO Piscinas (nombre, horarioApertura, horarioCierre, profundidad,Comsumos_idConsumo ) VALUES (:nombre, :horarioApertura, :horarioCierre, :profundidad, :Comsumos_idConsumo)", nativeQuery = true)
+    void insertarPiscina(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("profundidad") Integer profundidad, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Piscinas SET nombre=:nombre, horarioApertura=:horarioApertura, horarioCierre=:horarioCierre, profundidad=:profundidad WHERE nombre=:nombre", nativeQuery = true)
-    void actualizarPiscina(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("profundidad") int profundidad);
+    @Query(value = "UPDATE Piscinas SET nombre=:nombre, horarioApertura=:horarioApertura, horarioCierre=:horarioCierre, profundidad=:profundidad, Comsumos_idConsumo=:Comsumos_idConsumo WHERE nombre=:nombre", nativeQuery = true)
+    void actualizarPiscina(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("profundidad") Integer profundidad, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
    
     @Modifying
     @Transactional

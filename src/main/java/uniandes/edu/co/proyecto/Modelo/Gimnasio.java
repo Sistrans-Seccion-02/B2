@@ -13,7 +13,7 @@ public class Gimnasio {
     private String nombre;
     private LocalTime horarioApertura;
     private LocalTime horarioCierre;
-    private int capacidad;
+    private Integer capacidad;
 
     public Gimnasio() {;}
 
@@ -41,11 +41,11 @@ public class Gimnasio {
         this.horarioCierre = horarioCierre;
     }
 
-    public int getCapacidad() {
+    public Integer getCapacidad() {
         return capacidad;
     }
 
-    public void setCapacidad(int capacidad) {
+    public void setCapacidad(Integer capacidad) {
         this.capacidad = capacidad;
     }
 

@@ -19,17 +19,17 @@ public interface GimnasioRepository extends JpaRepository<Gimnasio, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Gimnasios (nombre, horarioApertura, horarioCierre, capacidad) VALUES (B2_sequence.nextval, :nombre, :horarioApertura, :horarioCierre, :capacidad)")
-    void insertarGimnasio(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("capacidad") int capacidad);
+    @Query(value = "INSERT INTO Gimnasios (nombre, horaApertura, horaCierre, capacidad) VALUES (:nombre, :horaApertura, :horaCierre, :capacidad)", nativeQuery = true)
+    void insertarGimnasio(@Param("nombre") String nombre, @Param("horaApertura") LocalTime horaApertura, @Param("horaCierre") LocalTime horaCierre, @Param("capacidad") Integer capacidad);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Gimnasios SET nombre=:nombre, horarioApertura=:horarioApertura, horarioCierre=:horarioCierre, capacidad=:capacidad WHERE nombre=:nombre", nativeQuery = true)
-    void actualizarGimnasio(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("capacidad") int capacidad);
-   
+    @Query(value = "UPDATE Gimnasios SET horaApertura = :horaApertura, horaCierre = :horaCierre, capacidad = :capacidad WHERE nombre = :nombre", nativeQuery = true)
+    void actualizarGimnasio(@Param("nombre") String nombre, @Param("horaApertura") LocalTime horaApertura, @Param("horaCierre") LocalTime horaCierre, @Param("capacidad") Integer capacidad);
+
     @Modifying
     @Transactional
-    @Query(value= "DELETE FROM Gimnasios WHERE nombre=:nombre", nativeQuery = true)
+    @Query(value = "DELETE FROM Gimnasios WHERE nombre = :nombre", nativeQuery = true)
     void eliminarGimnasio(@Param("nombre") String nombre);
 }
 

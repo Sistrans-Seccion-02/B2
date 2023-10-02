@@ -18,7 +18,7 @@ public interface ProductoRepository extends JpaRepository<Producto, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Productos (nombre, precio, SMercados_nombre, Tiendas_nombre) VALUES (B2_sequence.nextval, :nombre, :precio, SMercados_nombre, Tiendas_nombre)")
+    @Query(value = "INSERT INTO Productos (nombre, precio, SMercados_nombre, Tiendas_nombre) VALUES (:nombre, :precio, :SMercados_nombre, :Tiendas_nombre)", nativeQuery = true)
     void insertarProducto(@Param("nombre") String nombre, @Param("precio") double precio, @Param("SMercados_nombre") String SMercados_nombre, @Param("Tiendas_nombre") String Tiendas_nombre);
 
     @Modifying
