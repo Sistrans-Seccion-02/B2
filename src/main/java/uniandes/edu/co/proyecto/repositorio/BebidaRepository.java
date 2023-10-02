@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import uniandes.edu.co.proyecto.Modelo.Bebida;
 
-public interface BebidaReository extends JpaRepository<Bebida, String> {
+public interface BebidaRepository extends JpaRepository<Bebida, String> {
     
     @Query(value = "SELECT * FROM Bebidas", nativeQuery = true)
     Collection<Bebida> darBebidas();
@@ -19,13 +19,13 @@ public interface BebidaReository extends JpaRepository<Bebida, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Bebidas (nombre, precio, tipo, cantidad) VALUES (:nombre, :precio, :tipo, :cantidad)", nativeQuery = true)
-    void insertarBebida(@Param("nombre") String nombre, @Param("precio") Integer precio, @Param("tipo") String tipo, @Param("cantidad") Integer cantidad);
+    @Query(value = "INSERT INTO Bebidas (nombre, precio, todoIncluido) VALUES (:nombre, :precio, :todoIncluido)", nativeQuery = true)
+    void insertarBebida(@Param("nombre") String nombre, @Param("precio") double precio, @Param("todoIncluido") Boolean todoIncluido);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Bebidas SET precio = :precio, tipo = :tipo, cantidad = :cantidad WHERE nombre = :nombre", nativeQuery = true)
-    void actualizarBebida(@Param("nombre") String nombre, @Param("precio") Integer precio, @Param("tipo") String tipo, @Param("cantidad") Integer cantidad);
+    @Query(value = "UPDATE Bebidas SET precio = :precio, todoIncluido = :todoIncluido WHERE nombre = :nombre", nativeQuery = true)
+    void actualizarBebida(@Param("nombre") String nombre, @Param("precio") double precio, @Param("todoIncluido") Boolean todoIncluido);
 
     @Modifying
     @Transactional

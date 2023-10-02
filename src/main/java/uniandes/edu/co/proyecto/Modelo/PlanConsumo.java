@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 public  class PlanConsumo {
     
     @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @Id
     private String tipo;
     private double descuento;
     private String descripcion;

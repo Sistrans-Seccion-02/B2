@@ -43,7 +43,7 @@ public class MaquinaController {
     }
 
     @GetMapping("/maquinas/{idMaquina}/edit") 
-    public String maquinaEditarForm(@PathVariable("nombre") int idMaquina, Model model) {
+    public String maquinaEditarForm(@PathVariable("idMaquina") int idMaquina, Model model) {
         Maquina maquina = maquinaRepository.darMaquina(idMaquina);
         if (maquina != null) {
             model.addAttribute("idMaquina", idMaquina);

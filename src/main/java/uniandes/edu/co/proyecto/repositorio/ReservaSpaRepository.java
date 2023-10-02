@@ -1,4 +1,5 @@
 package uniandes.edu.co.proyecto.repositorio;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Collection;
 
@@ -20,13 +21,13 @@ public interface ReservaSpaRepository extends JpaRepository<ReservaSpa, Integer>
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO ReservasSpa (idReserva, duracion, fecha, nombreSpa) VALUES (B2_sequence.nextval, :duracion, :fecha, :nombreSpa)", nativeQuery = true)
-    void insertarReservaSpa(@Param("duracion") Integer duracion, @Param("fecha") LocalTime fecha, @Param("nombreSpa") String nombreSpa);
+    @Query(value = "INSERT INTO ReservasSpa (idReserva, duracion, fecha, SpasNombre) VALUES (B2_sequence.nextval, :duracion, :fecha, :SpasNombre)", nativeQuery = true)
+    void insertarReservaSpa(@Param("duracion") Integer duracion, @Param("fecha") LocalDateTime fecha, @Param("SpasNombre") String SpasNombre);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE ReservasSpa SET duracion = :duracion, fecha = :fecha, nombreSpa = :nombreSpa WHERE idReserva = :idReserva", nativeQuery = true)
-    void actualizarReservaSpa(@Param("idReserva") Integer idReserva, @Param("duracion") Integer duracion, @Param("fecha") LocalTime fecha, @Param("nombreSpa") String nombreSpa);
+    @Query(value = "UPDATE ReservasSpa SET duracion = :duracion, fecha = :fecha, SpasNombre = :SpasNombre WHERE idReserva = :idReserva", nativeQuery = true)
+    void actualizarReservaSpa(@Param("idReserva") Integer idReserva, @Param("duracion") Integer duracion, @Param("fecha") LocalDateTime fecha, @Param("SpasNombre") String SpasNombre);
 
     @Modifying
     @Transactional

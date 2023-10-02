@@ -3,12 +3,9 @@ package uniandes.edu.co.proyecto.Modelo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import org.hibernate.annotations.Check;
 
 
 @Entity
@@ -17,13 +14,8 @@ import org.hibernate.annotations.Check;
 
 public  class TipoHabitacion {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
 
-    
-    
-    @Column(name = "tipo")
-    @Check(constraints = "tipo IN ('PRESIDENCIAL', 'SUITE', 'FAMILIAR', 'DOBLE', 'SENCILLA')")
+    @Id
     private String tipo;
     private String descripcion;
 

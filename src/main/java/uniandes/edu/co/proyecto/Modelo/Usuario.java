@@ -14,7 +14,6 @@ import jakarta.persistence.Table;
 public  class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Check(constraints = "tipo IN ('ADMINISTRADOR', 'CLIENTE', 'EMPLEADO', 'GERENTE', 'RECEPSIONISTA')")
     private Integer id;
     private String nombre;
     private String cedula;

@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 @Table(name = "Consumos")
 public class Consumo {
     @Id
-    private int idConsumo;
+    private Integer idConsumo;
     private double precioTotal;
     private boolean pazYSalvo;
 

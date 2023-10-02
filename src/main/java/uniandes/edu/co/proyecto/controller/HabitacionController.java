@@ -40,7 +40,7 @@ public class HabitacionController {
     
     }
 
-    @GetMapping("/habitaciones/{id/edit}")
+    @GetMapping("/habitaciones/{id}/edit}")
     public String habitacionEditarForm(@PathVariable("id") int id, Model model){
         Habitacion habitacion= habitacionRepository.darHabitacion(id);
         if(habitacion != null){

@@ -16,7 +16,7 @@ public class Utensilio {
     private int id;
     private String nombre;
     @ManyToOne
-    @JoinColumn(name = "PrestamosUt_idUtensilio", referencedColumnName = "idutensilio")
+    @JoinColumn(name = "PrestamosUt_idUtensilio", referencedColumnName = "idUtensilio")
     private PrestamoUtensilio PrestamosUt_idUtensilio;
 
     public Utensilio(String nombre, PrestamoUtensilio PrestamosUt_idUtensilio) {
