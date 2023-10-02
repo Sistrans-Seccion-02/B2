@@ -25,8 +25,8 @@ public interface SalonRepository extends JpaRepository<Salon, String>{
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Salones SET precio = :precio, horaApertura = :horaApertura, horaCierre = :horaCierre, ocupado = :ocupado, tipoSalon =: tipoSalon, capacidad = :capacidad, Comsumos_idConsumo =: Comsumos_idConsumo WHERE nombre = :nombre", nativeQuery = true)
-    void actualizarSalon(@Param("nombre") String nombre, @Param("precio") double precio, @Param("horaApertura") LocalTime horaApertura, @Param("horaCierre") LocalTime horaCierre, @Param("ocupado") Boolean ocupado, @Param("tipoSalon") String tipoSalon, @Param("capacidad") Integer capacidad, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
+    @Query(value = "UPDATE Salones SET precio = :precio, horaApertura = :horaApertura, horaCierre = :horaCierre, ocupado = :ocupado, tipoSalon = :tipoSalon, capacidad = :capacidad, Comsumos_idConsumo = :Comsumos_idConsumo WHERE nombre = :nombre", nativeQuery = true)
+    void actualizarSalon(@Param("nombre") String nombre, @Param("precio") double precio, @Param("horaApertura") LocalTime horaApertura, @Param("horaCierre") LocalTime horaCierre,@Param("ocupado") Boolean ocupado,@Param("tipoSalon") String tipoSalon, @Param("capacidad") Integer capacidad, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
 
     @Modifying
     @Transactional
