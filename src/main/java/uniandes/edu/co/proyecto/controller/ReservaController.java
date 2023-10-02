@@ -38,7 +38,7 @@ public class ReservaController {
     
     }
 
-    @GetMapping("/reservas/{id/edit}")
+    @GetMapping("/reservas/{id}/edit")
     public String reservaEditarForm(@PathVariable("id") int id, Model model){
         Reserva reserva= reservaRepository.darReserva(id);
         if(reserva != null){

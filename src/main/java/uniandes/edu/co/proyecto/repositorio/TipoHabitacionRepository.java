@@ -18,7 +18,7 @@ public interface TipoHabitacionRepository extends JpaRepository<TipoHabitacion, 
     Collection<TipoHabitacion> darTiposDeHabitacion();
     
 
-    @Query(value = "SELECT * FROM tiposDeHabitacion WHERE id = :tipo", nativeQuery = true)
+    @Query(value = "SELECT * FROM tiposDeHabitacion WHERE tipo = :id", nativeQuery = true)
     TipoHabitacion darTipoHabitacion(@Param("id") String id);
 
     @Modifying
@@ -28,12 +28,12 @@ public interface TipoHabitacionRepository extends JpaRepository<TipoHabitacion, 
     
     @Modifying
     @Transactional
-    @Query(value = "UPDATE tiposDeHabitacion SET tipo = :tipo, descripcion = :descripcion WHERE id = :tipo", nativeQuery = true)
+    @Query(value = "UPDATE tiposDeHabitacion SET descripcion = :descripcion WHERE tipo = :tipo", nativeQuery = true)
     void actualizarTipoHabitacion( @Param("tipo") String tipo,@Param("descripcion") String descripcion);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM tiposDeHabitacion WHERE id = :tipo", nativeQuery = true)
+    @Query(value = "DELETE FROM tiposDeHabitacion WHERE tipo = :id", nativeQuery = true)
     void eliminarTipoHabitacion(@Param("id")String id);
     
 

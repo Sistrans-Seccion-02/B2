@@ -19,7 +19,7 @@ public interface TiendaRepository extends JpaRepository<Tienda, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Tiendas (nombre, horarioApertura, horarioCierre, capacidad) VALUES (B2_sequence.nextval, :nombre, :horarioApertura, :horarioCierre, :capacidad)")
+    @Query(value = "INSERT INTO Tiendas (nombre, horarioApertura, horarioCierre, capacidad) VALUES (:nombre, :horarioApertura, :horarioCierre, :capacidad)", nativeQuery = true)
     void insertarTienda(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("capacidad") int capacidad);
 
     @Modifying

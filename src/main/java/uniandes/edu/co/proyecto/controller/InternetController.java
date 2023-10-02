@@ -33,7 +33,7 @@ public class InternetController {
 
     @PostMapping("/internets/new/save")
     public String internetGuardar(@ModelAttribute Internet internet) {
-        internetRepository.insertarInternet(internet.getCapacidad(), internet.getPrecio());
+        internetRepository.insertarInternet(internet.getCapacidad(), internet.getPrecio(), internet.getComsumos_idConsumo().getIdConsumo());
         return "redirect:/internets";
     }
 
@@ -50,7 +50,7 @@ public class InternetController {
 
     @PostMapping("/internets/{capacidad}/edit/save")
     public String internetEditarGuardar(@PathVariable("capacidad") int capacidad, @ModelAttribute Internet internet) {
-        internetRepository.actualizarInternet(capacidad, internet.getPrecio());
+        internetRepository.actualizarInternet(capacidad, internet.getPrecio(), internet.getComsumos_idConsumo().getIdConsumo());
         return "redirect:/internets";
     }
 

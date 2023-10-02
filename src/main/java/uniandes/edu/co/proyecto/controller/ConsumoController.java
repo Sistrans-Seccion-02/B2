@@ -33,7 +33,7 @@ public class ConsumoController {
 
     @PostMapping("/consumos/new/save")
     public String consumoGuardar(@ModelAttribute Consumo consumo) {
-        consumoRepository.insertarConsumo(consumo.getIdConsumo(), consumo.getPrecioTotal(), consumo.getPazYSalvo());
+        consumoRepository.insertarConsumo(consumo.getPrecioTotal(), consumo.getPazYSalvo());
         return "redirect:/consumos";
     }
 

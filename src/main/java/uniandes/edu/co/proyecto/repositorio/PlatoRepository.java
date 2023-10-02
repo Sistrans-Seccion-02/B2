@@ -24,7 +24,7 @@ public interface PlatoRepository extends JpaRepository<Plato, String>{
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Platos SET precio = :precio, todoIncluido = :todoIncluido", nativeQuery = true)
+    @Query(value = "UPDATE Platos SET precio = :precio, todoIncluido = :todoIncluido WHERE nombre =:nombre", nativeQuery = true)
     void actualizarPlato(@Param("nombre") String nombre, @Param("precio") double precio, @Param("todoIncluido") Boolean todoIncluido);
 
     @Modifying

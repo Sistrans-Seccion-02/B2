@@ -19,7 +19,7 @@ public interface SpaRepository extends JpaRepository<Spa, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Spas (nombre, horarioApertura, horarioCierre, capacidad, precio) VALUES (B2_sequence.nextval, :nombre, :horarioApertura, :horarioCierre, :capacidad, :precio)")
+    @Query(value = "INSERT INTO Spas (nombre, horarioApertura, horarioCierre, capacidad, precio) VALUES (:nombre, :horarioApertura, :horarioCierre, :capacidad, :precio)", nativeQuery = true)
     void insertarSpa(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("capacidad") int capacidad, @Param("precio") double precio);
 
     @Modifying

@@ -39,14 +39,14 @@ public class ProductoConsumoController {
     }
     */
 
-    @GetMapping("/productos/new")
+    @GetMapping("/productoConsumo/new")
     public String productoForm(Model model) {
         model.addAttribute("productos", productoRepository.darProductos());
         model.addAttribute("consumos", consumoRepository.darConsumos());
         return "productoConsumoNuevo";
     }
 
-    @PostMapping("/productos/new/save")
+    @PostMapping("/productoConsumo/new/save")
     public String productoConsumoGuardar(@ModelAttribute("idConsumo") int idConsumo, @ModelAttribute("nombre") String nombre) {
         Consumo consumo = consumoRepository.darConsumo(idConsumo);
         Producto producto = productoRepository.darProducto(nombre);

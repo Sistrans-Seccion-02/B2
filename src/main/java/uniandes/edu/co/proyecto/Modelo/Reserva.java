@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,36 +18,38 @@ public  class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private Integer id;
+    private Integer idReserva;
     private Date FechaEntrada;
     private Date FechaSalida;
     private Integer numPersonas;
     private boolean estado;
     private double precioReserva;
+    @ManyToOne
     @JoinColumn(name = "tipoPlanConsumo", referencedColumnName = "tipo")
-    private PlanConsumo tipo;
+    private PlanConsumo tipoPlanConsumo;
+    @ManyToOne
     @JoinColumn(name = "usuarioID", referencedColumnName = "id")
-    private Usuario idUsuario;
+    private Usuario usuarioID;
 
-    public Reserva(Date FechaEntrada, Date FechaSalida, Integer numPersonas, boolean estado, double precioReserva, PlanConsumo tipo, Usuario idUsuario) {
+    public Reserva(Date FechaEntrada, Date FechaSalida, Integer numPersonas, boolean estado, double precioReserva, PlanConsumo tipoPlanConsumo, Usuario usuarioID) {
         this.FechaEntrada = FechaEntrada;
         this.FechaSalida = FechaSalida;
         this.numPersonas = numPersonas;
         this.estado = estado;
-        this.tipo = tipo;
+        this.tipoPlanConsumo = tipoPlanConsumo;
         this.precioReserva = precioReserva;
-        this.idUsuario = idUsuario;
+        this.usuarioID = usuarioID;
     }
 
     public Reserva() 
     {;}
 
     public Integer getId() {
-        return id;
+        return idReserva;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idReserva) {
+        this.idReserva = idReserva;
     }
 
     public Date getFechaEntrada() {
@@ -93,19 +96,19 @@ public  class Reserva {
     }
 
     public PlanConsumo getTipo() {
-        return tipo;
+        return tipoPlanConsumo;
     }
 
-    public void setTipo(PlanConsumo tipo) {
-        this.tipo = tipo;
+    public void setTipo(PlanConsumo tipoPlanConsumo) {
+        this.tipoPlanConsumo = tipoPlanConsumo;
     }
 
     public Usuario getIdUsuario() {
-        return idUsuario;
+        return usuarioID;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdUsuario(Usuario usuarioID) {
+        this.usuarioID = usuarioID;
     }
 
 
