@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class loginController {
-    
+    /* 
     @PostMapping("/login")
     public String login(@RequestParam String user, @RequestParam String pass, @RequestParam String userType) {
         // Realiza la autenticación y verifica el tipo de usuario aquí
@@ -25,8 +25,7 @@ public class loginController {
             return "redirect:/?error=true"; // Redirige de nuevo al formulario con un mensaje de error
         }
     }
-
-    // Implementa aquí tu lógica de autenticación para verificar las credenciales en el servidor
+   // Implementa aquí tu lógica de autenticación para verificar las credenciales en el servidor
     private boolean usuarioEsValido(String user, String pass, String userType) {
         // Implementa la validación aquí, por ejemplo, consultando una base de datos
         // o utilizando tus propias reglas de autenticación
@@ -35,6 +34,7 @@ public class loginController {
         return  usuarioJSON.usuario === user && usuarioJSON.contraseña === pass && usuarioJSON.tipoDeUsuario === userType;
         ;
     }
+ */
 
     
 }
