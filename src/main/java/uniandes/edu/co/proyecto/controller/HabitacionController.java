@@ -28,7 +28,7 @@ public class HabitacionController {
     @GetMapping("/habitaciones/new")
     public String habitacionForm(Model model){
         model.addAttribute("habitacion", new Habitacion());
-        return"habitacionNuevo";       
+        return"HabitacionNuevo";       
     }
 
     @PostMapping("/habitaciones/new/save")

@@ -26,7 +26,7 @@ public class TipoHabitacionController {
     }
 
     @GetMapping("/tiposHabitacion/new")
-    public String tipoHabitacionForm(Model model){
+    public String TipoHabitacionForm(Model model){
         model.addAttribute("TipoHabitacion", new TipoHabitacion());
         return"TipoHabitacionNuevo";       
     }
