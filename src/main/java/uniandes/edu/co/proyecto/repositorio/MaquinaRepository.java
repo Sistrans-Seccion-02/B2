@@ -18,13 +18,13 @@ public interface MaquinaRepository extends JpaRepository<Maquina, Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Maquinas (nombre, capacidad, tipo, Gimnasios_nombre) VALUES (B2_sequence.nextval, :nombre, :capacidad, :tipo, :Gimnasios_nombre)", nativeQuery = true)
-    void insertarMaquina(@Param("nombre") String nombre, @Param("capacidad") Integer capacidad, @Param("tipo") String tipo, @Param("Gimnasios_nombre") String Gimnasios_nombre);
+    @Query(value = "INSERT INTO Maquinas (nombre, Gimnasios_nombre) VALUES (B2_sequence.nextval, :nombre, :Gimnasios_nombre)", nativeQuery = true)
+    void insertarMaquina(@Param("nombre") String nombre, @Param("Gimnasios_nombre") String Gimnasios_nombre);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Maquinas SET nombre = :nombre, capacidad = :capacidad, tipo = :tipo, Gimnasios_nombre = :Gimnasios_nombre WHERE idMaquina = :idMaquina", nativeQuery = true)
-    void actualizarMaquina(@Param("idMaquina") Integer idMaquina, @Param("nombre") String nombre, @Param("capacidad") Integer capacidad, @Param("tipo") String tipo, @Param("Gimnasios_nombre") String Gimnasios_nombre);
+    @Query(value = "UPDATE Maquinas SET nombre = :nombre, Gimnasios_nombre = :Gimnasios_nombre WHERE idMaquina = :idMaquina", nativeQuery = true)
+    void actualizarMaquina(@Param("idMaquina") Integer idMaquina, @Param("nombre") String nombre, @Param("Gimnasios_nombre") String Gimnasios_nombre);
 
     @Modifying
     @Transactional

@@ -19,13 +19,13 @@ public interface PlatoRepository extends JpaRepository<Plato, String>{
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Platos (nombre, precio, tipo, cantidad) VALUES (:nombre, :precio, :tipo, :cantidad)", nativeQuery = true)
-    void insertarPlato(@Param("nombre") String nombre, @Param("precio") Integer precio, @Param("tipo") String tipo, @Param("cantidad") Integer cantidad);
+    @Query(value = "INSERT INTO Platos (nombre, precio, todoIncluido) VALUES (:nombre, :precio, :todoIncluido", nativeQuery = true)
+    void insertarPlato(@Param("nombre") String nombre, @Param("precio") double precio, @Param("todoIncluido") Boolean todoIncluido);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Platos SET precio = :precio, tipo = :tipo, cantidad = :cantidad WHERE nombre = :nombre", nativeQuery = true)
-    void actualizarPlato(@Param("nombre") String nombre, @Param("precio") Integer precio, @Param("tipo") String tipo, @Param("cantidad") Integer cantidad);
+    @Query(value = "UPDATE Platos SET precio = :precio, todoIncluido = :todoIncluido", nativeQuery = true)
+    void actualizarPlato(@Param("nombre") String nombre, @Param("precio") double precio, @Param("todoIncluido") Boolean todoIncluido);
 
     @Modifying
     @Transactional

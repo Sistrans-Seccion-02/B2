@@ -20,13 +20,13 @@ public interface SalonRepository extends JpaRepository<Salon, String>{
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Salones (nombre, horaApertura, horaCierre, capacidad) VALUES (:nombre, :horaApertura, :horaCierre, :capacidad)", nativeQuery = true)
-    void insertarSalon(@Param("nombre") String nombre, @Param("horaApertura") LocalTime horaApertura, @Param("horaCierre") LocalTime horaCierre, @Param("capacidad") Integer capacidad);
+    @Query(value = "INSERT INTO Salones (nombre, precio, horaApertura, horaCierre, ocupado, tipoSalon, capacidad, Comsumos_idConsumo) VALUES (:nombre, :precio, :horaApertura, :horaCierre, :ocupado, :tipoSalon, :capacidad, :Comsumos_idConsumo)", nativeQuery = true)
+    void insertarSalon(@Param("nombre") String nombre, @Param("precio") double precio, @Param("horaApertura") LocalTime horaApertura, @Param("horaCierre") LocalTime horaCierre,@Param("ocupado") Boolean ocupado,@Param("tipoSalon") String tipoSalon, @Param("capacidad") Integer capacidad, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Salones SET horaApertura = :horaApertura, horaCierre = :horaCierre, capacidad = :capacidad WHERE nombre = :nombre", nativeQuery = true)
-    void actualizarSalon(@Param("nombre") String nombre, @Param("horaApertura") LocalTime horaApertura, @Param("horaCierre") LocalTime horaCierre, @Param("capacidad") Integer capacidad);
+    @Query(value = "UPDATE Salones SET precio = :precio, horaApertura = :horaApertura, horaCierre = :horaCierre, ocupado = :ocupado, tipoSalon =: tipoSalon, capacidad = :capacidad, Comsumos_idConsumo =: Comsumos_idConsumo WHERE nombre = :nombre", nativeQuery = true)
+    void actualizarSalon(@Param("nombre") String nombre, @Param("precio") double precio, @Param("horaApertura") LocalTime horaApertura, @Param("horaCierre") LocalTime horaCierre, @Param("ocupado") Boolean ocupado, @Param("tipoSalon") String tipoSalon, @Param("capacidad") Integer capacidad, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
 
     @Modifying
     @Transactional
