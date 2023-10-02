@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uniandes.edu.co.proyecto.Modelo.Habitacion;
 import uniandes.edu.co.proyecto.repositorio.HabitacionRepository;
 
-/*@Controller*/
-@RestController
+@Controller
 
 public class HabitacionController {
 
@@ -23,8 +22,7 @@ public class HabitacionController {
     @GetMapping("/habitaciones")
     public String habitaciones(Model model) {
         model.addAttribute("habitaciones", habitacionRepository.darHabitaciones());
-        /*return "habitaciones";*/ 
-        return model.toString();
+        return "habitaciones";
     }
 
     @GetMapping("/habitaciones/new")

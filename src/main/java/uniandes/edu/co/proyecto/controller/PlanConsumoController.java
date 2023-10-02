@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uniandes.edu.co.proyecto.Modelo.PlanConsumo;
 import uniandes.edu.co.proyecto.repositorio.PlanConsumoRepository;
 
-/*@Controller*/
-@RestController
+@Controller
 
 public class PlanConsumoController {
 
@@ -23,8 +22,7 @@ public class PlanConsumoController {
     @GetMapping("/planesConsumo")
     public String planesConsumo(Model model) {
         model.addAttribute("planesConsumo", planConsumoRepository.darplanesConsumo());
-        /*return "planesConsumo";*/ 
-        return model.toString();
+        return "planesConsumo";
     }
 
     @GetMapping("/planesConsumo/new")

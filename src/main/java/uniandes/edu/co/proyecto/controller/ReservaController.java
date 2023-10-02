@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uniandes.edu.co.proyecto.Modelo.Reserva;
 import uniandes.edu.co.proyecto.repositorio.ReservaRepository;
 
-/*@Controller*/
-@RestController
+@Controller
 
 public class ReservaController {
 
@@ -23,8 +22,7 @@ public class ReservaController {
     @GetMapping("/reservas")
     public String reservas(Model model) {
         model.addAttribute("reservas", reservaRepository.darReservas());
-        /*return "reservas";*/ 
-        return model.toString();
+        return "reservas";
     }
 
     @GetMapping("/reservas/new")

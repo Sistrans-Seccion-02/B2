@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <title>planConsumos</title>
+</head>
+<body>
+    <div> lista de planConsumos</div>
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>tipo</th>
+                <th>descuento</th>
+                <th>descripcion</th>
+                <th>descuentoBar</th>
+                <th>descuentoSpa</th>
+                <th>limiteBebidas</th>
+                <th>descuentoLavado</th>
+                <th>descuentoRest</th>
+               
+
+            </tr>
+        </thead>
+        <th:block th:each="user:${users}">
+            <tr>
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.nombre}"></td>
+                <td th:text="${user.cedula}"></td>
+                <td th:text="${user.tipo}"></td>
+                <td>
+                    <a th:href="@{/planConsumos/{id}/editar(id=${user.id})}" >Editar</a>
+                    <a th:href="@{/planConsumos/{id}/eliminar(id=${user.id})}" onclick="return confrim ('Estas seguro de borrar este usario?')" > Eliminar</a>
+
+            </tr>
+
+
+        </th:block>
+
+
+    </table>
+    <div>
+        <a th:href="@{/}" class="btn btn-primary">Volver Atras</a>
+        <a th:href="@{planConsumos/new}" class="btn btn-primary">Añadir usuario</a>
+</body>
+</html>

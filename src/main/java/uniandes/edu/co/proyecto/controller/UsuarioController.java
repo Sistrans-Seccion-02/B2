@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uniandes.edu.co.proyecto.Modelo.Usuario;
 import uniandes.edu.co.proyecto.repositorio.UsuarioRepository;
 
-/*@Controller*/
-@RestController
+@Controller
 
 public class UsuarioController {
 
@@ -23,8 +22,8 @@ public class UsuarioController {
     @GetMapping("/usuarios")
     public String usuarios(Model model) {
         model.addAttribute("usuarios", usuarioRepository.darUsuarios());
-        /*return "usuarios";*/ 
-        return model.toString();
+        return "usuarios";
+        
     }
 
     @GetMapping("/usuarios/new")

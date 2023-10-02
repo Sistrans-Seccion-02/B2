@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <title>Fragmento</title>
+    
+</head>
+<body>
+    <div th:fragment="piscinaForm(titulo)" class="container border border-2 w-25">
+        <h1 class="text-center" th:text="${titulo}"></h1>
+        <form>
+            <label class="col-form-label">Profundidad</label>
+            <input class="form-control" type="text" id="Profundidad"
+            name="Profundidad" required th:value="${piscina.profundidad}"/> 
+            <label class="col-form-label">horarioApertura</label>
+            <input class="form-control" id="horarioApertura"
+            name="horarioApertura" requiredrequired th:value="${piscina.horarioApertura}"/>
+            label class="col-form-label">horarioCierre</label>
+            <input class="form-control" type="text" id="horarioCierre"
+            name="horarioCierre" required th:value="${piscina.horarioCierre}"/> 
+            label class="col-form-label">nombre</label>
+            <input class="form-control" type="text" id="nombre"
+            name="nombre" required th:value="${piscina.nombre}"/> 
+            <th:block th:each="idConsumo : ${idConsumo}" >
+                <option th:value="${idConsumo.id}" th:text="${idConsumo.id}" th:selected="${piscina!=null || piscina.nombre.id == idConsumo.id}"></option>
+            </th:block>
+            
+               
+            <div class="text_center">
+                <input type="submit" value="Guardar" class="btn btn-primary"/>
+                <a th:href="@{/piscinas}" class="btn btn-primary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+
+
+    
+</body>
+</html>
