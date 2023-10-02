@@ -19,14 +19,14 @@
 
             </tr>
         </thead>
-        <th:block th:each="user:${users}">
+        <th:block th:each="user:${usuarios}">
             <tr>
                 <td th:text="${user.id}"></td>
                 <td th:text="${user.nombre}"></td>
                 <td th:text="${user.cedula}"></td>
                 <td th:text="${user.tipo}"></td>
                 <td>
-                    <a th:href="@{/usuarios/{id}/editar(id=${user.id})}" >Editar</a>
+                    <a th:href="@{usuarios/{id}/editar(id=${user.id})}" >Editar</a>
                     <a th:href="@{/usuarios/{id}/eliminar(id=${user.id})}" onclick="return confrim ('Estas seguro de borrar este usario?')" > Eliminar</a>
 
             </tr>

@@ -39,7 +39,7 @@ public class UsuarioController {
     
     }
 
-    @GetMapping("/usuarios/{id}/edit")
+    @GetMapping("/usuarios/{id}/editar")
     public String usuarioEditarForm(@PathVariable("id") int id, Model model){
         Usuario usuario= usuarioRepository.darUsuario(id);
         if(usuario != null){

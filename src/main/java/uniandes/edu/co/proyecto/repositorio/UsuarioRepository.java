@@ -27,7 +27,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 
     @Modifying
     @Transactional
-    @Query (value = "INSERT INTO usuarios (nombre, cedula, tipo) VALUES (B2_sequence.nextval, :nombre, :cedula, :tipo)" , nativeQuery = true)
+    @Query (value = "INSERT INTO usuarios (id, nombre, cedula, tipo) VALUES ( B2.nextval, :nombre, :cedula, :tipo)" , nativeQuery = true)
     void insertarUsuario(@Param("nombre") String nombre,@Param("cedula") String cedula, @Param("tipo") String tipo );
     
     @Modifying

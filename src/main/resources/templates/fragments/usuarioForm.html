@@ -20,11 +20,11 @@
             <label class="col-form-label">Tipo</label>
             <select class="form-control" id="tipo"
             name="tipo" required>
-                <option value="cliente" th:selected="${usuario.tipo eq 'cliente'}">Cliente</option>
-                <option value="administrador" th:selected="${usuario.tipo eq 'administrador'}">Administrador</option>
-                <option value="recepcionista" th:selected="${usuario.tipo eq 'recepcionista'}">Recepcionista</option>
-                <option value="empleado" th:selected="${usuario.tipo eq 'empleado'}">Empleado</option>
-                <option value="gerente" th:selected="${usuario.tipo eq 'gerente'}">Gerente</option>
+                <option value="CLIENTE" th:selected="${usuario.tipo eq 'cliente'}">Cliente</option>
+                <option value="ADMINISTRADOR" th:selected="${usuario.tipo eq 'administrador'}">Administrador</option>
+                <option value="RECEPCIONISTA" th:selected="${usuario.tipo eq 'recepcionista'}">Recepcionista</option>
+                <option value="EMPLEADO" th:selected="${usuario.tipo eq 'empleado'}">Empleado</option>
+                <option value="GERENTE" th:selected="${usuario.tipo eq 'gerente'}">Gerente</option>
             </select>
             <div class="text_center">
                 <input type="submit" value="Guardar" class="btn btn-primary"/>

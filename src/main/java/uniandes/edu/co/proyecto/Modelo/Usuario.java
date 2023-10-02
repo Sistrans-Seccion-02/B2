@@ -1,6 +1,6 @@
 package uniandes.edu.co.proyecto.Modelo;
 
-import org.hibernate.annotations.Check;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
