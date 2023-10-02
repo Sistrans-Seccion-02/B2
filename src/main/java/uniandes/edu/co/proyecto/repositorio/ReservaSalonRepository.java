@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.repositorio;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Collection;
 
@@ -22,12 +23,12 @@ public interface ReservaSalonRepository extends JpaRepository<ReservaSalon, Inte
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO ReservasSalon (idReserva, duracion, fecha, SalonesNombre) VALUES (B2_sequence.nextval, :duracion, :fecha, :SalonesNombre)", nativeQuery = true)
-    void insertarReservaSalon(@Param("duracion") Integer duracion, @Param("fecha") LocalTime fecha, @Param("SalonesNombre") String SalonesNombre);
+    void insertarReservaSalon(@Param("duracion") Integer duracion, @Param("fecha") LocalDateTime fecha, @Param("SalonesNombre") String SalonesNombre);
 
     @Modifying
     @Transactional
     @Query(value = "UPDATE ReservasSalon SET duracion = :duracion, fecha = :fecha, SalonesNombre = :SalonesNombre WHERE idReserva = :idReserva", nativeQuery = true)
-    void actualizarReservaSalon(@Param("idReserva") Integer idReserva, @Param("duracion") Integer duracion, @Param("fecha") LocalTime fecha, @Param("SalonesNombre") String SalonesNombre);
+    void actualizarReservaSalon(@Param("idReserva") Integer idReserva, @Param("duracion") Integer duracion, @Param("fecha") LocalDateTime fecha, @Param("SalonesNombre") String SalonesNombre);
 
     @Modifying
     @Transactional

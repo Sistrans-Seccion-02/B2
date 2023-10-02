@@ -24,7 +24,7 @@ public class Utensilio {
         this.PrestamosUt_idUtensilio = PrestamosUt_idUtensilio;
     }
 
-    Utensilio() {;}
+    public Utensilio() {;}
 
     public int getId() {
         return id;
