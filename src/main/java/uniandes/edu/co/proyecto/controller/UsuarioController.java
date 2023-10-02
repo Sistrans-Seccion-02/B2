@@ -22,14 +22,14 @@ public class UsuarioController {
     @GetMapping("/usuarios")
     public String usuarios(Model model) {
         model.addAttribute("usuarios", usuarioRepository.darUsuarios());
-        return "usuarios";
+        return "Usuario";
         
     }
 
     @GetMapping("/usuarios/new")
     public String usuarioForm(Model model){
         model.addAttribute("usuario", new Usuario());
-        return"usuarioNuevo";       
+        return"UsuarioNuevo";       
     }
 
     @PostMapping("/usuarios/new/save")
@@ -44,7 +44,7 @@ public class UsuarioController {
         Usuario usuario= usuarioRepository.darUsuario(id);
         if(usuario != null){
             model.addAttribute("usuario", usuario);
-            return "usuarioEditar";
+            return "UsuarioEditar";
         }
         else{
             return "redirect:/usuarios";
