@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 public class Utensilio {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     private String nombre;
     @ManyToOne
     @JoinColumn(name = "PrestamosUt_idUtensilio", referencedColumnName = "idUtensilio")
@@ -26,11 +26,11 @@ public class Utensilio {
 
     public Utensilio() {;}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

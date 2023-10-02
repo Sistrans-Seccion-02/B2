@@ -38,7 +38,7 @@ public class TipoHabitacionController {
     
     }
 
-    @GetMapping("/tiposHabitacion/{id/edit}")
+    @GetMapping("/tiposHabitacion/{id}/edit")
     public String tipoHabitacionEditarForm(@PathVariable("id") String id, Model model){
         TipoHabitacion tipoHabitacion= tipoHabitacionRepository.darTipoHabitacion(id);
         if(tipoHabitacion != null){

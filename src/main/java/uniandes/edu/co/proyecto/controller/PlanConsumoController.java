@@ -38,7 +38,7 @@ public class PlanConsumoController {
     
     }
 
-    @GetMapping("/planesConsumo/{id/edit}")
+    @GetMapping("/planesConsumo/{id}/edit")
     public String PlanConsumoEditarForm(@PathVariable("id") String id, Model model){
         PlanConsumo planConsumo= planConsumoRepository.darPlanConsumo(id);
         if(planConsumo != null){
