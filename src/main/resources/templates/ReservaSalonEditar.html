@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Reserva Salon</title>
+    <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    
+</head>
+<body>
+    <form th:action="@{'/reservasSalon/'+${id}+'/editar/save'}" th: object ="${reservaSalon}"
+    method="post">
+    <div th:replace="~{fragments/reservasSalonForm :: reservasSalonForm(titulo='Editar reserva salon', reservaSalon=${reservaSalon})}">
+
+    </div>
+</form>
+    
+</body>
+</html>
