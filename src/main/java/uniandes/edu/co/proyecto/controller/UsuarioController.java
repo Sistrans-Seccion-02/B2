@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
+import uniandes.edu.co.proyecto.Modelo.Bar;
 import uniandes.edu.co.proyecto.Modelo.Usuario;
 import uniandes.edu.co.proyecto.repositorio.UsuarioRepository;
 
@@ -38,23 +38,24 @@ public class UsuarioController {
         return "redirect:/usuarios";
     
     }
+    @GetMapping("/usuarios/{id}/edit")
+        public String usuarioEditarForm(@PathVariable("id") int id, Model model) {
+            Usuario usuario = usuarioRepository.darUsuario(id);
+            if (usuario != null) {
+                model.addAttribute("usuario", usuario);
+                return "UsuarioEditar";
+            } else {
+                return "redirect:/usuarios";
+            }
+        }
 
-    @GetMapping("/usuarios/{id}/editar")
-    public String usuarioEditarForm(@PathVariable("id") int id, Model model){
-        Usuario usuario= usuarioRepository.darUsuario(id);
-        if(usuario != null){
-            model.addAttribute("usuario", usuario);
-            return "UsuarioEditar";
+        @PostMapping("/usuarios/{id}/edit/save")
+        public String usuarioEditarGuardar(@PathVariable("id") int id, @ModelAttribute Usuario usuario) {
+            usuarioRepository.actualizarUsuario(((Integer) id), usuario.getNombre(), usuario.getCedula(), usuario.getTipo());
+                    
+            return "redirect:/bares";
         }
-        else{
-            return "redirect:/usuarios";
-        }
-    }
-    @PostMapping("/usuarios/{id}/editar/save")
-     public String usuarioEditarGuardar(@PathVariable("id") int id, @ModelAttribute Usuario usuario){
-        usuarioRepository.actualizarUsuario(id, usuario.getNombre(), usuario.getCedula(), usuario.getTipo());
-        return "redirect:/usuarios";
-    }
+    
 
     @GetMapping("/usuarios/{id}/delete")
     public String usuarioEliminar(@PathVariable("id") int id){

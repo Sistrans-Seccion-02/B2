@@ -8,8 +8,7 @@
     
 </head>
 <body>
-    <form th:action="@{'/usuarios/'+${id}+'/editar/save'}" th: object ="${usuario}"
-    method="post">
+    <form th:action="@{'/usuarios/'+${id}+'/edit/save'}" th: object ="${usuario}" method="post">
     <div th:replace="~{fragments/usuarioForm :: usuarioForm(titulo='editar usuario',usuario=${usuario})}">
 
     </div>
@@ -17,3 +16,5 @@
     
 </body>
 </html>
+
+

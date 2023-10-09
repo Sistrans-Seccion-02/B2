@@ -19,7 +19,7 @@ public class BarController {
     @GetMapping("/bares")
     public String bares(Model model){
         model.addAttribute("bares", barRepository.darBares());
-        return "bares";
+        return "Bar";
     }
 
     @GetMapping("/bares/new")
