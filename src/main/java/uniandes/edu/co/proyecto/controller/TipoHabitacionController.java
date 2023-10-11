@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.Modelo.TipoHabitacion;
 import uniandes.edu.co.proyecto.repositorio.TipoHabitacionRepository;
@@ -19,22 +18,22 @@ public class TipoHabitacionController {
     @Autowired
     private TipoHabitacionRepository tipoHabitacionRepository;
 
-    @GetMapping("/tiposHabitacion")
+    @GetMapping("/tiposHab")
     public String tiposHabitacion(Model model) {
-        model.addAttribute("tiposHabitacion", tipoHabitacionRepository.darTiposDeHabitacion());
-        return "tiposHabitacion";
+        model.addAttribute("tiposHab", tipoHabitacionRepository.darTiposDeHabitacion());
+        return "TipoHabitacion";
     }
 
-    @GetMapping("/tiposHabitacion/new")
+    @GetMapping("/tiposHab/new")
     public String TipoHabitacionForm(Model model){
-        model.addAttribute("TipoHabitacion", new TipoHabitacion());
+        model.addAttribute("tiposHab", new TipoHabitacion());
         return"TipoHabitacionNuevo";       
     }
 
     @PostMapping("/tiposHabitacion/new/save")
     public String tipoHabitacionGuardar(@ModelAttribute TipoHabitacion TipoHabitacion){
         tipoHabitacionRepository.insertarTipoHabitacion(TipoHabitacion.getTipo(), TipoHabitacion.getDescripcion() );
-        return "redirect:/tiposHabitacion";
+        return "redirect:/TipoHabitacion";
     
     }
 

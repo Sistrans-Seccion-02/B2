@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>crear Tipo De Habitacion</title>
+    <title>crear Tipo Habitación</title>
     <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
     
 </head>
 <body>
-    <form action="#" th:action="@{/tiposHabitacion/new/save}" method="post">
-        <div th:replace="~{fragments/tipoDeHabitacionForm :: tipoDeHabitacionForm(titulo='Crear Tipo De Habitacion')}"></div>
+    <form action="#" th:action="@{/tiposHab/new/save}" method="post">
+        <div th:replace="~{fragments/TipoHabitacionForm :: TipoHabitacionForm(titulo='Crear tipo de habitacion')}"></div>
     </form>
 </body>
 </html>
+

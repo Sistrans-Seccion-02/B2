@@ -13,27 +13,27 @@ import uniandes.edu.co.proyecto.Modelo.TipoHabitacion;
 
 public interface TipoHabitacionRepository extends JpaRepository<TipoHabitacion, Integer>{
     
-    @Query(value = "SELECT * FROM tiposDeHabitacion", nativeQuery = true)
+    @Query(value = "SELECT * FROM tiposhab", nativeQuery = true)
 
     Collection<TipoHabitacion> darTiposDeHabitacion();
     
 
-    @Query(value = "SELECT * FROM tiposDeHabitacion WHERE tipo = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM tiposhab WHERE tipo = :id", nativeQuery = true)
     TipoHabitacion darTipoHabitacion(@Param("id") String id);
 
     @Modifying
     @Transactional
-    @Query (value = "INSERT INTO tiposDeHabitacion (tipo, descripcion) VALUES (B2_sequence.nextval, :tipo, :descripcion)" , nativeQuery = true)
+    @Query (value = "INSERT INTO tiposhab (tipo, descripcion) VALUES (B2_sequence.nextval, :tipo, :descripcion)" , nativeQuery = true)
     void insertarTipoHabitacion(@Param("tipo") String tipo,@Param("descripcion") String descripcion);
     
     @Modifying
     @Transactional
-    @Query(value = "UPDATE tiposDeHabitacion SET descripcion = :descripcion WHERE tipo = :tipo", nativeQuery = true)
+    @Query(value = "UPDATE tiposhab SET descripcion = :descripcion WHERE tipo = :tipo", nativeQuery = true)
     void actualizarTipoHabitacion( @Param("tipo") String tipo,@Param("descripcion") String descripcion);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM tiposDeHabitacion WHERE tipo = :id", nativeQuery = true)
+    @Query(value = "DELETE FROM tiposhab WHERE tipo = :id", nativeQuery = true)
     void eliminarTipoHabitacion(@Param("id")String id);
     
 

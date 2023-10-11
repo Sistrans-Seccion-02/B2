@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name="tiposHabitacion")
+@Table(name="tiposhab")
 
 
 public  class TipoHabitacion {

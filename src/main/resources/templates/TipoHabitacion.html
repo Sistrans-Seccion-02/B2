@@ -15,13 +15,13 @@
                 <th>Descripcion</th>
             </tr>
         </thead>
-        <th:block th:each="tiphab:${tiphabs}">
+        <th:block th:each="tiposHab:${tiposHab}">
             <tr>
-                <td th:text="${tiphab.tipo}"></td>
-                <td th:text="${tiphab.descripcion}"></td>
+                <td th:text="${tiposHab.tipo}"></td>
+                <td th:text="${tiposHab.descripcion}"></td>
                 <td>
-                    <a th:href="@{/tiposHabitacion/{id}/editar(id=${tiphab.id})}" >Editar</a>
-                    <a th:href="@{/tiposHabitacion/{id}/eliminar(id=${tiphab.id})}" onclick="return confrim ('Estas seguro de borrar este Tipo?')" > Eliminar</a>
+                    <a th:href="@{/tiposHab/{id}/edit(id=${tiposHab.id})}" >Editar</a>
+                    <a th:href="@{/tiposHab/{id}/delete(id=${tiposHab.id})}" onclick="return confrim ('Estas seguro de borrar este Tipo?')" > Eliminar</a>
 
             </tr>
 
@@ -32,6 +32,6 @@
     </table>
     <div>
         <a th:href="@{/}" class="btn btn-primary">Volver Atras</a>
-        <a th:href="@{TiposHabitacion/new}" class="btn btn-primary">Añadir tipo de habitacion</a>
+        <a th:href="@{tiposHab/new}" class="btn btn-primary">Añadir tipo de habitacion</a>
 </body>
 </html>
