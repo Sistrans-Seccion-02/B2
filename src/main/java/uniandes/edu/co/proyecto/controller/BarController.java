@@ -52,7 +52,7 @@ public class BarController {
         barRepository.actualizarBar(id,bar.getHorarioApertura(), bar.getHorarioCierre(), bar.getCapacidad());
         return "redirect:/bares";
     }
-
+    
     @GetMapping("/bares/{nombre}/delete")
     public String barEliminar(@PathVariable("nombre") String nombre){
         barRepository.eleminarBar(nombre);
