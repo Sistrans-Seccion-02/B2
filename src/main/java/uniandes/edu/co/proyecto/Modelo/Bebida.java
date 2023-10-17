@@ -3,6 +3,7 @@ package uniandes.edu.co.proyecto.Modelo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 
 
 @Entity
@@ -12,12 +13,14 @@ public class Bebida {
     @Id
     private String nombre;
     private double precio;
-    private Boolean todoIncluido;
+    
+    @JoinColumn(name = "todoincluido")
+    private Boolean todoincluido;
 
-    public Bebida(String nombre, double precio, Boolean todoIncluido) {
+    public Bebida(String nombre, double precio, Boolean todoincluido) {
         this.nombre = nombre;
         this.precio = precio;
-        this.todoIncluido = todoIncluido;
+        this.todoincluido = todoincluido;
     }
 
     public Bebida() 
@@ -40,11 +43,11 @@ public class Bebida {
     }
 
     public Boolean getTodoIncluido() {
-        return todoIncluido;
+        return todoincluido;
     }
 
-    public void setTodoIncluido(Boolean todoIncluido) {
-        this.todoIncluido = todoIncluido;
+    public void setTodoIncluido(Boolean todoincluido) {
+        this.todoincluido = todoincluido;
     }
     
 }

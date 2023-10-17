@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Bar</title>
+</head>
+<body>
+    <br>
+    <form th:action="@{'/bares/'+${nombre}+'/edit/save'}" th:object ="${bar}" method="post">
+        <div th:replace="~{fragments/barForm :: barForm(titulo='editar bar',bar=${bar})}">
+    </form>
+</body>
+</html>

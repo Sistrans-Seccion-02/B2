@@ -20,8 +20,8 @@
         <th:block th:each="Bar:${bares}">
             <tr>
                 <td th:text="${Bar.nombre}"></td>
-                <td th:text="${Bar.horarioapertura}"></td>
-                <td th:text="${Bar.horariocierre}"></td>
+                <td th:text="${Bar.horarioApertura}"></td>
+                <td th:text="${Bar.horarioCierre}"></td>
                 <td th:text="${Bar.capacidad}"></td>
                 <td>
                     <a th:href="@{/bares/{nombre}/editar(nombre=${Bar.nombre})}" >Editar</a>
@@ -37,6 +37,6 @@
     </table>
     <div>
         <a th:href="@{/}" class="btn btn-primary">Volver Atras</a>
-        <a th:href="@{bares/new}" class="btn btn-primary">Añadir bar</a>
+        <a th:href="@{bares/new}" class="btn btn-primary">Añadir Bar</a>
 </body>
 </html>
