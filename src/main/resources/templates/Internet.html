@@ -4,30 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
-    <title> Piscinas</title>
+    <title>Internet</title>
 </head>
 <body>
-    <div> lista de piscinas</div>
+    <div> Internet</div>
     <table class="table table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
-                <th>profundidad</th>
-                <th>horarioApertura</th>
-                <th>horarioCierre</th>
-                <th>nombre</th>
-                <th>idConsumo</th>
+                <th>ID Consumo</th>
+                <th>Nombre</th>
+                <th>cedula</th>
+                <th>tipo</th>
+                <th>Acciones</th>
+
             </tr>
         </thead>
-        <th:block th:each="tiphab:${tiphabs}">
+        <th:block th:each="user:${internets}">
             <tr>
-                <td th:text="${tiphab.profundidad}"></td>
-                <td th:text="${tiphab.horarioApertura}"></td>
-                <td th:text="${tiphab.horarioCierre}"></td>
-                <td th:text="${tiphab.nombre}"></td>
-                <td th:text="${tiphab.idConsumo}"></td>
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.nombre}"></td>
+                <td th:text="${user.cedula}"></td>
+                <td th:text="${user.tipo}"></td>
                 <td>
-                    <a th:href="@{/piscinas/{id}/editar(id=${tiphab.id})}" >Editar</a>
-                    <a th:href="@{/piscinas/{id}/eliminar(id=${tiphab.id})}" onclick="return confrim ('Estas seguro de borrar esta piscina?')" > Eliminar</a>
+                    <a th:href="@{/internets/{id}/edit(id=${user.id})}" >Editar</a>
+                    <a th:href="@{/internets/{id}/delete(id=${user.id})} "onclick = "return confirm ('Estas seguro de borrar este item?')" > Eliminar</a>
+
 
             </tr>
 
@@ -38,6 +39,6 @@
     </table>
     <div>
         <a th:href="@{/}" class="btn btn-primary">Volver Atras</a>
-        <a th:href="@{habitaciones/new}" class="btn btn-primary">Añadir habitacion</a>
+        <a th:href="@{internets/new}" class="btn btn-primary">Añadir usuario</a>
 </body>
 </html>

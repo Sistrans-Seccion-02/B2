@@ -17,15 +17,14 @@
             <label class="col-form-label">Cedula</label>
             <input class="form-control" type="text" id="cedula"
             name="cedula" required th:value="${usuario.cedula}"/>
-            <label class="col-form-label">Tipo</label>
-            <select class="form-control" id="tipo"
-            name="tipo" required>
-                <option value="CLIENTE" th:selected="${usuario.tipo eq 'cliente'}">Cliente</option>
-                <option value="ADMINISTRADOR" th:selected="${usuario.tipo eq 'administrador'}">Administrador</option>
-                <option value="RECEPCIONISTA" th:selected="${usuario.tipo eq 'recepcionista'}">Recepcionista</option>
-                <option value="EMPLEADO" th:selected="${usuario.tipo eq 'empleado'}">Empleado</option>
-                <option value="GERENTE" th:selected="${usuario.tipo eq 'gerente'}">Gerente</option>
-            </select>
+
+            <label class="col-form-label" for="tiposusuario_id">Tipo:</label>
+            <select class="form-control" id="tiposusuario_id" name="tiposusuario_id" required>
+                <th:block th:each="tiposusuario_id : ${tipos}" >
+                    <option th:value="${tiposusuario_id.id}" th:text="${tiposusuario_id.tipo}" th:selected="${usuario!=null || usuario.tiposusuario_id.id == tipo.id}"></option>
+                </th:block>
+            </select><br>
+
             <div class="text_center">
                 <input type="submit" value="Guardar" class="btn btn-primary"/>
                 <a th:href="@{/usuarios}" class="btn btn-primary">Cancelar</a>

@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,12 +19,14 @@ public  class Usuario {
     private Integer id;
     private String nombre;
     private String cedula;
-    private String tipo;
+   @ManyToOne
+    @JoinColumn(name = "tipo", referencedColumnName = "id")
+    private TipoUsuario tiposusuario_id;
     
-    public Usuario(String nombre, String cedula, String tipo) {
+    public Usuario(String nombre, String cedula, TipoUsuario tiposusuario_id) {
         this.nombre = nombre;
         this.cedula = cedula;
-        this.tipo = tipo;
+        this.tiposusuario_id = tiposusuario_id;
     }
     public Usuario() 
     {;}
@@ -45,11 +49,11 @@ public  class Usuario {
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
-    public String getTipo() {
-        return tipo;
+    public TipoUsuario getTipo() {
+        return tiposusuario_id;
     }
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipo(TipoUsuario tiposusuario_id) {
+        this.tiposusuario_id = tiposusuario_id;
     }
     
 }

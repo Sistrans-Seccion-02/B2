@@ -11,12 +11,14 @@
     <table class="table table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
+                <th> ID</th>
                 <th>Tipo</th>
                 <th>Descripcion</th>
             </tr>
         </thead>
         <th:block th:each="tiposHab:${tiposHab}">
             <tr>
+                <td th:text="${tiposHab.id}"></td>
                 <td th:text="${tiposHab.tipo}"></td>
                 <td th:text="${tiposHab.descripcion}"></td>
                 <td>

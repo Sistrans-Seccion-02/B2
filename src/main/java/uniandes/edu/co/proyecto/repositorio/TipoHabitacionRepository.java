@@ -17,24 +17,25 @@ public interface TipoHabitacionRepository extends JpaRepository<TipoHabitacion, 
 
     Collection<TipoHabitacion> darTiposDeHabitacion();
     
+ 
 
-    @Query(value = "SELECT * FROM tiposhab WHERE tipo = :id", nativeQuery = true)
-    TipoHabitacion darTipoHabitacion(@Param("id") String id);
+    @Query(value = "SELECT * FROM tiposhab WHERE id = :id", nativeQuery = true)
+    TipoHabitacion darTipoHabitacion(@Param("id") Integer id);
 
     @Modifying
     @Transactional
-    @Query (value = "INSERT INTO tiposhab (tipo, descripcion) VALUES (B2_sequence.nextval, :tipo, :descripcion)" , nativeQuery = true)
+    @Query (value = "INSERT INTO tiposhab (id, tipo, descripcion) VALUES ( B2.nextval, :tipo, :descripcion)" , nativeQuery = true)
     void insertarTipoHabitacion(@Param("tipo") String tipo,@Param("descripcion") String descripcion);
     
     @Modifying
     @Transactional
-    @Query(value = "UPDATE tiposhab SET descripcion = :descripcion WHERE tipo = :tipo", nativeQuery = true)
-    void actualizarTipoHabitacion( @Param("tipo") String tipo,@Param("descripcion") String descripcion);
+    @Query(value = "UPDATE tiposhab SET tipo = :tipo, descripcion = :descripcion  WHERE id = :id" , nativeQuery = true)
+    void actualizarTipoHabitacion( @Param ("id") Integer id, @Param("tipo") String tipo,@Param("descripcion") String descripcion);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM tiposhab WHERE tipo = :id", nativeQuery = true)
-    void eliminarTipoHabitacion(@Param("id")String id);
+    void eliminarTipoHabitacion(@Param("id")Integer id);
     
 
     

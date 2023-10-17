@@ -26,38 +26,40 @@ public class TipoHabitacionController {
 
     @GetMapping("/tiposHab/new")
     public String TipoHabitacionForm(Model model){
-        model.addAttribute("tiposHab", new TipoHabitacion());
-        return"TipoHabitacionNuevo";       
+        model.addAttribute("tiposhab", new TipoHabitacion()); // Cambiar "tiposHab" a "tiposhab"
+        return "TipoHabitacionNuevo";       
     }
-
-    @PostMapping("/tiposHabitacion/new/save")
-    public String tipoHabitacionGuardar(@ModelAttribute TipoHabitacion TipoHabitacion){
-        tipoHabitacionRepository.insertarTipoHabitacion(TipoHabitacion.getTipo(), TipoHabitacion.getDescripcion() );
-        return "redirect:/TipoHabitacion";
+    
+    @PostMapping("/tiposHab/new/save")
+    public String tipoHabitacionGuardar(@ModelAttribute TipoHabitacion tipoHabitacion){
+        String tipo=tipoHabitacion.getTipo();
+        System.out.println(tipo );
+        tipoHabitacionRepository.insertarTipoHabitacion(tipoHabitacion.getTipo(), tipoHabitacion.getDescripcion() );
+        return "redirect:/tiposHab";
     
     }
 
-    @GetMapping("/tiposHabitacion/{id}/edit")
-    public String tipoHabitacionEditarForm(@PathVariable("id") String id, Model model){
+    @GetMapping("/tiposHab/{id}/edit")
+    public String tipoHabitacionEditarForm(@PathVariable("id") Integer id, Model model){
         TipoHabitacion tipoHabitacion= tipoHabitacionRepository.darTipoHabitacion(id);
         if(tipoHabitacion != null){
             model.addAttribute("TipoHabitacion", tipoHabitacion);
             return "TipoHabitacionEditar";
         }
         else{
-            return "redirect:/tiposHabitacion";
+            return "redirect:/tiposHab";
         }
     }
-    @PostMapping("/tiposHabitacion/{id}/edit/save")
-     public String tipoHabitacionEditarGuardar(@PathVariable("id") int id, @ModelAttribute TipoHabitacion TipoHabitacion){
-        tipoHabitacionRepository.actualizarTipoHabitacion( TipoHabitacion.getTipo(), TipoHabitacion.getDescripcion());
-        return "redirect:/tiposHabitacion";
+    @PostMapping("/tiposHab/{id}/edit/save")
+     public String tipoHabitacionEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute TipoHabitacion TipoHabitacion){
+        tipoHabitacionRepository.actualizarTipoHabitacion( ((Integer) id), TipoHabitacion.getTipo(), TipoHabitacion.getDescripcion());
+        return "redirect:/tiposHab";
     }
 
-    @GetMapping("/tiposHabitacion/{id}/delete")
-    public String tipoHabitacionEliminar(@PathVariable("id") String id){
+    @GetMapping("/tiposHab/{tipo}/delete")
+    public String tipoHabitacionEliminar(@PathVariable("id") Integer id){
         tipoHabitacionRepository.eliminarTipoHabitacion(id);
-        return "redirect:/tiposHabitacion";
+        return "redirect:/tiposHab";
     }
 
    

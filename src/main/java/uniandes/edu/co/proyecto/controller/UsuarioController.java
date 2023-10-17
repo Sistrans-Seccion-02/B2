@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import uniandes.edu.co.proyecto.Modelo.TipoUsuario;
 import uniandes.edu.co.proyecto.Modelo.Usuario;
 import uniandes.edu.co.proyecto.repositorio.UsuarioRepository;
+import uniandes.edu.co.proyecto.repositorio.tipoUsuarioRepository;
 
 @Controller
 
@@ -16,6 +19,8 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private tipoUsuarioRepository tipoUsuarioRepository;
 
     @GetMapping("/usuarios")
     public String usuarios(Model model) {
@@ -27,12 +32,13 @@ public class UsuarioController {
     @GetMapping("/usuarios/new")
     public String usuarioForm(Model model){
         model.addAttribute("usuario", new Usuario());
+        model.addAttribute("tipos", tipoUsuarioRepository.dartiposUsuarios());
         return"UsuarioNuevo";       
     }
 
     @PostMapping("/usuarios/new/save")
     public String usuarioGuardar(@ModelAttribute Usuario usuario){
-        usuarioRepository.insertarUsuario(usuario.getNombre(), usuario.getCedula(), usuario.getTipo());
+        usuarioRepository.insertarUsuario(usuario.getNombre(), usuario.getCedula(), usuario.getTipo().getId());
         return "redirect:/usuarios";
     
     }
@@ -42,6 +48,7 @@ public class UsuarioController {
             System.out.println(usuario);
             if (usuario != null) {
                 model.addAttribute("usuario", usuario);
+                model.addAttribute("tipos", tipoUsuarioRepository.dartiposUsuarios());
                 return "UsuarioEditar";
             } else {
                 return "redirect:/usuarios";
@@ -50,7 +57,7 @@ public class UsuarioController {
 
         @PostMapping("/usuarios/{id}/edit/save")
         public String usuarioEditarGuardar(@PathVariable("id") int id, @ModelAttribute Usuario usuario) {
-            usuarioRepository.actualizarUsuario(((Integer) id), usuario.getNombre(), usuario.getCedula(), usuario.getTipo());
+            usuarioRepository.actualizarUsuario(((Integer) id), usuario.getNombre(), usuario.getCedula(), usuario.getTipo().getId());
                     
             return "redirect:/usuarios";
         }

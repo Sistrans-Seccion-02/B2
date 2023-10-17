@@ -5,38 +5,44 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import oracle.jdbc.proxy.annotation.Post;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import uniandes.edu.co.proyecto.Modelo.Consumo;
 import uniandes.edu.co.proyecto.Modelo.Internet;
+import uniandes.edu.co.proyecto.Modelo.internetPK;
+import uniandes.edu.co.proyecto.repositorio.ConsumoRepository;
 import uniandes.edu.co.proyecto.repositorio.InternetRepository;
 
-/*@Controller*/
-@RestController
+@Controller
 public class InternetController {
     @Autowired
     private InternetRepository internetRepository;
+    @Autowired
+    private ConsumoRepository consumoRepository;
 
     @GetMapping("/internets")
     public String internets(Model model) {
         model.addAttribute("internets", internetRepository.darInternets());
-        return model.toString();
+        return "Internet";
     }
     
     @GetMapping("/internets/new")
     public String internetForm(Model model) {
-        model.addAttribute("internet", new Internet());
+        model.addAttribute("internets", new Internet());
         return "internetNuevo";
     }
 
     @PostMapping("/internets/new/save")
-    public String internetGuardar(@ModelAttribute Internet internet) {
-        internetRepository.insertarInternet(internet.getCapacidad(), internet.getPrecio(), internet.getComsumos_idConsumo().getIdConsumo());
+    public String internetGuardar(@ModelAttribute ("capacidad") Integer capacidad,@ModelAttribute ("precio") double precio,@ModelAttribute ("consumos_idconsumo") Integer consumos_idconsumo) {
+        Consumo consumo =consumoRepository.darConsumo(consumos_idconsumo);
+        internetPK pk= new internetPK(consumo, capacidad);
+        Internet internet = new Internet();
+        internet.setPk(pk);
+        internetRepository.insertarInternet(internet.getPk().getCapacidad(), internet.getPrecio(), internet.getPk().getConsumos_idconsumo().getIdConsumo());
         return "redirect:/internets";
     }
-
+/* 
     @GetMapping("/internets/{capacidad}/edit") 
     public String internetEditarForm(@PathVariable("capacidad") int capacidad, Model model) {
         Internet internet = internetRepository.darInternet(capacidad);
@@ -58,5 +64,5 @@ public class InternetController {
     public String internetEliminar(@PathVariable("capacidad") int capacidad) {
         internetRepository.eliminarInternet(capacidad);
         return "redirect:/internets";
-    }
+    }*/
 }
