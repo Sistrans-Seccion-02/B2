@@ -34,7 +34,7 @@ public interface TipoHabitacionRepository extends JpaRepository<TipoHabitacion, 
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM tiposhab WHERE tipo = :id", nativeQuery = true)
+    @Query(value = "DELETE FROM tiposhab WHERE id = :id", nativeQuery = true)
     void eliminarTipoHabitacion(@Param("id")Integer id);
     
 

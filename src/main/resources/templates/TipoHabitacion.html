@@ -23,7 +23,8 @@
                 <td th:text="${tiposHab.descripcion}"></td>
                 <td>
                     <a th:href="@{/tiposHab/{id}/edit(id=${tiposHab.id})}" >Editar</a>
-                    <a th:href="@{/tiposHab/{id}/delete(id=${tiposHab.id})}" onclick="return confrim ('Estas seguro de borrar este Tipo?')" > Eliminar</a>
+                    <a th:href="@{/tiposHab/{id}/delete(id=${tiposHab.id})}" onclick = "return confirm ('Estas seguro de borrar este Tipo?')" > Eliminar</a>
+
 
             </tr>
 

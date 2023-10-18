@@ -21,9 +21,13 @@
             <label class="col-form-label" for="tiposusuario_id">Tipo:</label>
             <select class="form-control" id="tiposusuario_id" name="tiposusuario_id" required>
                 <th:block th:each="tiposusuario_id : ${tipos}" >
-                    <option th:value="${tiposusuario_id.id}" th:text="${tiposusuario_id.tipo}" th:selected="${usuario!=null || usuario.tiposusuario_id.id == tipo.id}"></option>
+                    <!--- <option th:value="${tiposusuario_id.id}" th:text="${tiposusuario_id.tipo}" th:selected="${usuario!=null || usuario.tiposusuario_id.id == tipo.id}"></option> -->
+                    <option th:value="${tiposusuario_id.id}" th:text="${tiposusuario_id.tipo}" th:selected="${usuario != null && usuario.tiposusuario_id != null && usuario.tiposusuario_id.id == tiposusuario_id.id}"></option>
+
                 </th:block>
             </select><br>
+
+            
 
             <div class="text_center">
                 <input type="submit" value="Guardar" class="btn btn-primary"/>

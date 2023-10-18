@@ -20,7 +20,7 @@ public  class Usuario {
     private String nombre;
     private String cedula;
    @ManyToOne
-    @JoinColumn(name = "tipo", referencedColumnName = "id")
+    @JoinColumn(name = "tiposusuario_id", referencedColumnName = "id")
     private TipoUsuario tiposusuario_id;
     
     public Usuario(String nombre, String cedula, TipoUsuario tiposusuario_id) {

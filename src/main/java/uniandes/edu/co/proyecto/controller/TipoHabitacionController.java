@@ -42,8 +42,9 @@ public class TipoHabitacionController {
     @GetMapping("/tiposHab/{id}/edit")
     public String tipoHabitacionEditarForm(@PathVariable("id") Integer id, Model model){
         TipoHabitacion tipoHabitacion= tipoHabitacionRepository.darTipoHabitacion(id);
+        System.out.println(tipoHabitacion);
         if(tipoHabitacion != null){
-            model.addAttribute("TipoHabitacion", tipoHabitacion);
+            model.addAttribute("tiposhab", tipoHabitacion);
             return "TipoHabitacionEditar";
         }
         else{
@@ -56,7 +57,7 @@ public class TipoHabitacionController {
         return "redirect:/tiposHab";
     }
 
-    @GetMapping("/tiposHab/{tipo}/delete")
+    @GetMapping("/tiposHab/{id}/delete")
     public String tipoHabitacionEliminar(@PathVariable("id") Integer id){
         tipoHabitacionRepository.eliminarTipoHabitacion(id);
         return "redirect:/tiposHab";
