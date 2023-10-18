@@ -29,7 +29,7 @@ public class LavanderiaController {
 
     @PostMapping("/lavanderias/new/save")
     public String lavanderiaGuardar(@ModelAttribute Lavanderia lavanderia){
-        lavanderiaRepository.insertarLavanderia(lavanderia.getNumPrendas(), lavanderia.getNumZapatos(), lavanderia.getTipoLavado(), lavanderia.getCosto(), lavanderia.getComsumos_idConsumo().getIdConsumo());
+        lavanderiaRepository.insertarLavanderia(lavanderia.getNumPrendas(), lavanderia.getNumZapatos(), lavanderia.getTipoLavado(), lavanderia.getCosto(), lavanderia.getComsumos_idConsumo().getIdConsumo(), lavanderia.getPreciofinal());
         return "redirect:/lavanderias";
     
     }
@@ -48,7 +48,7 @@ public class LavanderiaController {
 
     @PostMapping("/lavanderias/{idLavanderia}/edit/save")
      public String lavanderiaEditarGuardar(@PathVariable("idLavanderia") Integer idLavanderia, @ModelAttribute Lavanderia lavanderia){
-        lavanderiaRepository.actualizarLavanderia(idLavanderia, lavanderia.getNumPrendas(), lavanderia.getNumZapatos(), lavanderia.getTipoLavado(), lavanderia.getCosto(), lavanderia.getComsumos_idConsumo().getIdConsumo());
+        lavanderiaRepository.actualizarLavanderia(idLavanderia, lavanderia.getNumPrendas(), lavanderia.getNumZapatos(), lavanderia.getTipoLavado(), lavanderia.getCosto(), lavanderia.getComsumos_idConsumo().getIdConsumo(), lavanderia.getPreciofinal());
         return "redirect:/lavanderias";
     }
 

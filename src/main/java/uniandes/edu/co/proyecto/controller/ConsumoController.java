@@ -7,14 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import oracle.jdbc.proxy.annotation.Post;
 import uniandes.edu.co.proyecto.Modelo.Consumo;
 import uniandes.edu.co.proyecto.repositorio.ConsumoRepository;
 
 /*@Controller*/
-@RestController
+@Controller
 public class ConsumoController {
     @Autowired
     private ConsumoRepository consumoRepository;

@@ -3,8 +3,6 @@ package uniandes.edu.co.proyecto.Modelo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 import java.time.LocalTime;
 
@@ -13,27 +11,18 @@ import java.time.LocalTime;
 public class Salon {
     
     @Id
-    
     private String nombre;
-    private double precio;
-    private LocalTime horarioApertura;
-    private LocalTime horarioCierre;
-    private Boolean ocupado;
+    private LocalTime horarioapertura;
+    private LocalTime horariocierre;
     private String tipoSalon;
     private Integer capacidad;
-    @ManyToOne
-    @JoinColumn(name = "Comsumos_idConsumo", referencedColumnName = "idConsumo")
-    private Consumo Comsumos_idConsumo;
 
-    public Salon(String nombre, double precio, LocalTime horarioApertura, LocalTime horarioCierre, Boolean ocupado, String tipoSalon, int capacidad, Consumo Comsumos_idConsumo) {
+    public Salon(String nombre, double precio, LocalTime horarioapertura, LocalTime horariocierre, String tipoSalon, int capacidad) {
         this.nombre = nombre;
-        this.precio = precio;
-        this.horarioApertura = horarioApertura;
-        this.horarioCierre = horarioCierre;
-        this.ocupado = ocupado;
+        this.horarioapertura = horarioapertura;
+        this.horariocierre = horariocierre;
         this.tipoSalon = tipoSalon;
         this.capacidad = capacidad;
-        this.Comsumos_idConsumo = Comsumos_idConsumo;
     }
 
     public Salon() 
@@ -45,20 +34,12 @@ public class Salon {
         return nombre;
     }
 
-    public double getPrecio() {
-        return precio;
-    }
-
     public LocalTime getHorarioApertura() {
-        return horarioApertura;
+        return horarioapertura;
     }
 
     public LocalTime getHorarioCierre() {
-        return horarioCierre;
-    }
-
-    public Boolean getOcupado() {
-        return ocupado;
+        return horariocierre;
     }
 
     public String getTipoSalon() {
@@ -73,20 +54,12 @@ public class Salon {
         this.nombre = nombre;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setHorarioApertura(LocalTime horarioapertura) {
+        this.horarioapertura = horarioapertura;
     }
 
-    public void setHorarioApertura(LocalTime horarioApertura) {
-        this.horarioApertura = horarioApertura;
-    }
-
-    public void setHorarioCierre(LocalTime horarioCierre) {
-        this.horarioCierre = horarioCierre;
-    }
-
-    public void setOcupado(Boolean ocupado) {
-        this.ocupado = ocupado;
+    public void setHorarioCierre(LocalTime horariocierre) {
+        this.horariocierre = horariocierre;
     }
 
     public void setTipoSalon(String tipoSalon) {
@@ -96,15 +69,5 @@ public class Salon {
     public void setCapacidad(Integer capacidad) {
         this.capacidad = capacidad;
     }
-
-    public Consumo getComsumos_idConsumo() {
-        return Comsumos_idConsumo;
-    }
-
-    public void setComsumos_idConsumo(Consumo comsumos_idConsumo) {
-        Comsumos_idConsumo = comsumos_idConsumo;
-    }
-
-    
 
 }

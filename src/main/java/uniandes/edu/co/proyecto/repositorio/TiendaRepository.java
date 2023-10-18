@@ -19,13 +19,13 @@ public interface TiendaRepository extends JpaRepository<Tienda, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Tiendas (nombre, horarioApertura, horarioCierre, capacidad) VALUES (:nombre, :horarioApertura, :horarioCierre, :capacidad)", nativeQuery = true)
-    void insertarTienda(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("capacidad") int capacidad);
+    @Query(value = "INSERT INTO Tiendas (nombre, horarioapertura, horariocierre, capacidad) VALUES (:nombre, :horarioapertura, :horariocierre, :capacidad)", nativeQuery = true)
+    void insertarTienda(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre, @Param("capacidad") int capacidad);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Tiendas SET nombre=:nombre, horarioApertura=:horarioApertura, horarioCierre=:horarioCierre, capacidad=:capacidad WHERE nombre=:nombre", nativeQuery = true)
-    void actualizarTienda(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("capacidad") int capacidad);
+    @Query(value = "UPDATE Tiendas SET nombre=:nombre, horarioapertura=:horarioapertura, horariocierre=:horariocierre, capacidad=:capacidad WHERE nombre=:nombre", nativeQuery = true)
+    void actualizarTienda(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre, @Param("capacidad") int capacidad);
    
     @Modifying
     @Transactional

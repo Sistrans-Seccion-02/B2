@@ -18,13 +18,13 @@ public interface ProductoRepository extends JpaRepository<Producto, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Productos (nombre, precio, SMercados_nombre, Tiendas_nombre) VALUES (:nombre, :precio, :SMercados_nombre, :Tiendas_nombre)", nativeQuery = true)
-    void insertarProducto(@Param("nombre") String nombre, @Param("precio") double precio, @Param("SMercados_nombre") String SMercados_nombre, @Param("Tiendas_nombre") String Tiendas_nombre);
+    @Query(value = "INSERT INTO Productos (nombre, precio, smercado_nombre, Tiendas_nombre, Comsumos_idConsumo ) VALUES (:nombre, :precio, :smercado_nombre, :Tiendas_nombre, :Comsumos_idConsumo)", nativeQuery = true)
+    void insertarProducto(@Param("nombre") String nombre, @Param("precio") double precio, @Param("smercado_nombre") String smercado_nombre, @Param("Tiendas_nombre") String Tiendas_nombre, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Productos SET nombre=:nombre, precio=:precio, SMercados_nombre=:SMercados_nombre, Tiendas_nombre=:Tiendas_nombre WHERE nombre=:nombre", nativeQuery = true)
-    void actualizarProducto(@Param("nombre") String nombre, @Param("precio") double precio,  @Param("SMercados_nombre") String SMercados_nombre, @Param("Tiendas_nombre") String Tiendas_nombre);
+    @Query(value = "UPDATE Productos SET nombre=:nombre, precio=:precio, smercado_nombre=:smercado_nombre, Tiendas_nombre=:Tiendas_nombre, Comsumos_idConsumo=:Comsumos_idConsumo WHERE nombre=:nombre", nativeQuery = true)
+    void actualizarProducto(@Param("nombre") String nombre, @Param("precio") double precio,  @Param("smercado_nombre") String smercado_nombre, @Param("Tiendas_nombre") String Tiendas_nombre, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
    
     @Modifying
     @Transactional

@@ -19,13 +19,13 @@ public interface SMercadoRepository extends JpaRepository<SMercado, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO SMercados (nombre, horarioApertura, horarioCierre, capacidad) VALUES (:nombre, :horarioApertura, :horarioCierre, :capacidad)", nativeQuery = true)
-    void insertarSMercado(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("capacidad") Integer capacidad);
+    @Query(value = "INSERT INTO SMercados (nombre, horarioapertura, horariocierre, capacidad) VALUES (:nombre, :horarioapertura, :horariocierre, :capacidad)", nativeQuery = true)
+    void insertarSMercado(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre, @Param("capacidad") Integer capacidad);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE SMercados SET nombre=:nombre, horarioApertura=:horarioApertura, horarioCierre=:horarioCierre, capacidad=:capacidad WHERE nombre=:nombre", nativeQuery = true)
-    void actualizarSMercado(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("capacidad") Integer capacidad);
+    @Query(value = "UPDATE SMercados SET nombre=:nombre, horarioapertura=:horarioapertura, horariocierre=:horariocierre, capacidad=:capacidad WHERE nombre=:nombre", nativeQuery = true)
+    void actualizarSMercado(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre, @Param("capacidad") Integer capacidad);
    
     @Modifying
     @Transactional

@@ -18,15 +18,20 @@ public class Producto  {
     private Tienda tienda;
 
     @ManyToOne
-    @JoinColumn(name = "sMercado", referencedColumnName = "nombre")
-    private SMercado sMercado;
+    @JoinColumn(name = "smercado_nombre", referencedColumnName = "nombre")
+    private SMercado smercado_nombre;
+
+    @ManyToOne
+    @JoinColumn(name = "Comsumos_idConsumo", referencedColumnName = "idConsumo")
+    private Consumo Comsumos_idConsumo;
 
 
-    public Producto(String nombre, double precio, Tienda tienda, SMercado sMercado) {
+    public Producto(String nombre, double precio, Tienda tienda, SMercado smercado_nombre, Consumo Comsumos_idConsumo) {
         this.nombre = nombre;
         this.precio = precio;
         this.tienda = tienda;
-        this.sMercado = sMercado;
+        this.smercado_nombre = smercado_nombre;
+        this.Comsumos_idConsumo = Comsumos_idConsumo;
     }
 
     public Tienda getTienda() {
@@ -38,11 +43,11 @@ public class Producto  {
     }
 
     public SMercado getsMercado() {
-        return sMercado;
+        return smercado_nombre;
     }
 
-    public void setsMercado(SMercado sMercado) {
-        this.sMercado = sMercado;
+    public void setsMercado(SMercado smercado_nombre) {
+        this.smercado_nombre = smercado_nombre;
     }
 
     public Producto() {;}
@@ -61,6 +66,14 @@ public class Producto  {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public Consumo getComsumos_idConsumo() {
+        return Comsumos_idConsumo;
+    }
+
+    public void setComsumos_idConsumo(Consumo comsumos_idConsumo) {
+        Comsumos_idConsumo = comsumos_idConsumo;
     }
     
 }

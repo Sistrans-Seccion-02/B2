@@ -10,14 +10,14 @@ import jakarta.persistence.Table;
 public class SMercado  {
     @Id
     private String nombre;
-    private LocalTime horarioApertura;
-    private LocalTime horarioCierre;
+    private LocalTime horarioapertura;
+    private LocalTime horariocierre;
     private Integer capacidad;
 
-    public SMercado(String nombre, LocalTime horarioApertura, LocalTime horarioCierre, Integer capacidad) {
+    public SMercado(String nombre, LocalTime horarioapertura, LocalTime horariocierre, Integer capacidad) {
         this.nombre = nombre;
-        this.horarioApertura = horarioApertura;
-        this.horarioCierre = horarioCierre;
+        this.horarioapertura = horarioapertura;
+        this.horariocierre = horariocierre;
         this.capacidad = capacidad;
     }
 
@@ -32,19 +32,19 @@ public class SMercado  {
     }
 
     public LocalTime getHorarioApertura() {
-        return horarioApertura;
+        return horarioapertura;
     }
 
-    public void setHorarioApertura(LocalTime horarioApertura) {
-        this.horarioApertura = horarioApertura;
+    public void setHorarioApertura(LocalTime horarioapertura) {
+        this.horarioapertura = horarioapertura;
     }
 
     public LocalTime getHorarioCierre() {
-        return horarioCierre;
+        return horariocierre;
     }
 
-    public void setHorarioCierre(LocalTime horarioCierre) {
-        this.horarioCierre = horarioCierre;
+    public void setHorarioCierre(LocalTime horariocierre) {
+        this.horariocierre = horariocierre;
     }
 
     public Integer getCapacidad() {

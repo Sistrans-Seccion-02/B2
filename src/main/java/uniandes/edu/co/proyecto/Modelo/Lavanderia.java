@@ -14,57 +14,58 @@ public  class Lavanderia {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idLavanderia;
-    private Integer numPrendas;
-    private Integer numZapatos;
-    private String tipoLavado;
+    private Integer idlavanderia;
+    private Integer numprendas;
+    private Integer numzapatos;
+    private String tipolavado;
     private double costo;
     @ManyToOne
     @JoinColumn(name = "Comsumos_idConsumo", referencedColumnName = "idConsumo")
     private Consumo Comsumos_idConsumo;
-    
+    private double preciofinal;
 
-    public Lavanderia(Integer numPrendas, Integer numZapatos, String tipoLavado, double costo, Consumo Comsumos_idConsumo) {
-        this.numPrendas = numPrendas;
-        this.numZapatos = numZapatos;
-        this.tipoLavado = tipoLavado;
+    public Lavanderia(Integer numprendas, Integer numzapatos, String tipolavado, double costo, Consumo Comsumos_idConsumo, double preciofinal) {
+        this.numprendas = numprendas;
+        this.numzapatos = numzapatos;
+        this.tipolavado = tipolavado;
         this.costo = costo;
         this.Comsumos_idConsumo = Comsumos_idConsumo;
+        this.preciofinal = preciofinal;
     }
 
     public Lavanderia() 
     {;}
 
     public Integer getIdLavanderia() {
-        return idLavanderia;
+        return idlavanderia;
     }
 
-    public void setIdLavanderia(Integer idLavanderia) {
-        this.idLavanderia = idLavanderia;
+    public void setIdLavanderia(Integer idlavanderia) {
+        this.idlavanderia = idlavanderia;
     }
 
     public Integer getNumPrendas() {
-        return numPrendas;
+        return numprendas;
     }
 
-    public void setNumPrendas(Integer numPrendas) {
-        this.numPrendas = numPrendas;
+    public void setNumPrendas(Integer numprendas) {
+        this.numprendas = numprendas;
     }
 
     public Integer getNumZapatos() {
-        return numZapatos;
+        return numzapatos;
     }
 
-    public void setNumZapatos(Integer numZapatos) {
-        this.numZapatos = numZapatos;
+    public void setNumZapatos(Integer numzapatos) {
+        this.numzapatos = numzapatos;
     }
 
     public String getTipoLavado() {
-        return tipoLavado;
+        return tipolavado;
     }
 
-    public void setTipoLavado(String tipoLavado) {
-        this.tipoLavado = tipoLavado;
+    public void setTipoLavado(String tipolavado) {
+        this.tipolavado = tipolavado;
     }
 
     public double getCosto() {
@@ -81,6 +82,14 @@ public  class Lavanderia {
 
     public void setComsumos_idConsumo(Consumo Comsumos_idConsumo) {
         this.Comsumos_idConsumo = Comsumos_idConsumo;
+    }
+
+    public double getPreciofinal() {
+        return preciofinal;
+    }
+
+    public void setPreciofinal(double preciofinal) {
+        this.preciofinal = preciofinal;
     }
     
 }

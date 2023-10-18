@@ -13,21 +13,23 @@ import java.time.LocalTime;
 public class Piscina {
     @Id
     private String nombre;
-    private LocalTime horarioApertura;
-    private LocalTime horarioCierre;
+    private LocalTime horarioapertura;
+    private LocalTime horariocierre;
     private Integer profundidad;
     @ManyToOne
     @JoinColumn(name = "Comsumos_idConsumo", referencedColumnName = "idConsumo")
     private Consumo Comsumos_idConsumo;
+    private double preciofinal;
 
     
 
-    public Piscina(String nombre, LocalTime horarioApertura, LocalTime horarioCierre, Integer profundidad, Consumo Comsumos_idConsumo) {
+    public Piscina(String nombre, LocalTime horarioapertura, LocalTime horariocierre, Integer profundidad, Consumo Comsumos_idConsumo, double preciofinal) {
         this.nombre = nombre;
-        this.horarioApertura = horarioApertura;
-        this.horarioCierre = horarioCierre;
+        this.horarioapertura = horarioapertura;
+        this.horariocierre = horariocierre;
         this.profundidad = profundidad;
         this.Comsumos_idConsumo = Comsumos_idConsumo;
+        this.preciofinal = preciofinal;
     }
 
     public Piscina() {;}
@@ -41,19 +43,19 @@ public class Piscina {
     }
 
     public LocalTime getHorarioApertura() {
-        return horarioApertura;
+        return horarioapertura;
     }
 
-    public void setHorarioApertura(LocalTime horarioApertura) {
-        this.horarioApertura = horarioApertura;
+    public void setHorarioApertura(LocalTime horarioapertura) {
+        this.horarioapertura = horarioapertura;
     }
 
     public LocalTime getHorarioCierre() {
-        return horarioCierre;
+        return horariocierre;
     }
 
-    public void setHorarioCierre(LocalTime horarioCierre) {
-        this.horarioCierre = horarioCierre;
+    public void setHorarioCierre(LocalTime horariocierre) {
+        this.horariocierre = horariocierre;
     }
 
     public Integer getProfundidad() {
@@ -72,4 +74,11 @@ public class Piscina {
         this.Comsumos_idConsumo = Comsumos_idConsumo;
     }
     
+    public double getPreciofinal() {
+        return preciofinal;
+    }
+
+    public void setPreciofinal(double preciofinal) {
+        this.preciofinal = preciofinal;
+    }
 }

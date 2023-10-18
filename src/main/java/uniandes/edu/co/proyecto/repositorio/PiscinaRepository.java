@@ -19,13 +19,13 @@ public interface PiscinaRepository extends JpaRepository<Piscina, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Piscinas (nombre, horarioApertura, horarioCierre, profundidad,Comsumos_idConsumo ) VALUES (:nombre, :horarioApertura, :horarioCierre, :profundidad, :Comsumos_idConsumo)", nativeQuery = true)
-    void insertarPiscina(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("profundidad") Integer profundidad, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
+    @Query(value = "INSERT INTO Piscinas (nombre, horarioapertura, horariocierre, profundidad,Comsumos_idConsumo, preciofinal) VALUES (:nombre, :horarioapertura, :horariocierre, :profundidad, :Comsumos_idConsumo, :preciofinal)", nativeQuery = true)
+    void insertarPiscina(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre, @Param("profundidad") Integer profundidad, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo, @Param("preciofinal") double preciofinal);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Piscinas SET nombre=:nombre, horarioApertura=:horarioApertura, horarioCierre=:horarioCierre, profundidad=:profundidad, Comsumos_idConsumo=:Comsumos_idConsumo WHERE nombre=:nombre", nativeQuery = true)
-    void actualizarPiscina(@Param("nombre") String nombre, @Param("horarioApertura") LocalTime horarioApertura, @Param("horarioCierre") LocalTime horarioCierre, @Param("profundidad") Integer profundidad, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
+    @Query(value = "UPDATE Piscinas SET nombre=:nombre, horarioapertura=:horarioapertura, horariocierre=:horariocierre, profundidad=:profundidad, Comsumos_idConsumo=:Comsumos_idConsumo, preciofinal=:preciofinal WHERE nombre=:nombre", nativeQuery = true)
+    void actualizarPiscina(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre, @Param("profundidad") Integer profundidad, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo, @Param("preciofinal") double preciofinal);
    
     @Modifying
     @Transactional

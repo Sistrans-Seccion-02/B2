@@ -7,14 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import oracle.jdbc.proxy.annotation.Post;
 import uniandes.edu.co.proyecto.Modelo.Spa;
 import uniandes.edu.co.proyecto.repositorio.SpaRepository;
 
-/*@Controller*/
-@RestController
+@Controller
 public class SpaController {
     @Autowired
     private SpaRepository spaRepository;
@@ -33,7 +29,7 @@ public class SpaController {
 
     @PostMapping("/spas/new/save")
     public String spaGuardar(@ModelAttribute Spa spa) {
-        spaRepository.insertarSpa(spa.getNombre(), spa.getHorarioApertura(), spa.getHorarioCierre(), spa.getCapacidad(), spa.getPrecio());
+        spaRepository.insertarSpa(spa.getNombre(), spa.getHorarioApertura(), spa.getHorarioCierre(), spa.getCapacidad());
         return "redirect:/spas";
     }
 
@@ -50,7 +46,7 @@ public class SpaController {
 
     @PostMapping("/spas/{nombre}/edit/save")
     public String spaEditarGuardar(@PathVariable("nombre") String nombre, @ModelAttribute Spa spa) {
-        spaRepository.actualizarSpa(nombre, spa.getHorarioApertura(), spa.getHorarioCierre(), spa.getCapacidad(), spa.getPrecio());
+        spaRepository.actualizarSpa(nombre, spa.getHorarioApertura(), spa.getHorarioCierre(), spa.getCapacidad());
         return "redirect:/spas";
     }
 

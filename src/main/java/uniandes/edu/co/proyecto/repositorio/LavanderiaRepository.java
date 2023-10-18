@@ -13,21 +13,21 @@ public interface LavanderiaRepository extends JpaRepository<Lavanderia, Integer>
     @Query(value = "SELECT * FROM Lavanderias", nativeQuery = true)
     Collection<Lavanderia> darLavanderias();
 
-    @Query(value = "SELECT * FROM Lavanderias WHERE idLavanderia = :idLavanderia", nativeQuery = true)
-    Lavanderia darLavanderia(@Param("idLavanderia") Integer idLavanderia);
+    @Query(value = "SELECT * FROM Lavanderias WHERE idlavanderia = :idlavanderia", nativeQuery = true)
+    Lavanderia darLavanderia(@Param("idlavanderia") Integer idlavanderia);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO lavanderias (numPrendas, numZapatos, tipoLavado, costo, Comsumos_idConsumo) VALUES (B2_sequence.nextval, :numPrendas, :numZapatos, :tipoLavado, :costo, :Comsumos_idConsumo)", nativeQuery = true)
-    void insertarLavanderia(@Param("numPrendas") Integer numPrendas, @Param("numZapatos") Integer numZapatos, @Param("tipoLavado") String tipoLavado, @Param("costo") double costo, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
+    @Query(value = "INSERT INTO lavanderias (numprendas, numzapatos, tipolavado, costo, Comsumos_idConsumo, preciofinal) VALUES (B2_sequence.nextval, :numprendas, :numzapatos, :tipolavado, :costo, :Comsumos_idConsumo, :preciofinal)", nativeQuery = true)
+    void insertarLavanderia(@Param("numprendas") Integer numprendas, @Param("numzapatos") Integer numzapatos, @Param("tipolavado") String tipolavado, @Param("costo") double costo, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo, @Param("preciofinal") double preciofinal);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Lavanderias SET numPrendas = :numPrendas, numZapatos = :numZapatos, tipoLavado = :tipoLavado, costo = :costo, Comsumos_idConsumo = :Comsumos_idConsumo WHERE idLavanderia = :idLavanderia", nativeQuery = true)
-    void actualizarLavanderia(@Param("idLavanderia") Integer idLavanderia, @Param("numPrendas") Integer numPrendas, @Param("numZapatos") Integer numZapatos, @Param("tipoLavado") String tipoLavado, @Param("costo") double costo, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
+    @Query(value = "UPDATE Lavanderias SET numprendas = :numprendas, numzapatos = :numzapatos, tipolavado = :tipolavado, costo = :costo, Comsumos_idConsumo = :Comsumos_idConsumo, preciofinal = :preciofinal WHERE idlavanderia = :idlavanderia", nativeQuery = true)
+    void actualizarLavanderia(@Param("idlavanderia") Integer idlavanderia, @Param("numprendas") Integer numprendas, @Param("numzapatos") Integer numzapatos, @Param("tipolavado") String tipolavado, @Param("costo") double costo, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo, @Param("preciofinal") double preciofinal);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM Lavanderias WHERE idLavanderia = :idLavanderia", nativeQuery = true)
-    void eleminarLavanderia(@Param("idLavanderia") Integer idLavanderia);
+    @Query(value = "DELETE FROM Lavanderias WHERE idlavanderia = :idlavanderia", nativeQuery = true)
+    void eleminarLavanderia(@Param("idlavanderia") Integer idlavanderia);
 }

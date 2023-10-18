@@ -10,11 +10,18 @@ import jakarta.persistence.Table;
 public class Tienda  {
     @Id
     private String nombre;
-    private LocalTime horarioApertura;
-    private LocalTime horarioCierre;
+    private LocalTime horarioapertura;
+    private LocalTime horariocierre;
     private int capacidad;
 
     public Tienda() {;}
+
+    public Tienda(String nombre, LocalTime horarioapertura, LocalTime horariocierre, int capacidad) {
+        this.nombre = nombre;
+        this.horarioapertura = horarioapertura;
+        this.horariocierre = horariocierre;
+        this.capacidad = capacidad;
+    }
 
     public String getNombre() {
         return nombre;
@@ -25,19 +32,19 @@ public class Tienda  {
     }
 
     public LocalTime getHorarioApertura() {
-        return horarioApertura;
+        return horarioapertura;
     }
 
-    public void setHorarioApertura(LocalTime horarioApertura) {
-        this.horarioApertura = horarioApertura;
+    public void setHorarioApertura(LocalTime horarioapertura) {
+        this.horarioapertura = horarioapertura;
     }
 
     public LocalTime getHorarioCierre() {
-        return horarioCierre;
+        return horariocierre;
     }
 
-    public void setHorarioCierre(LocalTime horarioCierre) {
-        this.horarioCierre = horarioCierre;
+    public void setHorarioCierre(LocalTime horariocierre) {
+        this.horariocierre = horariocierre;
     }
 
     public int getCapacidad() {
