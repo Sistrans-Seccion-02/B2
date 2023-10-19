@@ -23,10 +23,9 @@
             <th:block th:each="salon:${salones}">
                 <tr>
                     <td th:text="${salon.nombre}"></td>
-                    <td th:text="${salon.horarioApertura}"></td>
-                    <td th:text="${salon.horarioCierre}"></td>
-                    <td th:text="${salon.ocupado}"></td>
-                    <td th:text="${salon.tipoSalon}"></td>
+                    <td th:text="${salon.horarioapertura}"></td>
+                    <td th:text="${salon.horariocierre}"></td>
+                    <td th:text="${salon.tiposalon}"></td>
                     <td th:text="${salon.capacidad}"></td>
                     <td>
                         <a th:href="@{salones/{nombre}/edit(id=${salon.nombre})}">

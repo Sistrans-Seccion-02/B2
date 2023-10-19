@@ -31,7 +31,7 @@ public class ReservaServicioController {
     public String reservaSalonGuardar(@ModelAttribute ReservaServicio reservaServicio){
         reservaServicioRepository.insertarReservaServicio(reservaServicio.getFechayhorai(), reservaServicio.getFechayhoraf(), 
         reservaServicio.getSpas_nombre().getNombre(), reservaServicio.getSalones_nombre().getNombre(),
-        reservaServicio.getComsumos_idConsumo().getIdConsumo(), reservaServicio.getUtensilios_id().getId(), 
+        reservaServicio.getConsumos_idConsumo().getIdConsumo(), reservaServicio.getUtensilios_id().getId(), 
         reservaServicio.getPreciofinal());
         return "redirect:/reservasServicio";
     }
@@ -51,7 +51,7 @@ public class ReservaServicioController {
     public String reservaSalonEditarGuardar(@PathVariable("idreservas") Integer idreservas, @ModelAttribute ReservaServicio reservaServicio){
         reservaServicioRepository.actualizarReservaServicio(idreservas, reservaServicio.getFechayhorai(), reservaServicio.getFechayhoraf(), 
         reservaServicio.getSpas_nombre().getNombre(), reservaServicio.getSalones_nombre().getNombre(),
-        reservaServicio.getComsumos_idConsumo().getIdConsumo(), reservaServicio.getUtensilios_id().getId(), 
+        reservaServicio.getConsumos_idConsumo().getIdConsumo(), reservaServicio.getUtensilios_id().getId(), 
         reservaServicio.getPreciofinal());
         return "redirect:/reservasServicio";
     }   

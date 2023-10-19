@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <title>Lavanderias</title>
+</head>
+<body>
+    <div> lista de lavanderias</div>
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>idlavanderia</th>
+                <th>numprendas</th>
+                <th>numzapatos</th>
+                <th>tipolavado</th>
+                <th>costo</th>
+                <th>Comsumos_idConsumo</th>
+                <th>preciofinal</th>
+
+            </tr>
+        </thead>
+        <th:block th:each="Lavanderias:${Lavanderias}">
+            <tr>
+                <td th:text="${Lavanderias.idlavanderia}"></td>
+                <td th:text="${Lavanderias.numprendas}"></td>
+                <td th:text="${Lavanderias.numzapatos}"></td>
+                <td th:text="${Lavanderias.tipolavado}"></td>
+                <td th:text="${Lavanderias.costo}"></td>
+                <td th:text="${Lavanderias.Comsumos_idConsumo}"></td>
+                <td th:text="${Lavanderias.preciofinal}"></td>
+                <td>
+                    <a th:href="@{/lavanderias/{idlavanderia}/edit(idlavanderia=${Lavanderias.idlavanderia})}" >Editar</a>
+                    <a th:href="@{/lavanderias/{idlavanderia}/delete(idlavanderia=${Lavanderias.idlavanderia})} "onclick = "return confirm ('Estas seguro de borrar esta lavanderia?')" > Eliminar</a>
+
+                </td>
+            </tr>
+
+
+        </th:block>
+
+
+    </table>
+    <div>
+        <a th:href="@{/}" class="btn btn-primary">Volver Atras</a>
+        <a th:href="@{lavanderias/new}" class="btn btn-primary">Añadir lavanderia</a>
+</body>
+</html>

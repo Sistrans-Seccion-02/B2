@@ -25,19 +25,19 @@ public  class ReservaServicio {
     @JoinColumn(name = "Salones_nombre", referencedColumnName = "nombre")
     Salon Salones_nombre;
     @ManyToOne
-    @JoinColumn(name = "Comsumos_idConsumo", referencedColumnName = "idConsumo")
-    Consumo Comsumos_idConsumo;
+    @JoinColumn(name = "Consumos_idConsumo", referencedColumnName = "idConsumo")
+    Consumo Consumos_idconsumo;
     @ManyToOne
     @JoinColumn(name = "Utensilios_id", referencedColumnName = "id")
     Utensilio Utensilios_id;
     double preciofinal;
 
-    public ReservaServicio(LocalDateTime fechayhorai, LocalDateTime fechayhoraf, Spa Spas_nombre, Salon Salones_nombre, Consumo Comsumos_idConsumo, Utensilio Utensilios_id, double preciofinal) {
+    public ReservaServicio(LocalDateTime fechayhorai, LocalDateTime fechayhoraf, Spa Spas_nombre, Salon Salones_nombre, Consumo Consumos_idconsumo, Utensilio Utensilios_id, double preciofinal) {
         this.fechayhorai = fechayhorai;
         this.fechayhoraf = fechayhoraf;
         this.Spas_nombre = Spas_nombre;
         this.Salones_nombre = Salones_nombre;
-        this.Comsumos_idConsumo = Comsumos_idConsumo;
+        this.Consumos_idconsumo = Consumos_idconsumo;
         this.Utensilios_id = Utensilios_id;
         this.preciofinal = preciofinal;
     }
@@ -77,12 +77,12 @@ public  class ReservaServicio {
         Salones_nombre = salones_nombre;
     }
 
-    public Consumo getComsumos_idConsumo() {
-        return Comsumos_idConsumo;
+    public Consumo getConsumos_idConsumo() {
+        return Consumos_idconsumo;
     }
 
-    public void setComsumos_idConsumo(Consumo comsumos_idConsumo) {
-        Comsumos_idConsumo = comsumos_idConsumo;
+    public void setConsumos_idConsumo(Consumo consumos_idconsumo) {
+        Consumos_idconsumo = consumos_idconsumo;
     }
 
     public Utensilio getUtensilios_id() {
@@ -100,5 +100,7 @@ public  class ReservaServicio {
     public void setPreciofinal(double preciofinal) {
         this.preciofinal = preciofinal;
     }
+
+    
 
 }
