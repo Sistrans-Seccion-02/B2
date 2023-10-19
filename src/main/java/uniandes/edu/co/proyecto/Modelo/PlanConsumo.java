@@ -1,113 +1,55 @@
 package uniandes.edu.co.proyecto.Modelo;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="planesConsumo")
+@Table(name = "planesconsumo")
 
+public class PlanConsumo {
 
-public  class PlanConsumo {
-    
-    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String tipo;
-    private double descuento;
+
+    private float dtonoche;
     private String descripcion;
-    private boolean descuentoBar;
-    private boolean descuentoRestaurante;
-    private boolean descuentoSpa;
-    private int limiteBebidas;
-    private boolean descuentoLavado;
-    @ManyToOne
-    @JoinColumn(name = "Comsumos_idConsumo", referencedColumnName = "idConsumo")
-    private Consumo Comsumos_idConsumo;
-    @ManyToOne
-    @JoinColumn(name = "Reservas_idReservas", referencedColumnName = "idReserva")
-    private Reserva Reservas_idReservas;
+    private double descuentobar;
+    private double descuentorest;
+    private double descuentospa;
+    private int limitebebidas;
+    private double descuentolavado;
 
-
-    public PlanConsumo(String tipo, double descuento,String descripcion , boolean descuentoBar, boolean descuentoRestaurante, 
-                        boolean descuentoSpa, int limiteBebidas, boolean descuentoLavado, Consumo Comsumos_idConsumo, Reserva Reservas_idReservas) {
-        this.tipo = tipo;
-
-        this.descuento = descuento;
-        this.descripcion = descripcion;
-        this.descuentoBar = descuentoBar;
-        this.descuentoRestaurante = descuentoRestaurante;
-        this.descuentoSpa = descuentoSpa;
-        this.limiteBebidas = limiteBebidas;
-        this.descuentoLavado = descuentoLavado;
-        this.Comsumos_idConsumo = Comsumos_idConsumo;
-        this.Reservas_idReservas = Reservas_idReservas;
+    public PlanConsumo() {
+        ;
     }
 
-    public PlanConsumo() 
-    {;}
-
-   
+    public PlanConsumo(String tipo, float dtonoche, String descripcion, double descuentobar, double descuentorest,
+            double descuentospa, int limitebebidas, double descuentolavado) {
+        this.tipo = tipo;
+        this.dtonoche = dtonoche;
+        this.descripcion = descripcion;
+        this.descuentobar = descuentobar;
+        this.descuentorest = descuentorest;
+        this.descuentospa = descuentospa;
+        this.limitebebidas = limitebebidas;
+        this.descuentolavado = descuentolavado;
+    }
 
     public String getTipo() {
         return tipo;
     }
 
-    public double getDescuento() {
-        return descuento;
-    }
-
-    public boolean isDescuentoBar() {
-        return descuentoBar;
-    }
-
-    public boolean isDescuentoRestaurante() {
-        return descuentoRestaurante;
-    }
-
-    public boolean isDescuentoSpa() {
-        return descuentoSpa;
-    }
-
-    public int getLimiteBebidas() {
-        return limiteBebidas;
-    }
-
-    public boolean isDescuentoLavado() {
-        return descuentoLavado;
-    }
-
-    
-
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-    public void setDescuento(double descuento) {
-        this.descuento = descuento;
+    public float getDtonoche() {
+        return dtonoche;
     }
 
-    public void setDescuentoBar(boolean descuentoBar) {
-        this.descuentoBar = descuentoBar;
-    }
-
-    public void setDescuentoRestaurante(boolean descuentoRestaurante) {
-        this.descuentoRestaurante = descuentoRestaurante;
-    }
-
-    public void setDescuentoSpa(boolean descuentoSpa) {
-        this.descuentoSpa = descuentoSpa;
-    }
-
-    public void setLimiteBebidas(int limiteBebidas) {
-        this.limiteBebidas = limiteBebidas;
-    }
-
-    public void setDescuentoLavado(boolean descuentoLavado) {
-        this.descuentoLavado = descuentoLavado;
+    public void setDtonoche(float dtonoche) {
+        this.dtonoche = dtonoche;
     }
 
     public String getDescripcion() {
@@ -116,22 +58,46 @@ public  class PlanConsumo {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    } 
-    
-    public Consumo getComsumos_idConsumo() {
-        return Comsumos_idConsumo;
     }
 
-    public void setComsumos_idConsumo(Consumo Comsumos_idConsumo) {
-        this.Comsumos_idConsumo = Comsumos_idConsumo;
+    public double getDescuentobar() {
+        return descuentobar;
     }
 
-    public Reserva getReservas_idReservas() {
-        return Reservas_idReservas;
+    public void setDescuentobar(double descuentobar) {
+        this.descuentobar = descuentobar;
     }
 
-    public void setReservas_idReservas(Reserva Reservas_idReservas) {
-        this.Reservas_idReservas = Reservas_idReservas;
+    public double getDescuentorest() {
+        return descuentorest;
+    }
+
+    public void setDescuentorest(double descuentorest) {
+        this.descuentorest = descuentorest;
+    }
+
+    public double getDescuentoSpa() {
+        return descuentospa;
+    }
+
+    public void setDescuentoSpa(double descuentospa) {
+        this.descuentospa = descuentospa;
+    }
+
+    public int getLimitebebidas() {
+        return limitebebidas;
+    }
+
+    public void setLimitebebidas(int limitebebidas) {
+        this.limitebebidas = limitebebidas;
+    }
+
+    public double getDescuentolavado() {
+        return descuentolavado;
+    }
+
+    public void setDescuentolavado(double descuentolavado) {
+        this.descuentolavado = descuentolavado;
     }
 
 }

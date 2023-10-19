@@ -38,6 +38,7 @@ public class UsuarioController {
 
     @PostMapping("/usuarios/new/save")
     public String usuarioGuardar(@ModelAttribute Usuario usuario){
+        System.out.println(usuario.getNombre());
         usuarioRepository.insertarUsuario(usuario.getNombre(), usuario.getCedula(), usuario.getTipo().getId());
         return "redirect:/usuarios";
     

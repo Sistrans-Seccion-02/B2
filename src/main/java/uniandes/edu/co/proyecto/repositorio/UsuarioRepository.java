@@ -27,13 +27,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 
     @Modifying
     @Transactional
-    @Query (value = "INSERT INTO usuarios (id, nombre, cedula, tiposusuario_id) VALUES ( B2.nextval, :nombre, :cedula, :tiposusuario_id)" , nativeQuery = true)
-    void insertarUsuario(@Param("nombre") String nombre,@Param("cedula") String cedula, @Param("tiposusuario_id") Integer tiposusuario_id );
+    @Query (value = "INSERT INTO usuarios (id, nombre, cedula, tipoid) VALUES ( B2.nextval, :nombre, :cedula, :tipoid)" , nativeQuery = true)
+    void insertarUsuario(@Param("nombre") String nombre,@Param("cedula") String cedula, @Param("tipoid") Integer tipoid );
     
     @Modifying
     @Transactional
-    @Query(value = "UPDATE usuarios SET nombre = :nombre, cedula = :cedula , tiposusuario_id = :tiposusuario_id WHERE id = :id", nativeQuery = true)
-    void actualizarUsuario(@Param ("id") Integer id, @Param("nombre") String nombre,@Param("cedula") String cedula, @Param("tiposusuario_id") Integer tiposusuario_id );
+    @Query(value = "UPDATE usuarios SET nombre = :nombre, cedula = :cedula , tipoid = :tipoid WHERE id = :id", nativeQuery = true)
+    void actualizarUsuario(@Param ("id") Integer id, @Param("nombre") String nombre,@Param("cedula") String cedula, @Param("tipoid") Integer tipoid );
 
     @Modifying
     @Transactional

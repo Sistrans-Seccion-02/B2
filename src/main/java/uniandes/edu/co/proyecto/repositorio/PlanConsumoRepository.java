@@ -16,27 +16,27 @@ import uniandes.edu.co.proyecto.Modelo.PlanConsumo;
 
 public interface PlanConsumoRepository extends JpaRepository<PlanConsumo, Integer>{
     
-    @Query(value = "SELECT * FROM planesConsumo", nativeQuery = true)
+    @Query(value = "SELECT * FROM planesconsumo", nativeQuery = true)
     Collection<PlanConsumo> darplanesConsumo();
     
 
-    @Query(value = "SELECT * FROM planesConsumo WHERE tipo = :id", nativeQuery = true)
-    PlanConsumo darPlanConsumo(@Param("id") String id);
+    @Query(value = "SELECT * FROM planesconsumo WHERE tipo = :tipo", nativeQuery = true)
+    PlanConsumo darPlanConsumo(@Param("tipo") String tipo);
 
     @Modifying
     @Transactional
-    @Query (value = "INSERT INTO planesConsumo (tipo, descripcion, descuento, descuentoBar, descuentoRestaurante, descuentoSpa, limiteBebidas, descuentoLavado, Comsumos_idConsumo, Reservas_idReservas) VALUES (B2_sequence.nextval, :descripcion, :descuento, :descuentoBar, :descuentoRestaurante, :descuentoSpa, :limiteBebidas, :descuentoLavado, :Comsumos_idConsumo, :Reservas_idReservas)" , nativeQuery = true)
-    void insertarPlanConsumo(@Param("descripcion") String descripcion, @Param("descuento") double descuento, @Param("descuentoBar") boolean descuentoBar, @Param("descuentoRestaurante") boolean descuentoRestaurante, @Param("descuentoSpa") boolean descuentoSpa, @Param("limiteBebidas") int limiteBebidas, @Param("descuentoLavado") boolean descuentoLavado, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo, @Param("Reservas_idReservas") Integer Reservas_idReservas);
+    @Query (value = "INSERT INTO planesconsumo (tipo, dtonoche, descripcion, descuentobar,descuentorest,descuentospa,limitebebidas, descuentolavado) VALUES (:tipo, :dtonoche, :descripcion, :descuentobar, :descuentorest, :descuentospa, :limitebebidas, :descuentolavado)" , nativeQuery = true)
+    void insertarPlanConsumo(@Param("tipo") String tipo, @Param("dtonoche") double dtonoche, @Param("descripcion") String descripcion, @Param("descuentobar") double descuentobar, @Param("descuentorest") double descuentorest, @Param("descuentospa") double descuentospa, @Param("limitebebidas") Integer limitebebidas, @Param("descuentolavado") double descuentolavado);
     
     @Modifying
     @Transactional
-    @Query(value = "UPDATE planesConsumo SET  descripcion = :descripcion, descuento = :descuento, descuentoBar = :descuentoBar, descuentoRestaurante = :descuentoRestaurante, descuentoSpa= :descuentoSpa, limiteBebidas= :limiteBebidas, descuentoLavado= :descuentoLavado, Comsumos_idConsumo =:Comsumos_idConsumo, Reservas_idReservas=:Reservas_idReservas WHERE id = :tipo", nativeQuery = true)
-    void actualizarPlanConsumo(@Param("tipo") String tipo,@Param("descripcion") String descripcion, @Param("descuento") double descuento, @Param("descuentoBar") boolean descuentoBar, @Param("descuentoRestaurante") boolean descuentoRestaurante, @Param("descuentoSpa") boolean descuentoSpa, @Param("limiteBebidas") int limiteBebidas, @Param("descuentoLavado") boolean descuentoLavado, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo, @Param("Reservas_idReservas") Integer Reservas_idReservas);
+    @Query(value = "UPDATE planesconsumo SET  tipo = :tipo, dtonoche = :dtonoche, descripcion = :descripcion, descuentobar = :descuentobar, descuentorest= :descuentorest, descuentospa= :descuentospa, limitebebidas= :limitebebidas, descuentolavado =:descuentolavado WHERE tipo = :tipo", nativeQuery = true)
+    void actualizarPlanConsumo(@Param("tipo") String tipo, @Param("dtonoche") double dtonoche, @Param("descripcion") String descripcion, @Param("descuentobar") double descuentobar, @Param("descuentorest") double descuentorest, @Param("descuentospa") double descuentospa, @Param("limitebebidas") Integer limitebebidas, @Param("descuentolavado") double descuentolavado);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM planesConsumo WHERE tipo = :id", nativeQuery = true)
-    void eliminarPlanConsumo(@Param("id")String id);
+    @Query(value = "DELETE FROM planesconsumo WHERE tipo = :tipo", nativeQuery = true)
+    void eliminarPlanConsumo(@Param("tipo")String tipo);
     
 
     
