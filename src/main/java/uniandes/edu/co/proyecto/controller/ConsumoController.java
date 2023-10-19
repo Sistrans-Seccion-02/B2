@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import uniandes.edu.co.proyecto.Modelo.Consumo;
 import uniandes.edu.co.proyecto.repositorio.ConsumoRepository;
 
-/*@Controller*/
 @Controller
 public class ConsumoController {
     @Autowired
@@ -30,30 +29,14 @@ public class ConsumoController {
 
     @PostMapping("/consumos/new/save")
     public String consumoGuardar(@ModelAttribute Consumo consumo) {
-        consumoRepository.insertarConsumo(consumo.getPrecioTotal(), consumo.getPazYSalvo());
+        consumoRepository.insertarConsumo();
         return "redirect:/consumos";
     }
 
-    @GetMapping("/consumos/{idConsumo}/edit") 
-    public String consumoEditarForm(@PathVariable("idConsumo") int id, Model model) {
-        Consumo consumo = consumoRepository.darConsumo(id);
-        if (consumo != null) {
-            model.addAttribute("idConsumo", id);
-            return "consumoEditar";
-        } else {
-            return "redirect:/consumos";
-        }
-    }
-
-    @PostMapping("/consumos/{idConsumo}/edit/save")
-    public String consumoEditarGuardar(@PathVariable("idConsumo") int id, @ModelAttribute Consumo consumo) {
-        consumoRepository.actualizarConsumo(id, consumo.getPrecioTotal(), consumo.getPazYSalvo());
-        return "redirect:/consumos";
-    }
 
     @GetMapping("/consumos/{idConsumo}/delete")
-    public String consumoEliminar(@PathVariable("idConsumo") int id) {
-        consumoRepository.eliminarConsumo(id);
+    public String consumoEliminar(@PathVariable("idConsumo") Integer idConsumo) {
+        consumoRepository.eliminarConsumo(idConsumo);
         return "redirect:/consumos";
     }
 }

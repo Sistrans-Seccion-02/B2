@@ -9,44 +9,43 @@
 </head>
 <body>
     <div th:fragment="planConsumoForm(titulo)" class="container border border-2 w-25">
-        <h1 class="text-center" th:text="${titulo}"></h1>
+        <h1 class="texta-center" th:text="${titulo}"></h1>
         <form>
             <label class="col-form-label">tipo</label>
             <input class="form-control" type="text" id="tipo"
-            name="tipo" required th:value="${planConsumo.tipo}"/> 
-            <label class="col-form-label">descuento</label>
-            <input class="form-control" type="text" id="descuento"
-            name="descuento" required th:value="${planConsumo.descuento}"/>
+            name="tipo" required th:value="${planesconsumo.tipo}"/> 
+
+            <label class="col-form-label">descuento Noche</label>
+            <input class="form-control" type="text" id="dtonoche"
+            name="dtonoche" required th:value="${planesconsumo.dtonoche}"/> 
+
             <label class="col-form-label">descripcion</label>
             <input class="form-control" type="text" id="descripcion"
-            name="descripcion" required th:value="${planConsumo.descripcion}"/>
-            <label class="col-form-label">descuentoBar</label>
-            <input class="form-control" type="text" id="descuentoBar"
-            name="descuentoBar" required th:value="${planConsumo.descuentoBar}"/>
-            <label class="col-form-label">descuentoRest</label>
-            <input class="form-control" type="text" id="descuento"
-            name="descuentoRest" required th:value="${planConsumo.descuentoRest}"/>
-            <label class="col-form-label">descuentoSpa</label>
+            name="descripcion" required th:value="${planesconsumo.descripcion}"/> 
+
+            <label class="col-form-label">descuento Bar</label>
+            <input class="form-control" type="text" id="descuentobar"
+            name="descuentobar" required th:value="${planesconsumo.descuentobar}"/> 
+
+            <label class="col-form-label">descuento Restaurante</label>
+            <input class="form-control" type="text" id="descuentorest"
+            name="descuentorest" required th:value="${planesconsumo.descuentorest}"/> 
+
+            <label class="col-form-label">descuento Spa</label>
             <input class="form-control" type="text" id="descuentoSpa"
-            name="descuentoSpa" required th:value="${planConsumo.descuentoSpa}"/>
-            <label class="col-form-label">limiteBebidas</label>
-            <input class="form-control" type="text" id="limiteBebidas"
-            name="limiteBebidas" required th:value="${planConsumo.limiteBebidas}"/>
-            <label class="col-form-label">descuentoLavado</label>
-            <input class="form-control" type="text" id="descuentoLavado"
-            name="descuentoLavado" required th:value="${planConsumo.descuentoLavado}"/>
+            name="descuentoSpa" required th:value="${planesconsumo.descuentoSpa}"/> 
 
-            <th:block th:each="idReserva : ${tipos}" >
-                <option th:value="${idReserva.id}" th:text="${idReserva.id}" th:selected="${planConsumo!=null || planConsumo.idReserva.id == idReserva.id}"></option>
-            </th:block>
-            <th:block th:each="idConsumo : ${idConsumo}" >
-                <option th:value="${idConsumo.id}" th:text="${idConsumo.id}" th:selected="${planConsumo!=null || planConsumo.idConsumo.id == idConsumo.id}"></option>
-            </th:block>
+            <label class="col-form-label">Limite Bebidas</label>
+            <input class="form-control" type="text" id="limitebebidas"
+            name="limitebebidas" required th:value="${planesconsumo.limitebebidas}"/> 
 
- 
+            <label class="col-form-label">Descuento lavado</label>
+            <input class="form-control" type="text" id="descuentolavado"
+            name="descuentolavado" required th:value="${planesconsumo.descuentolavado}"/> 
+
             <div class="text_center">
                 <input type="submit" value="Guardar" class="btn btn-primary"/>
-                <a th:href="@{/planesConsumo}" class="btn btn-primary">Cancelar</a>
+                <a th:href="@{/planesconsumo}" class="btn btn-primary">Cancelar</a>
             </div>
         </form>
     </div>

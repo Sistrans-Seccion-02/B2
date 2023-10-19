@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
-    <title>planConsumos</title>
+    <title>Plan Consumos</title>
 </head>
 <body>
     <div> lista de planConsumos</div>
@@ -12,26 +12,31 @@
         <thead class="thead-dark">
             <tr>
                 <th>tipo</th>
-                <th>descuento</th>
+                <th>descuento por noche</th>
                 <th>descripcion</th>
-                <th>descuentoBar</th>
-                <th>descuentoSpa</th>
+                <th>descuento Bar</th>
+                <th>descuento Restaurante</th>
+                <th>descuento Spa</th>
                 <th>limiteBebidas</th>
                 <th>descuentoLavado</th>
-                <th>descuentoRest</th>
+              
                
 
             </tr>
         </thead>
-        <th:block th:each="user:${users}">
+        <th:block th:each="planesconsumo:${planesconsumo}">
             <tr>
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.nombre}"></td>
-                <td th:text="${user.cedula}"></td>
-                <td th:text="${user.tipo}"></td>
+                <td th:text="${planesconsumo.tipo}"></td>
+                <td th:text="${planesconsumo.dtonoche}"></td>
+                <td th:text="${planesconsumo.descripcion}"></td>
+                <td th:text="${planesconsumo.descuentobar}"></td>
+                <td th:text="${planesconsumo.descuentorest}"></td>
+                <td th:text="${planesconsumo.descuentoSpa}"></td>
+                <td th:text="${planesconsumo.limitebebidas}"></td>
+                <td th:text="${planesconsumo.descuentolavado}"></td>
                 <td>
-                    <a th:href="@{/planConsumos/{id}/editar(id=${user.id})}" >Editar</a>
-                    <a th:href="@{/planConsumos/{id}/eliminar(id=${user.id})}" onclick="return confrim ('Estas seguro de borrar este usario?')" > Eliminar</a>
+                    <a th:href="@{/planesconsumo/{tipo}/edit(tipo=${planesconsumo.tipo})}" >Editar</a>
+                    <a th:href="@{/planesconsumo/{tipo}/delete(tipo=${planesconsumo.tipo})}" onclick = "return confirm ('Estas seguro de borrar este plan?')" > Eliminar</a>
 
             </tr>
 
@@ -42,6 +47,6 @@
     </table>
     <div>
         <a th:href="@{/}" class="btn btn-primary">Volver Atras</a>
-        <a th:href="@{planConsumos/new}" class="btn btn-primary">Añadir usuario</a>
+        <a th:href="@{planesconsumo/new}" class="btn btn-primary">Añadir plan</a>
 </body>
 </html>

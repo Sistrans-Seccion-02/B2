@@ -18,14 +18,10 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Consumos (idConsumo, precioTotal, pazYSalvo) VALUES (B2_sequence, :precioTotal, :pazYSalvo)", nativeQuery = true)
-    void insertarConsumo(@Param("precioTotal") double precioTotal, @Param("pazYSalvo") boolean pazYSalvo);
+    @Query(value = "INSERT INTO Consumos (idConsumo) VALUES (B2_sequence)", nativeQuery = true)
+    void insertarConsumo();
 
-    @Modifying
-    @Transactional
-    @Query(value = "UPDATE Consumos SET precioTotal=:precioTotal, pazYSalvo=:pazYSalvo WHERE idConsumo=:idConsumo", nativeQuery = true)
-    void actualizarConsumo(@Param("idConsumo") Integer idConsumo, @Param("precioTotal") double precioTotal, @Param("pazYSalvo") boolean pazYSalvo);
-   
+    
     @Modifying
     @Transactional
     @Query(value= "DELETE FROM Consumos WHERE idConsumo=:idConsumo", nativeQuery = true)

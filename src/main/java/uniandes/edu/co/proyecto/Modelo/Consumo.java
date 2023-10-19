@@ -1,6 +1,8 @@
 package uniandes.edu.co.proyecto.Modelo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -8,34 +10,22 @@ import jakarta.persistence.Table;
 @Table(name = "Consumos")
 public class Consumo {
     @Id
-    private Integer idConsumo;
-    private double precioTotal;
-    private boolean pazYSalvo;
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idconsumo;
+  
+    public Consumo(Integer idconsumo) {
+        this.idconsumo = idconsumo;
+        
+    }
     public Consumo() {;}
 
-    public double getPrecioTotal() {
-        return precioTotal;
-    }
-
-    public void setPrecioTotal(double precioTotal) {
-        this.precioTotal = precioTotal;
-    }
-
-    public boolean getPazYSalvo() {
-        return pazYSalvo;
-    }
-
-    public void setPazYSalvo(boolean pazYSalvo) {
-        this.pazYSalvo = pazYSalvo;
-    }
 
     public int getIdConsumo() {
-        return idConsumo;
+        return idconsumo;
     }
 
     public void setIdConsumo(int idConsumo) {
-        this.idConsumo = idConsumo;
+        this.idconsumo = idConsumo;
     }
     
 }

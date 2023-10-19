@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <title> Consumos</title>
+</head>
+<body>
+    <div> lista de planConsumos</div>
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>id</th>
+                
+               
+
+            </tr>
+        </thead>
+        <th:block th:each="consumos:${consumos}">
+            <tr>
+                <td th:text="${consumos.idconsumo}"></td>
+                
+                    <a th:href="@{/consumos/{idconsumo}/edit(idconsumo=${consumos.idconsumo})}" >Editar</a>
+                    <a th:href="@{/consumos/{idconsumo}/delete(idconsumo=${consumos.idconsumo})}" onclick = "return confirm ('Estas seguro de borrar este consumo?')" > Eliminar</a>
+
+            </tr>
+
+
+        </th:block>
+
+
+    </table>
+    <div>
+        <a th:href="@{/}" class="btn btn-primary">Volver Atras</a>
+        <a th:href="@{consumos/new/save}" class="btn btn-primary">Añadir consumo</a>
+        th:href="@{/consumos/{idconsumo}/delete(idconsumo=${consumos.idconsumo})}" onclick = "return confirm ('Estas seguro de borrar este consumo?')" > Eliminar
+</body>
+</html>
