@@ -18,7 +18,7 @@ public class UtensilioController{
     @GetMapping("/utensilios")
     public String bares(Model model){
         model.addAttribute("utensilios", utensilioRepository.darUtensilios());
-        return "Utensilio";
+        return "Utensilios";
     }
 
     @GetMapping("/utensilios/new")
@@ -42,7 +42,7 @@ public class UtensilioController{
             return "utensilioEditar";
         }
         else{
-            return "redirect:/utensilios";
+            return "redirect:/Utensilios";
         }
     }
 

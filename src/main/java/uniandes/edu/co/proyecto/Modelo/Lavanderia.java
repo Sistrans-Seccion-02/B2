@@ -20,16 +20,16 @@ public  class Lavanderia {
     private String tipolavado;
     private double costo;
     @ManyToOne
-    @JoinColumn(name = "Comsumos_idConsumo", referencedColumnName = "idConsumo")
-    private Consumo Comsumos_idConsumo;
+    @JoinColumn(name = "Consumos_idconsumo", referencedColumnName = "idConsumo")
+    private Consumo Consumos_idconsumo;
     private double preciofinal;
 
-    public Lavanderia(Integer numprendas, Integer numzapatos, String tipolavado, double costo, Consumo Comsumos_idConsumo, double preciofinal) {
+    public Lavanderia(Integer numprendas, Integer numzapatos, String tipolavado, double costo, Consumo Consumos_idconsumo, double preciofinal) {
         this.numprendas = numprendas;
         this.numzapatos = numzapatos;
         this.tipolavado = tipolavado;
         this.costo = costo;
-        this.Comsumos_idConsumo = Comsumos_idConsumo;
+        this.Consumos_idconsumo = Consumos_idconsumo;
         this.preciofinal = preciofinal;
     }
 
@@ -76,12 +76,12 @@ public  class Lavanderia {
         this.costo = costo;
     }
 
-    public Consumo getComsumos_idConsumo() {
-        return Comsumos_idConsumo;
+    public Consumo getConsumos_idConsumo() {
+        return Consumos_idconsumo;
     }
 
-    public void setComsumos_idConsumo(Consumo Comsumos_idConsumo) {
-        this.Comsumos_idConsumo = Comsumos_idConsumo;
+    public void setConsumos_idConsumo(Consumo Consumos_idconsumo) {
+        this.Consumos_idconsumo = Consumos_idconsumo;
     }
 
     public double getPreciofinal() {

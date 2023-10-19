@@ -18,13 +18,13 @@ public interface ProductoRepository extends JpaRepository<Producto, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Productos (nombre, precio, smercado_nombre, Tiendas_nombre, Comsumos_idConsumo ) VALUES (:nombre, :precio, :smercado_nombre, :Tiendas_nombre, :Comsumos_idConsumo)", nativeQuery = true)
-    void insertarProducto(@Param("nombre") String nombre, @Param("precio") double precio, @Param("smercado_nombre") String smercado_nombre, @Param("Tiendas_nombre") String Tiendas_nombre, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
+    @Query(value = "INSERT INTO Productos (nombre, precio, smercado_nombre, Tiendas_nombre, Consumos_idconsumo ) VALUES (:nombre, :precio, :smercado_nombre, :Tiendas_nombre, :Consumos_idconsumo)", nativeQuery = true)
+    void insertarProducto(@Param("nombre") String nombre, @Param("precio") double precio, @Param("smercado_nombre") String smercado_nombre, @Param("Tiendas_nombre") String Tiendas_nombre, @Param("Consumos_idconsumo") Integer Consumos_idconsumo);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Productos SET nombre=:nombre, precio=:precio, smercado_nombre=:smercado_nombre, Tiendas_nombre=:Tiendas_nombre, Comsumos_idConsumo=:Comsumos_idConsumo WHERE nombre=:nombre", nativeQuery = true)
-    void actualizarProducto(@Param("nombre") String nombre, @Param("precio") double precio,  @Param("smercado_nombre") String smercado_nombre, @Param("Tiendas_nombre") String Tiendas_nombre, @Param("Comsumos_idConsumo") Integer Comsumos_idConsumo);
+    @Query(value = "UPDATE Productos SET nombre=:nombre, precio=:precio, smercado_nombre=:smercado_nombre, Tiendas_nombre=:Tiendas_nombre, Consumos_idconsumo=:Consumos_idconsumo WHERE nombre=:nombre", nativeQuery = true)
+    void actualizarProducto(@Param("nombre") String nombre, @Param("precio") double precio,  @Param("smercado_nombre") String smercado_nombre, @Param("Tiendas_nombre") String Tiendas_nombre, @Param("Consumos_idconsumo") Integer Consumos_idconsumo);
    
     @Modifying
     @Transactional

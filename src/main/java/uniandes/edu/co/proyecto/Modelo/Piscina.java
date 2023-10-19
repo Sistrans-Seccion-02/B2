@@ -17,18 +17,18 @@ public class Piscina {
     private LocalTime horariocierre;
     private Integer profundidad;
     @ManyToOne
-    @JoinColumn(name = "Comsumos_idConsumo", referencedColumnName = "idConsumo")
-    private Consumo Comsumos_idConsumo;
+    @JoinColumn(name = "Consumos_idConsumo", referencedColumnName = "idConsumo")
+    private Consumo Consumos_idconsumo;
     private double preciofinal;
 
     
 
-    public Piscina(String nombre, LocalTime horarioapertura, LocalTime horariocierre, Integer profundidad, Consumo Comsumos_idConsumo, double preciofinal) {
+    public Piscina(String nombre, LocalTime horarioapertura, LocalTime horariocierre, Integer profundidad, Consumo Consumos_idconsumo, double preciofinal) {
         this.nombre = nombre;
         this.horarioapertura = horarioapertura;
         this.horariocierre = horariocierre;
         this.profundidad = profundidad;
-        this.Comsumos_idConsumo = Comsumos_idConsumo;
+        this.Consumos_idconsumo = Consumos_idconsumo;
         this.preciofinal = preciofinal;
     }
 
@@ -66,12 +66,12 @@ public class Piscina {
         this.profundidad = profundidad;
     }
 
-    public Consumo getComsumos_idConsumo() {
-        return Comsumos_idConsumo;
+    public Consumo getConsumos_idConsumo() {
+        return Consumos_idconsumo;
     }
 
-    public void setComsumos_idConsumo(Consumo Comsumos_idConsumo) {
-        this.Comsumos_idConsumo = Comsumos_idConsumo;
+    public void setConsumos_idConsumo(Consumo Consumos_idconsumo) {
+        this.Consumos_idconsumo = Consumos_idconsumo;
     }
     
     public double getPreciofinal() {
