@@ -16,7 +16,6 @@
                     <th>Horario Apertura</th>
                     <th>Horario Cierre</th>
                     <th>Capacidad</th>
-                    <th>Precio</th>
                 </tr>
             </thead>
             <th:block th:each="spa:${spas}">
@@ -25,7 +24,6 @@
                     <td th:text="${spa.horarioApertura}"></td>
                     <td th:text="${spa.horarioCierre}"></td>
                     <td th:text="${spa.capacidad}"></td>
-                    <td th:text="${spa.precio}"></td>
                     <td>
                         <a th:href="@{spas/{nombre}/edit(id=${spa.nombre})}">
                             Editar

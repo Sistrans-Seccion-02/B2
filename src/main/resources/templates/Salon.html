@@ -3,46 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gimnasios</title>
     <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <title>Lavanderias</title>
 </head>
 <body>
+    <div> Lista de lavanderias</div>
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Horario Apertura</th>
+                <th>Horario Cierre</th>
+                <th>Tipo de salon</th>
+                <th>Capacidad</th>
+
+            </tr>
+        </thead>
+        <th:block th:each="Salones:${Salones}">
+            <tr>
+                <td th:text="${Salones.nombre}"></td>
+                <td th:text="${Salones.horarioapertura}"></td>
+                <td th:text="${Salones.horariocierre}"></td>
+                <td th:text="${Salones.tiposalon}"></td>
+                <td th:text="${Salones.capacidad}"></td>
+    
+                <td>
+                    <a th:href="@{/salones/{nombre}/edit(nombre=${Salones.nombre})}" >Editar</a>
+                    <a th:href="@{/salones/{nombre}/delete(nombre=${Salones.nombre})} "onclick = "return confirm ('Estas seguro de borrar este salon?')" > Eliminar</a>
+
+                </td>
+            </tr>
+
+
+        </th:block>
+
+
+    </table>
     <div>
-        <h1>Lista de Gimnasios</h1>
-        <table class="table table-hover table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Horario Apertura</th>
-                    <th>Horario Cierre</th>
-                    <th>Ocupado</th>
-                    <th>Tipo Salon</th>
-                    <th>Capacidad</th>
-                </tr>
-            </thead>
-            <th:block th:each="salon:${salones}">
-                <tr>
-                    <td th:text="${salon.nombre}"></td>
-                    <td th:text="${salon.horarioapertura}"></td>
-                    <td th:text="${salon.horariocierre}"></td>
-                    <td th:text="${salon.tiposalon}"></td>
-                    <td th:text="${salon.capacidad}"></td>
-                    <td>
-                        <a th:href="@{salones/{nombre}/edit(id=${salon.nombre})}">
-                            Editar
-                        </a>
-                        <a th:href="@{salones/{nombre}/delete(id=${salon.nombre})}"
-                        onclick="return confirm('¿Estás seguro de borrar este salon?')">
-                            Borrar
-                        </a>
-                    </td>
-                </tr>
-            </th:block>
-        </table>
-        <div>
-            <a th:href="@{/}" class="btn-primary">Volver Atrás</a>
-            <a th:href="@{salones/new}" class="btn btn-primary">Añadir salon</a>
-        </div>
-    </div>
+        <a th:href="@{/}" class="btn btn-primary">Volver Atras</a>
+        <a th:href="@{salones/new}" class="btn btn-primary">Añadir salon</a>
 </body>
 </html>

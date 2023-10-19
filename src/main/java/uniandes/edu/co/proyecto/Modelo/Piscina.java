@@ -17,7 +17,7 @@ public class Piscina {
     private LocalTime horariocierre;
     private Integer profundidad;
     @ManyToOne
-    @JoinColumn(name = "Consumos_idConsumo", referencedColumnName = "idConsumo")
+    @JoinColumn(name = "Consumos_idconsumo", referencedColumnName = "idConsumo")
     private Consumo Consumos_idconsumo;
     private double preciofinal;
 

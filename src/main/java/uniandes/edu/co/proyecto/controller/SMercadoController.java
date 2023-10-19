@@ -7,14 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import oracle.jdbc.proxy.annotation.Post;
 import uniandes.edu.co.proyecto.Modelo.SMercado;
 import uniandes.edu.co.proyecto.repositorio.SMercadoRepository;
 
 /*@Controller*/
-@RestController
+@Controller
 public class SMercadoController {
     @Autowired
     private SMercadoRepository SMercadoRepository;
@@ -22,7 +19,7 @@ public class SMercadoController {
     @GetMapping("/SMercados")
     public String SMercados(Model model) {
         model.addAttribute("SMercados", SMercadoRepository.darSMercados());
-        return model.toString();
+        return "SMercado";
     }
     
     @GetMapping("/SMercados/new")

@@ -18,7 +18,7 @@ public class SpaController {
     @GetMapping("/spas")
     public String spas(Model model) {
         model.addAttribute("spas", spaRepository.darSpas());
-        return model.toString();
+        return "spa";
     }
     
     @GetMapping("/spas/new")

@@ -18,7 +18,7 @@ public class LavanderiaController {
     @GetMapping("/lavanderias")
     public String lavanderias(Model model){
         model.addAttribute("lavanderias", lavanderiaRepository.darLavanderias());
-        return "lavanderias";
+        return "lavanderia";
     }   
 
     @GetMapping("/lavanderias/new")

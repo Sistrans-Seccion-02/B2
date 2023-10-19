@@ -19,7 +19,7 @@ public class TiendaController {
     @GetMapping("/tiendas")
     public String tiendas(Model model) {
         model.addAttribute("tiendas", tiendaRepository.darTiendas());
-        return model.toString();
+        return "tienda";
     }
     
     @GetMapping("/tiendas/new")

@@ -19,7 +19,7 @@ public class SalonController {
     @GetMapping("/salones")
     public String salones(Model model){
         model.addAttribute("salones", salonRepository.darSalones());
-        return "salones";
+        return "salon";
     }
 
     @GetMapping("/salones/new")
