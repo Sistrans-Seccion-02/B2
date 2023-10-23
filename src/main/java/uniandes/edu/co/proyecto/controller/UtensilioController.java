@@ -16,45 +16,45 @@ public class UtensilioController{
     private UtensilioRepository utensilioRepository;
 
     @GetMapping("/utensilios")
-    public String bares(Model model){
+    public String utensilios(Model model){
         model.addAttribute("utensilios", utensilioRepository.darUtensilios());
         return "Utensilios";
     }
 
     @GetMapping("/utensilios/new")
-    public String barForm(Model model){
+    public String utensilioForm(Model model){
         model.addAttribute("utensilio", new Utensilio());
-        return "utensilioNuevo";       
+        return "UtensilioNuevo";       
     }
     
     @PostMapping("/utensilios/new/save")
-    public String barGuardar(@ModelAttribute Utensilio utensilio){
+    public String utensilioGuardar(@ModelAttribute Utensilio utensilio){
         utensilioRepository.insertarUtensilio(utensilio.getNombre());
         return "redirect:/utensilios";
     
     }
 
     @GetMapping("/utensilios/{id}/edit")
-    public String barEditarForm(@PathVariable("id") Integer id, Model model){
+    public String utensilioEditarForm(@PathVariable("id") Integer id, Model model){
         Utensilio utensilio= utensilioRepository.darUtensilio(id);
         if(utensilio != null){
             model.addAttribute("utensilio", utensilio);
-            return "utensilioEditar";
+            return "UtensilioEditar";
         }
         else{
-            return "redirect:/Utensilios";
+            return "redirect:/utensilios";
         }
     }
 
     @PostMapping("/utensilios/{id}/edit/save")
-     public String barEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute Utensilio utensilio){
+     public String utensilioEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute Utensilio utensilio){
         utensilioRepository.actualizarUtensilio(id,utensilio.getNombre());
-        return "redirect:/bares";
+        return "redirect:/Utensilios";
     }
     
     @GetMapping("/utensilios/{id}/delete")
-    public String barEliminar(@PathVariable("id") Integer id){
+    public String utensilioEliminar(@PathVariable("id") Integer id){
         utensilioRepository.eliminarUtensilio(id);
-        return "redirect:/utensilios";
+        return "redirect:/Utensilios";
     }
 }

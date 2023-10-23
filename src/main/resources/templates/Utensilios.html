@@ -18,7 +18,6 @@
         </thead>
         <th:block th:each="Utensilios:${Utensilios}">
             <tr>
-                <td th:text="${Utensilios.id}"></td>
                 <td th:text="${Utensilios.nombre}"></td>
                 <td>
                     <a th:href="@{/utensilios/{id}/edit(id=${Utensilios.id})}" >Editar</a>
