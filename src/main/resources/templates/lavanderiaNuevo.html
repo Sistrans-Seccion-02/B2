@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Salon</title>
+    <title>Crear Lavanderia</title>
     <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
-    
 </head>
 <body>
-    <form action="#" th:action="@{/salones/new/save}" method="post">
-        <div th:replace="~{fragments/SalonForm :: SalonForm(titulo='Crear Salon')}"></div>
+    <form action="#" th:action="@{/lavanderias/new/save}" method="post">
+        <div th:replace="~{fragments/LavanderiaForm :: LavanderiaForm(titulo='Crear Lavanderia')}"></div>
     </form>
 </body>
 </html>

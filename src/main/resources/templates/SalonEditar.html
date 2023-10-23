@@ -10,7 +10,7 @@
 <body>
     <form th:action="@{'/salones/'+${nombre}+'/editar/save'}" th: object ="${salon}"
     method="post">
-    <div th:replace="~{fragments/salonForm :: salonForm(titulo='Editar salon', salon=${salon})}">
+    <div th:replace="~{fragments/SalonForm :: SalonForm(titulo='Editar salon', salon=${salon})}">
 
     </div>
 </form>

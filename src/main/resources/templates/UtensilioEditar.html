@@ -8,6 +8,6 @@
 </head>
 <body>
     <form th:action="@{'/utensilios/'+${id}+'/edit/save'}" th:object ="${utensilio}" method="post">
-        <div th:replace="~{fragments/utensilioForm :: utensilioForm(titulo='Editar Utensilio',utensilio=${utensilio})}"></div>
+        <div th:replace="~{fragments/UtensilioForm :: UtensilioForm(titulo='Editar Utensilio',utensilio=${utensilio})}"></div>
 </body>
 </html>

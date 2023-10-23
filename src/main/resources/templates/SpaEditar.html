@@ -8,9 +8,9 @@
     
 </head>
 <body>
-    <form th:action="@{'/spas/'+${nombre}+'/editar/save'}" th: object ="${spa}"
+    <form th:action="@{'/spas/'+${nombre}+'/edit/save'}" th: object ="${spa}"
     method="post">
-    <div th:replace="~{fragments/spaForm :: spaForm(titulo='Editar spa', spa=${spa})}">
+    <div th:replace="~{fragments/SpaForm :: SpaForm(titulo='Editar spa', spa=${spa})}">
 
     </div>
 </form>

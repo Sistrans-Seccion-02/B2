@@ -18,17 +18,17 @@
                     <th>Capacidad</th>
                 </tr>
             </thead>
-            <th:block th:each="spa:${spas}">
+            <th:block th:each="Spas:${Spas}">
                 <tr>
-                    <td th:text="${spa.nombre}"></td>
-                    <td th:text="${spa.horarioApertura}"></td>
-                    <td th:text="${spa.horarioCierre}"></td>
-                    <td th:text="${spa.capacidad}"></td>
+                    <td th:text="${Spas.nombre}"></td>
+                    <td th:text="${Spas.horarioapertura}"></td>
+                    <td th:text="${Spas.horariocierre}"></td>
+                    <td th:text="${Spas.capacidad}"></td>
                     <td>
-                        <a th:href="@{spas/{nombre}/edit(id=${spa.nombre})}">
+                        <a th:href="@{spas/{nombre}/edit(id=${Spas.nombre})}">
                             Editar
                         </a>
-                        <a th:href="@{spas/{nombre}/delete(id=${spa.nombre})}"
+                        <a th:href="@{spas/{nombre}/delete(id=${Spas.nombre})}"
                         onclick="return confirm('¿Estás seguro de borrar este spa?')">
                             Borrar
                         </a>

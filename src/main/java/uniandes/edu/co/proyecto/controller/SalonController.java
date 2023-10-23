@@ -19,19 +19,19 @@ public class SalonController {
     @GetMapping("/salones")
     public String salones(Model model){
         model.addAttribute("salones", salonRepository.darSalones());
-        return "salon";
+        return "Salon";
     }
 
     @GetMapping("/salones/new")
     public String salonForm(Model model){
         model.addAttribute("salon", new Salon());
-        return "salonNuevo";
+        return "SalonNuevo";
     }
 
     @PostMapping("/salones/new/save")
     public String salonGuardar(@ModelAttribute Salon salon){
         salonRepository.insertarSalon(salon.getNombre(), salon.getHorarioApertura(), salon.getHorarioCierre(), salon.getTipoSalon(), salon.getCapacidad());
-        return "redirect:/salones";
+        return "redirect:/Salon";
     }
 
     @GetMapping("/salones/{nombre}/edit")
@@ -39,23 +39,23 @@ public class SalonController {
         Salon salon = salonRepository.darSalon(nombre);
         if(salon != null){
             model.addAttribute("salon", salon);
-            return "salonEditar";
+            return "SalonEditar";
         }
         else{
-            return "redirect:/salones";
+            return "redirect:/Salon";
         }
     }
 
     @PostMapping("/salones/{nombre}/edit/save")
     public String salonEditarGuardar(@PathVariable("nombre") String nombre, @ModelAttribute Salon salon){
         salonRepository.actualizarSalon(nombre, salon.getHorarioApertura(), salon.getHorarioCierre(), salon.getTipoSalon(), salon.getCapacidad());
-        return "redirect:/salones";
+        return "redirect:/Salon";
     }
 
     @GetMapping("/salones/{nombre}/delete")
     public String salonEliminar(@PathVariable("nombre") String nombre){
         salonRepository.eleminarSalon(nombre);
-        return "redirect:/salones";
+        return "redirect:/Salon";
     }
 
 }

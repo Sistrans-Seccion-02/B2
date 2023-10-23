@@ -18,19 +18,19 @@ public class SpaController {
     @GetMapping("/spas")
     public String spas(Model model) {
         model.addAttribute("spas", spaRepository.darSpas());
-        return "spa";
+        return "Spa";
     }
     
     @GetMapping("/spas/new")
     public String spaForm(Model model) {
         model.addAttribute("spa", new Spa());
-        return "spaNuevo";
+        return "SpaNuevo";
     }
 
     @PostMapping("/spas/new/save")
     public String spaGuardar(@ModelAttribute Spa spa) {
         spaRepository.insertarSpa(spa.getNombre(), spa.getHorarioApertura(), spa.getHorarioCierre(), spa.getCapacidad());
-        return "redirect:/spas";
+        return "redirect:/Spa";
     }
 
     @GetMapping("/spas/{nombre}/edit") 
@@ -38,22 +38,22 @@ public class SpaController {
         Spa spa = spaRepository.darSpa(nombre);
         if (spa != null) {
             model.addAttribute("nombre", nombre);
-            return "spaEditar";
+            return "SpaEditar";
         } else {
-            return "redirect:/spas";
+            return "redirect:/Spa";
         }
     }
 
     @PostMapping("/spas/{nombre}/edit/save")
     public String spaEditarGuardar(@PathVariable("nombre") String nombre, @ModelAttribute Spa spa) {
         spaRepository.actualizarSpa(nombre, spa.getHorarioApertura(), spa.getHorarioCierre(), spa.getCapacidad());
-        return "redirect:/spas";
+        return "redirect:/Spa";
     }
 
     @GetMapping("/spas/{nombre}/delete")
     public String spaEliminar(@PathVariable("nombre") String nombre) {
         spaRepository.eliminarSpa(nombre);
-        return "redirect:/spas";
+        return "redirect:/Spa";
     }
 }
 
