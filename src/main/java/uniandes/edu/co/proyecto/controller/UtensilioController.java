@@ -49,12 +49,12 @@ public class UtensilioController{
     @PostMapping("/utensilios/{id}/edit/save")
      public String utensilioEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute Utensilio utensilio){
         utensilioRepository.actualizarUtensilio(id,utensilio.getNombre());
-        return "redirect:/Utensilios";
+        return "redirect:/utensilios";
     }
     
     @GetMapping("/utensilios/{id}/delete")
     public String utensilioEliminar(@PathVariable("id") Integer id){
         utensilioRepository.eliminarUtensilio(id);
-        return "redirect:/Utensilios";
+        return "redirect:/utensilios";
     }
 }

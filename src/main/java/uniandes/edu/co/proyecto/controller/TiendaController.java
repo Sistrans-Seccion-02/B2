@@ -19,13 +19,13 @@ public class TiendaController {
     @GetMapping("/tiendas")
     public String tiendas(Model model) {
         model.addAttribute("tiendas", tiendaRepository.darTiendas());
-        return "tienda";
+        return "Tienda";
     }
     
     @GetMapping("/tiendas/new")
     public String tiendaForm(Model model) {
         model.addAttribute("tienda", new Tienda());
-        return "tiendaNuevo";
+        return "TiendaNuevo";
     }
 
     @PostMapping("/tiendas/new/save")
@@ -39,7 +39,7 @@ public class TiendaController {
         Tienda tienda = tiendaRepository.darTienda(nombre);
         if (tienda != null) {
             model.addAttribute("nombre", nombre);
-            return "tiendaEditar";
+            return "TiendaEditar";
         } else {
             return "redirect:/tiendas";
         }
