@@ -19,7 +19,7 @@ public class PiscinaController {
     @GetMapping("/piscinas")
     public String piscinas(Model model) {
         model.addAttribute("piscinas", piscinaRepository.darPiscinas());
-        return model.toString();
+        return "Piscina";
     }
     
     @GetMapping("/piscinas/new")

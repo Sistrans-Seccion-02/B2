@@ -25,7 +25,7 @@ public  class ReservaServicio {
     @JoinColumn(name = "Salones_nombre", referencedColumnName = "nombre")
     Salon Salones_nombre;
     @ManyToOne
-    @JoinColumn(name = "Consumos_idConsumo", referencedColumnName = "idConsumo")
+    @JoinColumn(name = "Consumos_idconsumo", referencedColumnName = "idConsumo")
     Consumo Consumos_idconsumo;
     @ManyToOne
     @JoinColumn(name = "Utensilios_id", referencedColumnName = "id")

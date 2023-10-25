@@ -15,24 +15,14 @@
             <input class="form-control" type="text" id="nombre"
             name="nombre" required th:value="${salon.nombre}"/>
             <label class="col-form-label">Horario Apertura</label>
-            <input class="form-control" type="text" id="horarioApertura"
-            name="horarioApertura" required th:value="${salon.horarioApertura}"/>
+            <input class="form-control" type="text" id="horarioapertura"
+            name="horarioApertura" required th:value="${salon.horarioapertura}"/>
             <label class="col-form-label">Horario Cierre</label>
-            <input class="form-control" type="text" id="horarioCierre"
-            name="horarioCierre" required th:value="${salon.horarioCierre}"/>
-            <label class="col-form-label">Ocupado</label>
-            <input class="form-control" type="text" id="ocupado"
-            name="ocupado" required th:value="${salon.ocupado}"/>
+            <input class="form-control" type="text" id="horariocierre"
+            name="horarioCierre" required th:value="${salon.horariocierre}"/>
             <label class="col-form-label">Tipo Salon</label>
-            <select class="form-control" id="tipoSalon"
-            name="tipoSalon" required>
-            <option value="Reuniones" th:selection="${salon.tipoSalon eq 'Reuniones'}">
-                Reuniones
-            </option>
-            <option value="Conferencias" th:selection="${salon.tipoSalon eq 'Conferencias'}">
-                Conferencias
-            </option>
-            </select>
+            <input class="form-control" type="text" id="tiposalon"
+            name="tiposalon" required th:value="${salon.tiposalon}"/>
             <label class="col-form-label">Capacidad</label>
             <input class="form-control" type="number" id="capacidad"
             name="capacidad" required th:value="${salon.capacidad}"/>

@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Reserva Spa</title>
+    <title>Crear Tienda</title>
     <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
-    
 </head>
 <body>
-    <form action="#" th:action="@{/reservasSpa/new/save}" method="post">
-        <div th:replace="~{fragments/reservaSpaForm :: reservasSpaForm(titulo='Crear Reserva Spa')}"></div>
+    <form action="#" th:action="@{/tiendas/new/save}" method="post">
+        <div th:replace="~{fragments/TiendaForm :: TiendaForm(titulo='Crear Tienda')}"></div>
     </form>
 </body>
 </html>

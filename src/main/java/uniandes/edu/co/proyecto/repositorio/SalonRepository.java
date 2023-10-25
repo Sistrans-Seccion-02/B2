@@ -20,13 +20,13 @@ public interface SalonRepository extends JpaRepository<Salon, String>{
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Salones (nombre, horarioapertura, horariocierre, tipoSalon, capacidad) VALUES (:nombre, :horarioapertura, :horariocierre, :tipoSalon, :capacidad)", nativeQuery = true)
-    void insertarSalon(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre,@Param("tipoSalon") String tipoSalon, @Param("capacidad") Integer capacidad);
+    @Query(value = "INSERT INTO Salones (nombre, horarioapertura, horariocierre, tiposalon, capacidad) VALUES (:nombre, :horarioapertura, :horariocierre, :tiposalon, :capacidad)", nativeQuery = true)
+    void insertarSalon(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre,@Param("tiposalon") String tiposalon, @Param("capacidad") Integer capacidad);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Salones SET horarioapertura = :horarioapertura, horariocierre = :horariocierre, tipoSalon = :tipoSalon, capacidad = :capacidad WHERE nombre = :nombre", nativeQuery = true)
-    void actualizarSalon(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre,@Param("tipoSalon") String tipoSalon, @Param("capacidad") Integer capacidad);
+    @Query(value = "UPDATE Salones SET horarioapertura = :horarioapertura, horariocierre = :horariocierre, tiposalon = :tiposalon, capacidad = :capacidad WHERE nombre = :nombre", nativeQuery = true)
+    void actualizarSalon(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre,@Param("tiposalon") String tiposalon, @Param("capacidad") Integer capacidad);
 
     @Modifying
     @Transactional

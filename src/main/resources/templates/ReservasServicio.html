@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <title>Reserva de Serivicios</title>
+</head>
+<body>
+    <div> Lista de reservas de servicios</div>
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>id</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Nombre Spa</th>
+                <th>Nombre Salon</th>
+                <th>id Consumo</th>
+                <th>Utensilio</th>
+                <th>Precio Final</th>
+
+            </tr>
+        </thead>
+        <th:block th:each="Reservas:${Reservas}">
+            <tr>
+                <td th:text="${Reservas.idreservas}"></td>
+                <td th:text="${Reservas.fechayhorai}"></td>
+                <td th:text="${Reservas.fechayhoraf}"></td>
+                <td th:text="${Reservas.Spas_nombre}"></td>
+                <td th:text="${Reservas.Salones_nombre}"></td>
+                <td th:text="${Reservas.Consumos_idconsumo}"></td>
+                <td th:text="${Reservas.Utensilios_id}"></td>
+                <td th:text="${Reservas.preciofinal}"></td>
+
+                <td>
+                    <a th:href="@{/reservasServicio/{idreservas}/edit(idreservas=${Reservas.idreservas})}" >Editar</a>
+                    <a th:href="@{/reservasServicio/{idreservas}/delete(idreservas=${Reservas.idreservas})} "onclick = "return confirm ('Estas seguro de borrar esta reserva de servicio?')" > Eliminar</a>
+
+                </td>
+            </tr>
+
+
+        </th:block>
+
+
+    </table>
+    <div>
+        <a th:href="@{/}" class="btn btn-primary">Volver Atras</a>
+        <a th:href="@{reservasServicio/new}" class="btn btn-primary">Añadir reserva de servicio</a>
+</body>
+</html>

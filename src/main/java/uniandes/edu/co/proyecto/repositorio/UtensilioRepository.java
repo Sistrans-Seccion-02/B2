@@ -20,7 +20,7 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Utensilios (id, nombre) VALUES (B2_sequence, :nombre)", nativeQuery = true)
+    @Query(value = "INSERT INTO Utensilios (id, nombre) VALUES (B2.nextval, :nombre)", nativeQuery = true)
     void insertarUtensilio(@Param("nombre") String nombre);
 
     @Modifying

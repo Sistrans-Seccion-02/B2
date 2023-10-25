@@ -20,7 +20,7 @@ public class ProductoController {
     @GetMapping("/productos")
     public String productos(Model model) {
         model.addAttribute("productos", productoRepository.darProductos());
-        return model.toString();
+        return "producto";
     }
     
     @GetMapping("/productos/new")

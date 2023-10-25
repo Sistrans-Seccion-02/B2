@@ -24,7 +24,7 @@ public interface SpaRepository extends JpaRepository<Spa, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Spas SET nombre=:nombre, horarioapertura=:horarioapertura, horarioCierre=:horariocierre, capacidad=:capacidad WHERE nombre=:nombre", nativeQuery = true)
+    @Query(value = "UPDATE Spas SET nombre=:nombre, horarioapertura=:horarioapertura, horariocierre=:horariocierre, capacidad=:capacidad WHERE nombre=:nombre", nativeQuery = true)
     void actualizarSpa(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre, @Param("capacidad") int capacidad);
    
     @Modifying

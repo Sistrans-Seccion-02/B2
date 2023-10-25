@@ -14,14 +14,14 @@ public class Salon {
     private String nombre;
     private LocalTime horarioapertura;
     private LocalTime horariocierre;
-    private String tipoSalon;
+    private String tiposalon;
     private Integer capacidad;
 
-    public Salon(String nombre, double precio, LocalTime horarioapertura, LocalTime horariocierre, String tipoSalon, int capacidad) {
+    public Salon(String nombre, double precio, LocalTime horarioapertura, LocalTime horariocierre, String tiposalon, int capacidad) {
         this.nombre = nombre;
         this.horarioapertura = horarioapertura;
         this.horariocierre = horariocierre;
-        this.tipoSalon = tipoSalon;
+        this.tiposalon = tiposalon;
         this.capacidad = capacidad;
     }
 
@@ -43,7 +43,7 @@ public class Salon {
     }
 
     public String getTipoSalon() {
-        return tipoSalon;
+        return tiposalon;
     }
 
     public Integer getCapacidad() {
@@ -62,8 +62,8 @@ public class Salon {
         this.horariocierre = horariocierre;
     }
 
-    public void setTipoSalon(String tipoSalon) {
-        this.tipoSalon = tipoSalon;
+    public void setTipoSalon(String tiposalon) {
+        this.tiposalon = tiposalon;
     }
 
     public void setCapacidad(Integer capacidad) {

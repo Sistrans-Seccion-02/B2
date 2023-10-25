@@ -24,7 +24,7 @@ public class ReservaServicioController {
     @GetMapping("/reservasServicio/new")
     public String reservaSalonForm(Model model){
         model.addAttribute("reservaSalon", new ReservaServicio());
-        return "reservaServicioNuevo";       
+        return "reservasServicioNuevo";       
     }
 
     @PostMapping("/reservasServicio/new/save")
@@ -41,7 +41,7 @@ public class ReservaServicioController {
         ReservaServicio reservaServicio = reservaServicioRepository.darReservaServicio(idreservas);
         if(reservaServicio != null){
             model.addAttribute("idreservas", idreservas);
-            return "reservaServicioEditar";
+            return "reservasServicioEditar";
         }else{
             return "redirect:/reservasServicio";
         }
