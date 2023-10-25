@@ -25,6 +25,7 @@
                 <td th:text="${user.nombre}"></td>
                 <td th:text="${user.cedula}"></td>
                 <td th:text="${user.tipoId.tipo}"></td>
+                
                 <td>
                     <a th:href="@{/usuarios/{id}/edit(id=${user.id})}" >Editar</a>
                     <a th:href="@{/usuarios/{id}/delete(id=${user.id})} "onclick = "return confirm ('Estas seguro de borrar este usario?')" > Eliminar</a>

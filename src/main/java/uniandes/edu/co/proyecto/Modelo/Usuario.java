@@ -1,14 +1,11 @@
 package uniandes.edu.co.proyecto.Modelo;
-
-
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,14 +17,15 @@ public  class Usuario {
     private Integer id;
     private String nombre;
     private String cedula;
-    @OneToOne
+
+    @ManyToOne
     @JoinColumn(name = "tipoid", referencedColumnName = "id")
-    private TipoUsuario tipoid;
+    private Tipousuario tipoId;
     
-    public Usuario(String nombre, String cedula, TipoUsuario tipoid) {
+    public Usuario(String nombre, String cedula, Tipousuario tipoId) {
         this.nombre = nombre;
         this.cedula = cedula;
-        this.tipoid = tipoid;
+        this.tipoId = tipoId;
     }
     public Usuario() 
     {;}
@@ -50,11 +48,11 @@ public  class Usuario {
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
-    public TipoUsuario getTipo() {
-        return tipoid;
+    public Tipousuario getTipoId() {
+        return tipoId;
     }
-    public void setTipo(TipoUsuario tipoid) {
-        this.tipoid = tipoid;
+    public void setTipoId(Tipousuario tipoid) {
+        this.tipoId = tipoid;
     }
     
 }

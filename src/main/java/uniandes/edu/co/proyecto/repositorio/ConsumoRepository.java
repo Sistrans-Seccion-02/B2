@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.repositorio;
 
+import java.sql.Date;
 import java.util.Collection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -18,8 +19,13 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Consumos (idConsumo) VALUES (B2_sequence)", nativeQuery = true)
-    void insertarConsumo();
+    @Query(value = "INSERT INTO Consumos (idConsumo,fecha) VALUES (B2.nextval, :fecha)", nativeQuery = true)
+    void insertarConsumo(@Param("fecha") Date fecha);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Consumos SET fecha = :fecha WHERE idConsumo = :idConsumo", nativeQuery = true)
+    void actualizarConsumo(@Param ("idConsumo") Integer idConsumo, @Param ("fecha") Date fecha);
 
     
     @Modifying

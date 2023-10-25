@@ -18,21 +18,15 @@
             <input class="form-control" type="text" id="cedula"
             name="cedula" required th:value="${usuario.cedula}"/>
 
-            <label class="col-form-label">Tipo:</label>
             
-            
-            <select class="form-control" id="tipoid" name="tipoid" required>
-                <th:block th:each="tipoid : ${tipos}">
-                    <option th:value="${tipoid.id}" th:text="${tipoid.tipo}" th:selected="${usuario != null && usuario.tipoid.id == tipoid.id}"></option>
+            <label class="col-form-label" for="tipoId">Tipo:</label>
+            <select class="form-control" id="tipoId" name="tipoId" required>
+                <th:block th:each="tipoId : ${tipos}" >
+
+                    <option th:value="${tipoId.id}" th:text="${tipoId.tipo}" th:selected="${usuario != null && usuario.tipoId != null && usuario.tipoId.id == tipoId.id}"></option>
+
+
                     
-                </th:block>
-            </select><br>
-            
-            
-        
-
-            
-
             <div class="text_center">
                 <input type="submit" value="Guardar" class="btn btn-primary"/>
                 <a th:href="@{/usuarios}" class="btn btn-primary">Cancelar</a>

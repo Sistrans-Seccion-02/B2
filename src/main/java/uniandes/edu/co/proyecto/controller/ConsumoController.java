@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import uniandes.edu.co.proyecto.Modelo.Consumo;
+
 import uniandes.edu.co.proyecto.repositorio.ConsumoRepository;
 
 @Controller
@@ -18,20 +19,42 @@ public class ConsumoController {
     @GetMapping("/consumos")
     public String consumos(Model model) {
         model.addAttribute("consumos", consumoRepository.darConsumos());
-        return model.toString();
+        return "consumos";
     }
     
     @GetMapping("/consumos/new")
     public String consumoForm(Model model) {
         model.addAttribute("consumo", new Consumo());
-        return "consumoNuevo";
+        return "consumosNuevo";
     }
 
     @PostMapping("/consumos/new/save")
     public String consumoGuardar(@ModelAttribute Consumo consumo) {
-        consumoRepository.insertarConsumo();
+        consumoRepository.insertarConsumo(consumo.getFecha());
         return "redirect:/consumos";
+        
     }
+
+     @GetMapping("/consumos/{id}/edit")
+        public String consumoEditarForm(@PathVariable("id") Integer id, Model model) {
+            Consumo consumo = consumoRepository.darConsumo(id);
+            if (consumo != null) {
+                model.addAttribute("consumos", consumo);
+                return "consumosEditar";
+            } else {
+                return "redirect:/consumos";
+            }
+        }
+
+        @PostMapping("/consumos/{id}/edit/save")
+        public String consumoEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute Consumo consumo) {
+            System.out.println(id);
+            consumoRepository.actualizarConsumo(((Integer) id), consumo.getFecha());
+                    
+            return "redirect:/consumos";
+        }
+
+
 
 
     @GetMapping("/consumos/{idConsumo}/delete")

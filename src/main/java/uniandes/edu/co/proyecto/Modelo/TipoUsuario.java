@@ -11,18 +11,18 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="tiposUsuario")
 
-public  class TipoUsuario {
+public  class Tipousuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String tipo;
      private String descripcion;
     
-    public TipoUsuario(String tipo, String descripcion ) {
+    public Tipousuario(String tipo, String descripcion ) {
         this.tipo = tipo;
         this.descripcion = descripcion;
     }
-    public TipoUsuario() 
+    public Tipousuario() 
     {;}
 
     public Integer getId() {

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import uniandes.edu.co.proyecto.Modelo.TipoUsuario;
+import uniandes.edu.co.proyecto.Modelo.Tipousuario;
 import uniandes.edu.co.proyecto.repositorio.tipoUsuarioRepository;
 
 
@@ -27,19 +27,19 @@ public class tipoUsuarioController {
 
     @GetMapping("/tiposUsuario/new")
     public String tiposUsuarioForm(Model model){
-        model.addAttribute("tiposUsuario", new TipoUsuario());
+        model.addAttribute("tiposUsuario", new Tipousuario());
         return"tiposUsuarioNuevo";       
     }
 
     @PostMapping("/tiposUsuario/new/save")
-    public String tiposUsuarioGuardar(@ModelAttribute TipoUsuario tipoUsuario){
+    public String tiposUsuarioGuardar(@ModelAttribute Tipousuario tipoUsuario){
         tipousuarioRepository.insertarTipoUsuario(tipoUsuario.getTipo(), tipoUsuario.getDescripcion());
         return "redirect:/tiposUsuario";
     
     }
     @GetMapping("/tiposUsuario/{id}/edit")
         public String tiposUsuarioEditarForm(@PathVariable("id") int id, Model model) {
-            TipoUsuario usuario = tipousuarioRepository.darTipoUsuario(id);
+            Tipousuario usuario = tipousuarioRepository.darTipoUsuario(id);
             if (usuario != null) {
                 model.addAttribute("tiposUsuario", usuario);
                 return "tiposUsuarioEditar";
@@ -49,7 +49,7 @@ public class tipoUsuarioController {
         }
 
         @PostMapping("/tiposUsuario/{id}/edit/save")
-        public String tiposUsuarioEditarGuardar(@PathVariable("id") int id, @ModelAttribute TipoUsuario usuario) {
+        public String tiposUsuarioEditarGuardar(@PathVariable("id") int id, @ModelAttribute Tipousuario usuario) {
             tipousuarioRepository.actualizarTipoUsuario(((Integer) id), usuario.getTipo(), usuario.getDescripcion());
                     
             return "redirect:/tiposUsuario";

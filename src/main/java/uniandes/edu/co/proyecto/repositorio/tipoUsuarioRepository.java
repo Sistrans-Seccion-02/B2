@@ -8,17 +8,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.Modelo.TipoUsuario;
+import uniandes.edu.co.proyecto.Modelo.Tipousuario;
 
-public interface tipoUsuarioRepository extends JpaRepository<TipoUsuario, Integer>{
+public interface tipoUsuarioRepository extends JpaRepository<Tipousuario, Integer>{
     
     @Query(value = "SELECT * FROM tiposUsuario", nativeQuery = true)
 
-    Collection<TipoUsuario> dartiposUsuarios();
+    Collection<Tipousuario> dartiposUsuarios();
     
 
     @Query(value = "SELECT * FROM tiposUsuario WHERE id = :id", nativeQuery = true)
-    TipoUsuario darTipoUsuario(@Param("id") Integer id);
+    Tipousuario darTipoUsuario(@Param("id") Integer id);
 
     @Modifying
     @Transactional

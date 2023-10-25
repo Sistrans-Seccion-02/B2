@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import uniandes.edu.co.proyecto.Modelo.TipoUsuario;
+import uniandes.edu.co.proyecto.Modelo.Tipousuario;
 import uniandes.edu.co.proyecto.Modelo.Usuario;
 import uniandes.edu.co.proyecto.repositorio.UsuarioRepository;
 import uniandes.edu.co.proyecto.repositorio.tipoUsuarioRepository;
@@ -25,8 +25,7 @@ public class UsuarioController {
     @GetMapping("/usuarios")
     public String usuarios(Model model) {
         model.addAttribute("usuarios", usuarioRepository.darUsuarios());
-        return "Usuario";
-        
+        return "usuario";
     }
 
     @GetMapping("/usuarios/new")
@@ -39,7 +38,7 @@ public class UsuarioController {
     @PostMapping("/usuarios/new/save")
     public String usuarioGuardar(@ModelAttribute Usuario usuario){
         System.out.println(usuario.getNombre());
-        usuarioRepository.insertarUsuario(usuario.getNombre(), usuario.getCedula(), usuario.getTipo().getId());
+        usuarioRepository.insertarUsuario(usuario.getNombre(), usuario.getCedula(), usuario.getTipoId().getId());
         return "redirect:/usuarios";
     
     }
@@ -58,7 +57,7 @@ public class UsuarioController {
 
         @PostMapping("/usuarios/{id}/edit/save")
         public String usuarioEditarGuardar(@PathVariable("id") int id, @ModelAttribute Usuario usuario) {
-            usuarioRepository.actualizarUsuario(((Integer) id), usuario.getNombre(), usuario.getCedula(), usuario.getTipo().getId());
+            usuarioRepository.actualizarUsuario(((Integer) id), usuario.getNombre(), usuario.getCedula(), usuario.getTipoId().getId());
                     
             return "redirect:/usuarios";
         }

@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>crear plan</title>
+    <title>crear consumo</title>
     <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
     
 </head>
 <body>
-    <form action="#" th:action="@{/planesconsumo/new/save}" method="post">
-        <div th:replace="~{fragments/planConsumoForm :: planConsumoForm(titulo='Crear plan')}"></div>
+    <form action="#" th:action="@{/consumos/new/save}" method="post">
+        <div th:replace="~{fragments/consumosForm :: consumosForm(titulo='Crear consumo')}"></div>
     </form>
 </body>
 </html>
