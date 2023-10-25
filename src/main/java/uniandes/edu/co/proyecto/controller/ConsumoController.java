@@ -55,11 +55,9 @@ public class ConsumoController {
         }
 
 
-
-
-    @GetMapping("/consumos/{idConsumo}/delete")
-    public String consumoEliminar(@PathVariable("idConsumo") Integer idConsumo) {
-        consumoRepository.eliminarConsumo(idConsumo);
+    @GetMapping("/consumos/{id}/delete")
+    public String consumoEliminar(@PathVariable("id") Integer id) {
+        consumoRepository.eliminarConsumo(id);
         return "redirect:/consumos";
     }
 }

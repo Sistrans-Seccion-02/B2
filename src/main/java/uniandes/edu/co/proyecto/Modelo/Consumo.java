@@ -28,7 +28,7 @@ public class Consumo {
         return idconsumo;
     }
 
-    public void setIdConsumo(Integer idConsumo) {
+    public void setIdConsumo(int idConsumo) {
         this.idconsumo = idConsumo;
     }
     public Date getFecha() {

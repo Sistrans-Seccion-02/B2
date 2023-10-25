@@ -24,14 +24,14 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Consumos SET fecha = :fecha WHERE idConsumo = :idConsumo", nativeQuery = true)
-    void actualizarConsumo(@Param ("idConsumo") Integer idConsumo, @Param ("fecha") Date fecha);
+    @Query(value = "UPDATE Consumos SET fecha = :fecha WHERE id = :id", nativeQuery = true)
+    void actualizarConsumo(@Param ("id") Integer idConsumo, @Param ("fecha") Date fecha);
 
     
     @Modifying
     @Transactional
-    @Query(value= "DELETE FROM Consumos WHERE idConsumo=:idConsumo", nativeQuery = true)
-    void eliminarConsumo(@Param("idConsumo") Integer idConsumo);
+    @Query(value= "DELETE FROM Consumos WHERE id=:id", nativeQuery = true)
+    void eliminarConsumo(@Param("id") Integer idConsumo);
 }
 
 
