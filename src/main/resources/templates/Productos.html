@@ -19,12 +19,12 @@
 
             </tr>
         </thead>
-        <th:block th:each="Productos:${Productos}">
+        <th:block th:each="Productos:${productos}">
             <tr>
                 <td th:text="${Productos.nombre}"></td>
                 <td th:text="${Productos.precio}"></td>
-                <td th:text="${Productos.tienda}"></td>
-                <td th:text="${Productos.smercado_nombre}"></td>
+                <td th:text="${Productos.tiendas_nombre}"></td>
+                <td th:text="${Productos.smercados_nombre}"></td>
                 <td th:text="${Productos.Consumos_idconsumo}"></td>
 
                 <td>

@@ -14,40 +14,40 @@ public class Producto  {
     private double precio;
 
     @ManyToOne
-    @JoinColumn(name = "tienda", referencedColumnName = "nombre")
-    private Tienda tienda;
+    @JoinColumn(name = "tiendas_nombre", referencedColumnName = "nombre")
+    public Tienda tiendas_nombre;
 
     @ManyToOne
-    @JoinColumn(name = "smercado_nombre", referencedColumnName = "nombre")
-    private SMercado smercado_nombre;
+    @JoinColumn(name = "smercados_nombre", referencedColumnName = "nombre")
+    private SMercado smercados_nombre;
 
     @ManyToOne
     @JoinColumn(name = "Consumos_idconsumo", referencedColumnName = "idConsumo")
-    private Consumo Consumos_idconsumo;
+    public Consumo Consumos_idconsumo;
 
 
-    public Producto(String nombre, double precio, Tienda tienda, SMercado smercado_nombre, Consumo Consumos_idconsumo) {
+    public Producto(String nombre, double precio, Tienda tiendas_nombre, SMercado smercados_nombre, Consumo Consumos_idconsumo) {
         this.nombre = nombre;
         this.precio = precio;
-        this.tienda = tienda;
-        this.smercado_nombre = smercado_nombre;
+        this.tiendas_nombre = tiendas_nombre;
+        this.smercados_nombre = smercados_nombre;
         this.Consumos_idconsumo = Consumos_idconsumo;
     }
 
     public Tienda getTienda() {
-        return tienda;
+        return tiendas_nombre;
     }
 
     public void setTienda(Tienda tienda) {
-        this.tienda = tienda;
+        this.tiendas_nombre = tienda;
     }
 
     public SMercado getsMercado() {
-        return smercado_nombre;
+        return smercados_nombre;
     }
 
-    public void setsMercado(SMercado smercado_nombre) {
-        this.smercado_nombre = smercado_nombre;
+    public void setsMercado(SMercado smercados_nombre) {
+        this.smercados_nombre = smercados_nombre;
     }
 
     public Producto() {;}
@@ -75,7 +75,5 @@ public class Producto  {
     public void setConsumos_idconsumo(Consumo consumos_idconsumo) {
         Consumos_idconsumo = consumos_idconsumo;
     }
-
-    
     
 }

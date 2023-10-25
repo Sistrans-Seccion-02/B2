@@ -21,7 +21,7 @@ public  class Lavanderia {
     private double costo;
     @ManyToOne
     @JoinColumn(name = "Consumos_idconsumo", referencedColumnName = "idConsumo")
-    private Consumo Consumos_idconsumo;
+    public Consumo Consumos_idconsumo;
     private double preciofinal;
 
     public Lavanderia(Integer numprendas, Integer numzapatos, String tipolavado, double costo, Consumo Consumos_idconsumo, double preciofinal) {
@@ -36,35 +36,35 @@ public  class Lavanderia {
     public Lavanderia() 
     {;}
 
-    public Integer getIdLavanderia() {
+    public Integer getIdlavanderia() {
         return idlavanderia;
     }
 
-    public void setIdLavanderia(Integer idlavanderia) {
+    public void setIdlavanderia(Integer idlavanderia) {
         this.idlavanderia = idlavanderia;
     }
 
-    public Integer getNumPrendas() {
+    public Integer getNumprendas() {
         return numprendas;
     }
 
-    public void setNumPrendas(Integer numprendas) {
+    public void setNumprendas(Integer numprendas) {
         this.numprendas = numprendas;
     }
 
-    public Integer getNumZapatos() {
+    public Integer getNumzapatos() {
         return numzapatos;
     }
 
-    public void setNumZapatos(Integer numzapatos) {
+    public void setNumzapatos(Integer numzapatos) {
         this.numzapatos = numzapatos;
     }
 
-    public String getTipoLavado() {
+    public String getTipolavado() {
         return tipolavado;
     }
 
-    public void setTipoLavado(String tipolavado) {
+    public void setTipolavado(String tipolavado) {
         this.tipolavado = tipolavado;
     }
 

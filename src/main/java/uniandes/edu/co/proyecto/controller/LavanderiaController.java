@@ -18,43 +18,43 @@ public class LavanderiaController {
     @GetMapping("/lavanderias")
     public String lavanderias(Model model){
         model.addAttribute("lavanderias", lavanderiaRepository.darLavanderias());
-        return "lavanderia";
+        return "Lavanderias";
     }   
 
     @GetMapping("/lavanderias/new")
     public String lavanderiaForm(Model model){
         model.addAttribute("lavanderia", new Lavanderia());
-        return "lavanderiaNuevo";       
+        return "LavanderiaNuevo";       
     }
 
     @PostMapping("/lavanderias/new/save")
     public String lavanderiaGuardar(@ModelAttribute Lavanderia lavanderia){
-        lavanderiaRepository.insertarLavanderia(lavanderia.getNumPrendas(), lavanderia.getNumZapatos(), lavanderia.getTipoLavado(), lavanderia.getCosto(), lavanderia.getConsumos_idConsumo().getIdConsumo(), lavanderia.getPreciofinal());
+        lavanderiaRepository.insertarLavanderia(lavanderia.getNumprendas(), lavanderia.getNumzapatos(), lavanderia.getTipolavado(), lavanderia.getCosto(), lavanderia.getConsumos_idConsumo().getIdConsumo(), lavanderia.getPreciofinal());
         return "redirect:/lavanderias";
     
     }
 
-    @GetMapping("/lavanderias/{idLavanderia}/edit")
-    public String lavanderiaEditarForm(@PathVariable("idLavanderia") Integer idLavanderia, Model model){
-        Lavanderia lavanderia= lavanderiaRepository.darLavanderia(idLavanderia);
+    @GetMapping("/lavanderias/{idlavanderia}/edit")
+    public String lavanderiaEditarForm(@PathVariable("idlavanderia") Integer idlavanderia, Model model){
+        Lavanderia lavanderia= lavanderiaRepository.darLavanderia(idlavanderia);
         if(lavanderia != null){
             model.addAttribute("lavanderia", lavanderia);
-            return "lavanderiaEditar";
+            return "LavanderiaEditar";
         }
         else{
             return "redirect:/lavanderias";
         }
     }
 
-    @PostMapping("/lavanderias/{idLavanderia}/edit/save")
-     public String lavanderiaEditarGuardar(@PathVariable("idLavanderia") Integer idLavanderia, @ModelAttribute Lavanderia lavanderia){
-        lavanderiaRepository.actualizarLavanderia(idLavanderia, lavanderia.getNumPrendas(), lavanderia.getNumZapatos(), lavanderia.getTipoLavado(), lavanderia.getCosto(), lavanderia.getConsumos_idConsumo().getIdConsumo(), lavanderia.getPreciofinal());
+    @PostMapping("/lavanderias/{idlavanderia}/edit/save")
+     public String lavanderiaEditarGuardar(@PathVariable("idlavanderia") Integer idlavanderia, @ModelAttribute Lavanderia lavanderia){
+        lavanderiaRepository.actualizarLavanderia(idlavanderia, lavanderia.getNumprendas(), lavanderia.getNumzapatos(), lavanderia.getTipolavado(), lavanderia.getCosto(), lavanderia.getConsumos_idConsumo().getIdConsumo(), lavanderia.getPreciofinal());
         return "redirect:/lavanderias";
     }
 
-    @GetMapping("/lavanderias/{idLavanderia}/delete")
-    public String lavanderiaEliminar(@PathVariable("idLavanderia") Integer idLavanderia){
-        lavanderiaRepository.eleminarLavanderia(idLavanderia);
+    @GetMapping("/lavanderias/{idlavanderia}/delete")
+    public String lavanderiaEliminar(@PathVariable("idlavanderia") Integer idlavanderia){
+        lavanderiaRepository.eleminarLavanderia(idlavanderia);
         return "redirect:/lavanderias";
     }
     

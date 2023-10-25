@@ -19,7 +19,7 @@ public class SalonController {
     @GetMapping("/salones")
     public String salones(Model model){
         model.addAttribute("salones", salonRepository.darSalones());
-        return "Salon";
+        return "Salones";
     }
 
     @GetMapping("/salones/new")
@@ -31,7 +31,7 @@ public class SalonController {
     @PostMapping("/salones/new/save")
     public String salonGuardar(@ModelAttribute Salon salon){
         salonRepository.insertarSalon(salon.getNombre(), salon.getHorarioApertura(), salon.getHorarioCierre(), salon.getTipoSalon(), salon.getCapacidad());
-        return "redirect:/Salon";
+        return "redirect:/salones";
     }
 
     @GetMapping("/salones/{nombre}/edit")
@@ -42,20 +42,20 @@ public class SalonController {
             return "SalonEditar";
         }
         else{
-            return "redirect:/Salon";
+            return "redirect:/salones";
         }
     }
 
     @PostMapping("/salones/{nombre}/edit/save")
     public String salonEditarGuardar(@PathVariable("nombre") String nombre, @ModelAttribute Salon salon){
         salonRepository.actualizarSalon(nombre, salon.getHorarioApertura(), salon.getHorarioCierre(), salon.getTipoSalon(), salon.getCapacidad());
-        return "redirect:/Salon";
+        return "redirect:/salones";
     }
 
     @GetMapping("/salones/{nombre}/delete")
     public String salonEliminar(@PathVariable("nombre") String nombre){
         salonRepository.eleminarSalon(nombre);
-        return "redirect:/Salon";
+        return "redirect:/salones";
     }
 
 }

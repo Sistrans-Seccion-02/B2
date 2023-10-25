@@ -20,13 +20,13 @@ public class ProductoController {
     @GetMapping("/productos")
     public String productos(Model model) {
         model.addAttribute("productos", productoRepository.darProductos());
-        return "producto";
+        return "Productos";
     }
     
     @GetMapping("/productos/new")
     public String productoForm(Model model) {
         model.addAttribute("producto", new Producto());
-        return "productoNuevo";
+        return "ProductoNuevo";
     }
 
     @PostMapping("/productos/new/save")
@@ -39,7 +39,7 @@ public class ProductoController {
     public String productoEditarForm(@PathVariable("nombre") String nombre, Model model) {
         Producto producto = productoRepository.darProducto(nombre);
         if (producto != null) {
-            model.addAttribute("nombre", nombre);
+            model.addAttribute("producto", producto);
             return "productoEditar";
         } else {
             return "redirect:/productos";

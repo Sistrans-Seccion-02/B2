@@ -10,8 +10,8 @@ import jakarta.persistence.Table;
 public class Spa  {
     @Id
     private String nombre;
-    private LocalTime horarioapertura;
-    private LocalTime horariocierre;
+    public LocalTime horarioapertura;
+    public LocalTime horariocierre;
     private int capacidad;
 
     public Spa(String nombre, LocalTime horarioapertura, LocalTime horariocierre, int capacidad) {
