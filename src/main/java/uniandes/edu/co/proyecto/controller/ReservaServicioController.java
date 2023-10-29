@@ -26,7 +26,7 @@ public class ReservaServicioController {
         model.addAttribute("reservaServicio", new ReservaServicio());
         return "ReservaServicioNuevo";       
     }
-
+/*
     @PostMapping("/reservasServicio/new/save")
     public String reservaServicioGuardar(@ModelAttribute ReservaServicio reservaServicio){
         reservaServicioRepository.insertarReservaServicio(reservaServicio.getFechayhorai(), reservaServicio.getFechayhoraf(), 
@@ -35,7 +35,7 @@ public class ReservaServicioController {
         reservaServicio.getPreciofinal());
         return "redirect:/reservasServicio";
     }
-
+ */
     @GetMapping("/reservasServicio/{idreservas}/edit")
     public String reservaServicioEditarForm(@PathVariable("idreservas") Integer idreservas, Model model){
         ReservaServicio reservaServicio = reservaServicioRepository.darReservaServicio(idreservas);
@@ -47,7 +47,7 @@ public class ReservaServicioController {
         }
     }
 
-    @PostMapping("/reservasServicio/{idreservas}/edit/save")    
+  /*  @PostMapping("/reservasServicio/{idreservas}/edit/save")    
     public String reservaServicioEditarGuardar(@PathVariable("idreservas") Integer idreservas, @ModelAttribute ReservaServicio reservaServicio){
         reservaServicioRepository.actualizarReservaServicio(idreservas, reservaServicio.getFechayhorai(), reservaServicio.getFechayhoraf(), 
         reservaServicio.getSpas_nombre().getNombre(), reservaServicio.getSalones_nombre().getNombre(),
@@ -55,7 +55,7 @@ public class ReservaServicioController {
         reservaServicio.getPreciofinal());
         return "redirect:/reservasServicio";
     }   
-
+ */
     @GetMapping("/reservasServicio/{idreservas}/delete")
     public String reservaServicioEliminar(@PathVariable("idreservas") Integer idreservas){
         reservaServicioRepository.eleminarReservaServicio(idreservas);

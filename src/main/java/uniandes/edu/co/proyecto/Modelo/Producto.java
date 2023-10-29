@@ -14,56 +14,30 @@ public class Producto  {
     private double precio;
 
     @ManyToOne
-<<<<<<< HEAD
+
     @JoinColumn(name = "tiendaid", referencedColumnName = "id")
     private Tienda tienda;
 
     @ManyToOne
     @JoinColumn(name = "smercadoid", referencedColumnName = "id")
-    private SMercado smercado_nombre;
+    private SMercado smercado;
 
     @ManyToOne
     @JoinColumn(name = "consumoid", referencedColumnName = "id")
-    private Consumo Consumos_idconsumo;
-=======
-    @JoinColumn(name = "tiendas_nombre", referencedColumnName = "nombre")
-    public Tienda tiendas_nombre;
+    private Consumo conusmoid;
 
-    @ManyToOne
-    @JoinColumn(name = "smercados_nombre", referencedColumnName = "nombre")
-    private SMercado smercados_nombre;
-
-    @ManyToOne
-    @JoinColumn(name = "Consumos_idconsumo", referencedColumnName = "idConsumo")
-    public Consumo Consumos_idconsumo;
->>>>>>> bf9f5b61143cf465a60316e6edc06db4975209a6
 
 
     public Producto(String nombre, double precio, Tienda tiendas_nombre, SMercado smercados_nombre, Consumo Consumos_idconsumo) {
         this.nombre = nombre;
         this.precio = precio;
-        this.tiendas_nombre = tiendas_nombre;
-        this.smercados_nombre = smercados_nombre;
-        this.Consumos_idconsumo = Consumos_idconsumo;
+        this.tienda = tiendas_nombre;
+        this.smercado = smercados_nombre;
+        this.conusmoid = Consumos_idconsumo;
     }
 
-    public Tienda getTienda() {
-        return tiendas_nombre;
+    public Producto() {;
     }
-
-    public void setTienda(Tienda tienda) {
-        this.tiendas_nombre = tienda;
-    }
-
-    public SMercado getsMercado() {
-        return smercados_nombre;
-    }
-
-    public void setsMercado(SMercado smercados_nombre) {
-        this.smercados_nombre = smercados_nombre;
-    }
-
-    public Producto() {;}
 
     public String getNombre() {
         return nombre;
@@ -81,12 +55,28 @@ public class Producto  {
         this.precio = precio;
     }
 
-    public Consumo getConsumos_idConsumo() {
-        return Consumos_idconsumo;
+    public Tienda getTienda() {
+        return tienda;
     }
 
-    public void setConsumos_idconsumo(Consumo consumos_idconsumo) {
-        Consumos_idconsumo = consumos_idconsumo;
+    public void setTienda(Tienda tienda) {
+        this.tienda = tienda;
     }
+
+    public SMercado getSmercado() {
+        return smercado;
+    }
+
+    public void setSmercado(SMercado smercado) {
+        this.smercado = smercado;
+    }
+
+    public Consumo getConusmoid() {
+        return conusmoid;
+    }
+
+    public void setConusmoid(Consumo conusmoid) {
+        this.conusmoid = conusmoid;
+    }   
     
 }

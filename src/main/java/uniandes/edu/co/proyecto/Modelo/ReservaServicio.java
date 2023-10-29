@@ -19,12 +19,7 @@ public  class ReservaServicio {
     private LocalDateTime fechayhorai;
     private LocalDateTime fechayhoraf;
     
-    @ManyToOne
-    @JoinColumn(name = "Spas_nombre", referencedColumnName = "nombre")
-    Spa Spas_nombre;
-    @ManyToOne
-    @JoinColumn(name = "Salones_nombre", referencedColumnName = "nombre")
-    Salon Salones_nombre;
+    
     @ManyToOne
     @JoinColumn(name = "Consumos_idconsumo", referencedColumnName = "idConsumo")
     Consumo Consumos_idconsumo;
