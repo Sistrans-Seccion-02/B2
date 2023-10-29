@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragmento</title>
+    <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+    <div th:fragment="ProductoForm(titulo)" class="container border border-2 w-25">
+        <h1 class="text-center" th:text="${titulo}"></h1>
+        <form>
+            <label class="col-form-label">Nombre</label>
+            <input class="form-control" type="text" id="nombre"
+            name="nombre" required th:value="${producto.nombre}"/><br>
+            <label class="col-form-label">Precio</label>
+            <input class="form-control" type="text" id="precio"
+            name="precio" required th:value="${producto.precio}"/><br>
+            <label class="col-form-label">Nombre Tienda</label>
+            <input class="form-control" type="text" id="tiendas_nombre"
+            name="tiendas_nombre" required th:value="${producto.tiendas_nombre}"/><br>
+            <label class="col-form-label">Nombre Super Mercado</label>
+            <input class="form-control" type="text" id="smercados_nombre"
+            name="smercados_nombre" required th:value="${producto.smercados_nombre}"/><br>
+            <label class="col-form-label">id Consumo</label>
+            <input class="form-control" type="text" id="Consumos_idconsumo"
+            name="Consumos_idconsumo" required th:value="${producto.Consumos_idconsumo}"/><br>
+            <div class="text_center">
+                <input type="submit" value="Guardar" class="btn btn-primary"/>
+                <a th:href="@{/productos}" class="btn btn-primary">Cancelar</a>
+            </div>   
+        </form>
+    </div>
+
+</body>
+</html>

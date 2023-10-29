@@ -15,14 +15,22 @@ import java.time.LocalDateTime;
 public  class ReservaServicio {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idreservas;
+    public Integer idreservas;
     private LocalDateTime fechayhorai;
     private LocalDateTime fechayhoraf;
     
     @ManyToOne
-    @JoinColumn(name = "consumoid", referencedColumnName = "id")
+    @JoinColumn(name = "Spas_nombre", referencedColumnName = "nombre")
+    Spa Spas_nombre;
+    @ManyToOne
+    @JoinColumn(name = "Salones_nombre", referencedColumnName = "nombre")
+    Salon Salones_nombre;
+    @ManyToOne
+    @JoinColumn(name = "Consumos_idconsumo", referencedColumnName = "idConsumo")
     Consumo Consumos_idconsumo;
-
+    @ManyToOne
+    @JoinColumn(name = "Utensilios_id", referencedColumnName = "id")
+    Utensilio Utensilios_id;
     double preciofinal;
 
     public ReservaServicio(LocalDateTime fechayhorai, LocalDateTime fechayhoraf,  Consumo Consumos_idconsumo , double preciofinal) {
