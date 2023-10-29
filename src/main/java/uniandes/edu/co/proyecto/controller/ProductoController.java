@@ -28,7 +28,7 @@ public class ProductoController {
         model.addAttribute("producto", new Producto());
         return "ProductoNuevo";
     }
-
+/* 
     @PostMapping("/productos/new/save")
     public String productoGuardar(@ModelAttribute Producto producto) {
         productoRepository.insertarProducto(producto.getNombre(), producto.getPrecio(), producto.getsMercado().getNombre(), producto.getTienda().getNombre(), producto.getConsumos_idConsumo().getId());
@@ -51,7 +51,7 @@ public class ProductoController {
         productoRepository.actualizarProducto(nombre, producto.getPrecio(), producto.getsMercado().getNombre(), producto.getTienda().getNombre(), producto.getConsumos_idConsumo().getId());
         return "redirect:/productos";
     }
-
+*/
     @GetMapping("/productos/{nombre}/delete")
     public String productoEliminar(@PathVariable("nombre") String nombre) {
         productoRepository.eliminarProducto(nombre);
