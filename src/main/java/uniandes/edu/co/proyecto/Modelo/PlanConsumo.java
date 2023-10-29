@@ -1,6 +1,8 @@
 package uniandes.edu.co.proyecto.Modelo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -10,6 +12,9 @@ import jakarta.persistence.Table;
 public class PlanConsumo {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
     private String tipo;
 
     private float dtonoche;
@@ -24,8 +29,9 @@ public class PlanConsumo {
         ;
     }
 
-    public PlanConsumo(String tipo, float dtonoche, String descripcion, double descuentobar, double descuentorest,
+    public PlanConsumo(Integer id, String tipo, float dtonoche, String descripcion, double descuentobar, double descuentorest,
             double descuentospa, int limitebebidas, double descuentolavado) {
+        this.id = id;
         this.tipo = tipo;
         this.dtonoche = dtonoche;
         this.descripcion = descripcion;
@@ -35,7 +41,12 @@ public class PlanConsumo {
         this.limitebebidas = limitebebidas;
         this.descuentolavado = descuentolavado;
     }
-
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public String getTipo() {
         return tipo;
     }

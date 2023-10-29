@@ -33,13 +33,14 @@ public class PlanConsumoController {
     @PostMapping("/planesconsumo/new/save")
     public String planConsumoGuardar(@ModelAttribute PlanConsumo planConsumo){
         planConsumoRepository.insertarPlanConsumo(planConsumo.getTipo(), planConsumo.getDtonoche(), planConsumo.getDescripcion(), planConsumo.getDescuentobar(), planConsumo.getDescuentorest(), planConsumo.getDescuentoSpa(), planConsumo.getLimitebebidas(), planConsumo.getDescuentolavado());
+        System.out.println(planConsumo.getId());
         return "redirect:/planesconsumo";
     
     }
 
-    @GetMapping("/planesconsumo/{tipo}/edit")
-    public String PlanConsumoEditarForm(@PathVariable("tipo") String tipo, Model model){
-        PlanConsumo planConsumo= planConsumoRepository.darPlanConsumo(tipo);
+    @GetMapping("/planesconsumo/{id}/edit")
+    public String PlanConsumoEditarForm(@PathVariable("id") Integer id, Model model){
+        PlanConsumo planConsumo= planConsumoRepository.darPlanConsumo(id);
         if(planConsumo != null){
             model.addAttribute("planesconsumo", planConsumo);
             return "PlanConsumoEditar";
@@ -48,15 +49,15 @@ public class PlanConsumoController {
             return "redirect:/planesconsumo";
         }
     }
-    @PostMapping("/planesconsumo/{tipo}/edit/save")
-     public String PlanConsumoEditarGuardar(@PathVariable("tipo") String tipo, @ModelAttribute PlanConsumo planConsumo){
-        planConsumoRepository.actualizarPlanConsumo(planConsumo.getTipo(), planConsumo.getDtonoche(), planConsumo.getDescripcion(), planConsumo.getDescuentobar(), planConsumo.getDescuentorest(), planConsumo.getDescuentoSpa(), planConsumo.getLimitebebidas(), planConsumo.getDescuentolavado());
+    @PostMapping("/planesconsumo/{id}/edit/save")
+     public String PlanConsumoEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute PlanConsumo planConsumo){
+        planConsumoRepository.actualizarPlanConsumo(planConsumo.getId(),planConsumo.getTipo(), planConsumo.getDtonoche(), planConsumo.getDescripcion(), planConsumo.getDescuentobar(), planConsumo.getDescuentorest(), planConsumo.getDescuentoSpa(), planConsumo.getLimitebebidas(), planConsumo.getDescuentolavado());
         return "redirect:/planesconsumo";
     }
 
-    @GetMapping("/planesconsumo/{tipo}/delete")
-    public String PlanConsumoEliminar(@PathVariable("tipo") String  tipo){
-        planConsumoRepository.eliminarPlanConsumo(tipo);
+    @GetMapping("/planesconsumo/{id}/delete")
+    public String PlanConsumoEliminar(@PathVariable("id") Integer  id){
+        planConsumoRepository.eliminarPlanConsumo(id);
         return "redirect:/planesconsumo";
     }
 

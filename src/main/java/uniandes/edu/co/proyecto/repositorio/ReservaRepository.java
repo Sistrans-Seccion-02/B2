@@ -24,13 +24,13 @@ public interface ReservaRepository extends JpaRepository<Reserva, Integer>{
 
     @Modifying
     @Transactional
-    @Query (value = "INSERT INTO reservas (fechaEntrada, fechaSalida, numPersonas,estado) VALUES (B2_sequence.nextval, :fechaEntrada, :fechaSalida, :numPersonas, :estado)" , nativeQuery = true)
-    void insertarReserva(@Param("fechaEntrada") Date fechaEntrada,@Param("fechaSalida") Date fechaSalida,@Param("numPersonas") int numPersonas,@Param("estado") boolean estado);
+    @Query (value = "INSERT INTO reservas (id, fechaentrada, fechasalida, numpersonas, estado, precioreserva, usuariosId, planId, habitacionid) VALUES (B2.nextval, :fechaentrada, :fechasalida, :numpersonas, :estado, :precioreserva, :usuariosId, :planId, :habitacionid)" , nativeQuery = true)
+    void insertarReserva(@Param("fechaentrada") Date fechaentrada,@Param("fechasalida") Date fechasalida,@Param("numpersonas") int numpersonas,@Param("estado") boolean estado, @Param("precioreserva") double precioreserva, @Param("usuariosId") Integer usuariosId, @Param("planId") Integer planId, @Param("habitacionid") Integer habitacionid);
     
     @Modifying
     @Transactional
-    @Query(value = "UPDATE reservas SET fechaEntrada = :fechaEntrada, fechaSalida = :fechaSalida, numPersonas = :numPersonas, estado = :estado WHERE id = :id", nativeQuery = true)
-    void actualizarReserva(@Param ("id") Integer id, @Param("fechaEntrada") Date date,@Param("fechaSalida") Date date2,@Param("numPersonas") Integer integer,@Param("estado") boolean b);
+    @Query(value = "UPDATE reservas SET fechaentrada = :fechaentrada, fechasalida = :fechasalida, numpersonas = :numpersonas, estado = :estado, precioreserva = :precioreserva, usuariosId = :usuariosId, planId = :planId, habitacionid = :habitacionid WHERE id = :id", nativeQuery = true)
+    void actualizarReserva(@Param ("id") Integer id, @Param("fechaentrada") Date fechaentrada,@Param("fechasalida") Date fechasalida,@Param("numpersonas") Integer numpersonas,@Param("estado") boolean estado, @Param("precioreserva") double precioreserva, @Param("usuariosId") Integer usuariosId, @Param("planId") Integer planId, @Param("habitacionid") Integer habitacionid);
 
     @Modifying
     @Transactional
@@ -38,11 +38,7 @@ public interface ReservaRepository extends JpaRepository<Reserva, Integer>{
     void eliminarReserva(@Param("id")Integer id);
 
 
-    @Modifying
-    @Transactional
-    @Query(value = "UPDATE reservas SET estado = :estado WHERE idReserva = :idReserva", nativeQuery = true)
-    void actualizarEstado(@Param("idReserva") Integer idReserva, @Param("estado") boolean estado);
-    
+
 
     
 }

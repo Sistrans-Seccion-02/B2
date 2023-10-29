@@ -13,23 +13,23 @@ import jakarta.persistence.Table;
 public class Consumo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idconsumo;
+    private Integer id;
     private Date fecha;
   
-    public Consumo(Integer idconsumo, Date fecha) {
-        this.idconsumo = idconsumo;
+    public Consumo(Date fecha) {
+        
         this.fecha = fecha;
         
     }
     public Consumo() {;}
 
 
-    public Integer getIdConsumo() {
-        return idconsumo;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdConsumo(int idConsumo) {
-        this.idconsumo = idConsumo;
+    public void setId(int id) {
+        this.id = id;
     }
     public Date getFecha() {
         return fecha;

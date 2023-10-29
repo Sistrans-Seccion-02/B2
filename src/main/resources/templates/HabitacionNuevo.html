@@ -6,10 +6,11 @@
     <title>crear Habitacion</title>
     <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
     
+    
 </head>
 <body>
     <form action="#" th:action="@{/habitaciones/new/save}" method="post">
-        <div th:replace="~{fragments/habitacionForm :: habitacionForm(titulo='Crear Habitacion')}"></div>
+        <div th:replace="~{fragments/HabitacionForm :: HabitacionForm(titulo='Crear Habitacion')}"></div>
     </form>
 </body>
 </html>

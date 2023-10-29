@@ -20,23 +20,23 @@ public interface PlanConsumoRepository extends JpaRepository<PlanConsumo, Intege
     Collection<PlanConsumo> darplanesConsumo();
     
 
-    @Query(value = "SELECT * FROM planesconsumo WHERE tipo = :tipo", nativeQuery = true)
-    PlanConsumo darPlanConsumo(@Param("tipo") String tipo);
+    @Query(value = "SELECT * FROM planesconsumo WHERE id = :id", nativeQuery = true)
+    PlanConsumo darPlanConsumo(@Param("id") Integer id);
 
     @Modifying
     @Transactional
-    @Query (value = "INSERT INTO planesconsumo (tipo, dtonoche, descripcion, descuentobar,descuentorest,descuentospa,limitebebidas, descuentolavado) VALUES (:tipo, :dtonoche, :descripcion, :descuentobar, :descuentorest, :descuentospa, :limitebebidas, :descuentolavado)" , nativeQuery = true)
+    @Query (value = "INSERT INTO planesconsumo (id, tipo, dtonoche, descripcion, descuentobar,descuentorest,descuentospa,limitebebidas, descuentolavado) VALUES (B2.nextval,:tipo, :dtonoche, :descripcion, :descuentobar, :descuentorest, :descuentospa, :limitebebidas, :descuentolavado)" , nativeQuery = true)
     void insertarPlanConsumo(@Param("tipo") String tipo, @Param("dtonoche") double dtonoche, @Param("descripcion") String descripcion, @Param("descuentobar") double descuentobar, @Param("descuentorest") double descuentorest, @Param("descuentospa") double descuentospa, @Param("limitebebidas") Integer limitebebidas, @Param("descuentolavado") double descuentolavado);
     
     @Modifying
     @Transactional
-    @Query(value = "UPDATE planesconsumo SET  tipo = :tipo, dtonoche = :dtonoche, descripcion = :descripcion, descuentobar = :descuentobar, descuentorest= :descuentorest, descuentospa= :descuentospa, limitebebidas= :limitebebidas, descuentolavado =:descuentolavado WHERE tipo = :tipo", nativeQuery = true)
-    void actualizarPlanConsumo(@Param("tipo") String tipo, @Param("dtonoche") double dtonoche, @Param("descripcion") String descripcion, @Param("descuentobar") double descuentobar, @Param("descuentorest") double descuentorest, @Param("descuentospa") double descuentospa, @Param("limitebebidas") Integer limitebebidas, @Param("descuentolavado") double descuentolavado);
+    @Query(value = "UPDATE planesconsumo SET  tipo = :tipo, dtonoche = :dtonoche, descripcion = :descripcion, descuentobar = :descuentobar, descuentorest= :descuentorest, descuentospa= :descuentospa, limitebebidas= :limitebebidas, descuentolavado =:descuentolavado WHERE id = :id", nativeQuery = true)
+    void actualizarPlanConsumo (@Param("id") Integer id, @Param("tipo") String tipo, @Param("dtonoche") double dtonoche, @Param("descripcion") String descripcion, @Param("descuentobar") double descuentobar, @Param("descuentorest") double descuentorest, @Param("descuentospa") double descuentospa, @Param("limitebebidas") Integer limitebebidas, @Param("descuentolavado") double descuentolavado);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM planesconsumo WHERE tipo = :tipo", nativeQuery = true)
-    void eliminarPlanConsumo(@Param("tipo")String tipo);
+    @Query(value = "DELETE FROM planesconsumo WHERE id = :id", nativeQuery = true)
+    void eliminarPlanConsumo(@Param("id")Integer id);
     
 
     

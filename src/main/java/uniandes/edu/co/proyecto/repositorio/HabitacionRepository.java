@@ -15,27 +15,27 @@ import uniandes.edu.co.proyecto.Modelo.Habitacion;
 
 public interface HabitacionRepository extends JpaRepository<Habitacion, Integer> {
     
-    @Query(value = "SELECT * FROM habitaciones", nativeQuery = true)
+    @Query(value = "SELECT * FROM habitacion", nativeQuery = true)
 
     Collection<Habitacion> darHabitaciones();
     
 
-    @Query(value = "SELECT * FROM habitaciones WHERE id = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM habitacion WHERE id = :id", nativeQuery = true)
     Habitacion darHabitacion(@Param("id") Integer id);
 
     @Modifying
     @Transactional
-    @Query (value = "INSERT INTO habitaciones (capacidad) VALUES (B2_sequence.nextval, :capacidad)" , nativeQuery = true)
-    void insertarHabitacion(@Param("capacidad") String capacidad);
+    @Query (value = "INSERT INTO habitacion (id, capacidad, tipoid) VALUES (B2.nextval, :capacidad, :tipoid)" , nativeQuery = true)
+    void insertarHabitacion(@Param("capacidad") String capacidad, @Param("tipoid") Integer tipoid);
     
     @Modifying
     @Transactional
-    @Query(value = "UPDATE habitaciones SET capacidad = :capacidad WHERE id = :id", nativeQuery = true)
-    void actualizarHabitacion(@Param ("id") Integer id, @Param("capacidad") String capacidad);
+    @Query(value = "UPDATE habitacion SET capacidad = :capacidad, tipoid = :tipoid WHERE id = :id", nativeQuery = true)
+    void actualizarHabitacion(@Param ("id") Integer id, @Param("capacidad") String capacidad, @Param("tipoid") Integer tipoid);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM habitaciones WHERE id = :id", nativeQuery = true)
+    @Query(value = "DELETE FROM habitacion WHERE id = :id", nativeQuery = true)
     void eliminarHabitacion(@Param("id")Integer id);
     
 }

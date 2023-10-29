@@ -13,19 +13,19 @@
             <tr>
                 <th>id</th>
                 <th>capacidad</th>
-                <th>idReserva</th>
-                <th>tipo</th>
+                <th>tipoId</th>
+                <th>Acciones</th>
             </tr>
         </thead>
-        <th:block th:each="tiphab:${tiphabs}">
+        <th:block th:each="habitaciones:${habitaciones}">
             <tr>
-                <td th:text="${tiphab.id}"></td>
-                <td th:text="${tiphab.capacidad}"></td>
-                <td th:text="${tiphab.idReserva}"></td>
-                <td th:text="${tiphab.tipo}"></td>
+                <td th:text="${habitaciones.id}"></td>
+                <td th:text="${habitaciones.capacidad}"></td>
+                <td th:text="${habitaciones.tipoId.tipo}"></td>
+     
                 <td>
-                    <a th:href="@{/Habitaciones/{id}/editar(id=${tiphab.id})}" >Editar</a>
-                    <a th:href="@{/Habitaciones/{id}/eliminar(id=${tiphab.id})}" onclick="return confrim ('Estas seguro de borrar esta habitacion?')" > Eliminar</a>
+                    <a th:href="@{/habitaciones/{id}/edit(id=${habitaciones.id})}" >Editar</a>
+                    <a th:href="@{/habitaciones/{id}/delete(id=${habitaciones.id})} "onclick = "return confirm ('Estas seguro de borrar esta habitacion?')" > Eliminar</a>
 
             </tr>
 

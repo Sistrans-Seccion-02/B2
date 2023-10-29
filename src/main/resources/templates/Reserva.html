@@ -18,25 +18,29 @@
                     <th>Número Personas</th>
                     <th>Estado</th>
                     <th>Precio Reserva</th>
-                    <th>Tipo Plan Consumo</th>
                     <th>ID Usuario</th>
+                    <th>Tipo Plan Consumo</th>
+                    <th>Habitacion</th>
+                    <th>Acciones</th>
+                    
                 </tr>
             </thead>
-            <th:block th:each="reserva:${reservas}">
+            <th:block th:each="reservas:${reservas}">
                 <tr>
-                    <td th:text="${reserva.id}"></td>
-                    <td th:text="${reserva.fechaEntrada}"></td>
-                    <td th:text="${reserva.fechaSalida}"></td>
-                    <td th:text="${reserva.numPersonas}"></td>
-                    <td th:text="${reserva.estado}"></td>
-                    <td th:text="${reserva.precioReserva}"></td>
-                    <td th:text="${reserva.tipoPlanConsumo}"></td>
-                    <td th:text="${reserva.usuarioID}"></td>
+                    <td th:text="${reservas.id}"></td>
+                    <td th:text="${reservas.fechaentrada}"></td>
+                    <td th:text="${reservas.fechasalida}"></td>
+                    <td th:text="${reservas.numpersonas}"></td>
+                    <td th:text="${reservas.estado}"></td>
+                    <td th:text="${reservas.precioreserva}"></td>
+                    <td th:text="${reservas.usuarioId.id}"></td>
+                    <td th:text="${reservas.planid.tipo}"></td>
+                    <td th:text="${reservas.habitacionId.id}"></td>
                     <td>
-                        <a th:href="@{reservas/{id}/edit(id=${reserva.id})}">
+                        <a th:href="@{reservas/{id}/edit(id=${reservas.id})}">
                             Editar
                         </a>
-                        <a th:href="@{reservas/{id}/delete(id=${reserva.id})}"
+                        <a th:href="@{reservas/{id}/delete(id=${reservas.id})}"
                         onclick="return confirm('¿Estás seguro de borrar esta reserva?')">
                             Borrar
                         </a>
@@ -51,3 +55,5 @@
     </div>
 </body>
 </html>
+
+

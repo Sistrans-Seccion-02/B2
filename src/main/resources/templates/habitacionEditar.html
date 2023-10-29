@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
-    <title>Editar reserva</title>
+    <title>Editar Habitacion</title>
 </head>
 
 <body>
     <br>
-    <form th:action="@{'/reservas/'+${id}+'/edit/save'}" th:object ="${reservas}" method="post">
-        <div th:replace="~{fragments/reservaForm :: reservaForm(titulo='editar reserva',reservas=${reservas})}">
+    <form th:action="@{'/habitaciones/'+${id}+'/edit/save'}" th:object ="${habitaciones}" method="post">
+        <div th:replace="~{fragments/HabitacionForm :: HabitacionForm(titulo='editar habitacion',habitaciones=${habitaciones})}">
     </form>
     
 </body>

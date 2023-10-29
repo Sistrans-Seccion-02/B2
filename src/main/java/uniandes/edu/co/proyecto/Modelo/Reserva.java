@@ -17,66 +17,70 @@ import jakarta.persistence.Table;
 public  class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
-    private Integer idReserva;
-    private Date FechaEntrada;
-    private Date FechaSalida;
-    private Integer numPersonas;
+    private Integer id;
+    private Date fechaentrada;
+    private Date fechasalida;
+    private Integer numpersonas;
     private boolean estado;
-    private double precioReserva;
+    private double precioreserva;
     @ManyToOne
-    @JoinColumn(name = "tipoPlanConsumo", referencedColumnName = "tipo")
-    private PlanConsumo tipoPlanConsumo;
-    @ManyToOne
-    @JoinColumn(name = "usuarioID", referencedColumnName = "id")
-    private Usuario usuarioID;
+    @JoinColumn(name = "usuariosid", referencedColumnName = "id")
+    private Usuario usuarioId;
 
-    public Reserva(Date FechaEntrada, Date FechaSalida, Integer numPersonas, boolean estado, double precioReserva, PlanConsumo tipoPlanConsumo, Usuario usuarioID) {
-        this.FechaEntrada = FechaEntrada;
-        this.FechaSalida = FechaSalida;
-        this.numPersonas = numPersonas;
+    @ManyToOne
+    @JoinColumn(name = "planid", referencedColumnName = "id")
+    private PlanConsumo planId;
+
+    @ManyToOne
+    @JoinColumn(name = "habitacionid", referencedColumnName = "id")
+    private Habitacion habitacionId;
+   
+
+    public Reserva(Date fechaentrada, Date fechasalida, Integer numpersonas, boolean estado, double precioreserva,
+            Usuario usuarioid, PlanConsumo planId, Habitacion habitacionId ) {
+        this.fechaentrada = fechaentrada;
+        this.fechasalida = fechasalida;
+        this.numpersonas = numpersonas;
         this.estado = estado;
-        this.tipoPlanConsumo = tipoPlanConsumo;
-        this.precioReserva = precioReserva;
-        this.usuarioID = usuarioID;
+        this.precioreserva = precioreserva;
+        this.usuarioId = usuarioid;
+        this.planId = planId;
+        this.habitacionId = habitacionId;
     }
 
     public Reserva() 
     {;}
 
     public Integer getId() {
-        return idReserva;
+        return id;
     }
 
-    public void setId(Integer idReserva) {
-        this.idReserva = idReserva;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Date getFechaEntrada() {
-        return FechaEntrada;
+    public Date getFechaentrada() {
+        return fechaentrada;
     }
 
-    public void setFechaEntrada(Date fechaEntrada) {
-        FechaEntrada = fechaEntrada;
+    public void setFechaentrada(Date fechaentrada) {
+        this.fechaentrada = fechaentrada;
     }
 
-    public Date getFechaSalida() {
-        return FechaSalida;
+    public Date getFechasalida() {
+        return fechasalida;
     }
 
-    public void setFechaSalida(Date fechaSalida) {
-        FechaSalida = fechaSalida;
+    public void setFechasalida(Date fechasalida) {
+        this.fechasalida = fechasalida;
     }
 
-    public Integer getNumPersonas() {
-        return numPersonas;
-    }
-    public boolean getEstado() {
-        return estado;
+    public Integer getNumpersonas() {
+        return numpersonas;
     }
 
-    public void setNumPersonas(Integer numPersonas) {
-        this.numPersonas = numPersonas;
+    public void setNumpersonas(Integer numpersonas) {
+        this.numpersonas = numpersonas;
     }
 
     public boolean isEstado() {
@@ -87,30 +91,39 @@ public  class Reserva {
         this.estado = estado;
     }
 
-    public double getPrecioReserva() {
-        return precioReserva;
+    public double getPrecioreserva() {
+        return precioreserva;
     }
 
-    public void setPrecioReserva(double precioReserva) {
-        this.precioReserva = precioReserva;
+    public void setPrecioreserva(double precioreserva) {
+        this.precioreserva = precioreserva;
     }
 
-    public PlanConsumo getTipo() {
-        return tipoPlanConsumo;
+    public Usuario getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setTipo(PlanConsumo tipoPlanConsumo) {
-        this.tipoPlanConsumo = tipoPlanConsumo;
+    public void setUsuarioId(Usuario usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
-    public Usuario getIdUsuario() {
-        return usuarioID;
+    public Habitacion getHabitacionId() {
+        return habitacionId;
+    }
+    public void setHabitacionId(Habitacion habitacionId) {
+        this.habitacionId = habitacionId;
     }
 
-    public void setIdUsuario(Usuario usuarioID) {
-        this.usuarioID = usuarioID;
+    public PlanConsumo getPlanid() {
+        return planId;
+    }
+    public void setPlanId(PlanConsumo planId) {
+        this.planId = planId;
     }
 
+    
+
+   
 
     
     

@@ -18,27 +18,19 @@ public  class ReservaServicio {
     private Integer idreservas;
     private LocalDateTime fechayhorai;
     private LocalDateTime fechayhoraf;
+    
     @ManyToOne
-    @JoinColumn(name = "Spas_nombre", referencedColumnName = "nombre")
-    Spa Spas_nombre;
-    @ManyToOne
-    @JoinColumn(name = "Salones_nombre", referencedColumnName = "nombre")
-    Salon Salones_nombre;
-    @ManyToOne
-    @JoinColumn(name = "Consumos_idconsumo", referencedColumnName = "idConsumo")
+    @JoinColumn(name = "consumoid", referencedColumnName = "id")
     Consumo Consumos_idconsumo;
-    @ManyToOne
-    @JoinColumn(name = "Utensilios_id", referencedColumnName = "id")
-    Utensilio Utensilios_id;
+
     double preciofinal;
 
-    public ReservaServicio(LocalDateTime fechayhorai, LocalDateTime fechayhoraf, Spa Spas_nombre, Salon Salones_nombre, Consumo Consumos_idconsumo, Utensilio Utensilios_id, double preciofinal) {
+    public ReservaServicio(LocalDateTime fechayhorai, LocalDateTime fechayhoraf,  Consumo Consumos_idconsumo , double preciofinal) {
         this.fechayhorai = fechayhorai;
         this.fechayhoraf = fechayhoraf;
-        this.Spas_nombre = Spas_nombre;
-        this.Salones_nombre = Salones_nombre;
+        
         this.Consumos_idconsumo = Consumos_idconsumo;
-        this.Utensilios_id = Utensilios_id;
+    
         this.preciofinal = preciofinal;
     }
 
@@ -61,21 +53,8 @@ public  class ReservaServicio {
         this.fechayhoraf = fechayhoraf;
     }
 
-    public Spa getSpas_nombre() {
-        return Spas_nombre;
-    }
+    
 
-    public void setSpas_nombre(Spa spas_nombre) {
-        Spas_nombre = spas_nombre;
-    }
-
-    public Salon getSalones_nombre() {
-        return Salones_nombre;
-    }
-
-    public void setSalones_nombre(Salon salones_nombre) {
-        Salones_nombre = salones_nombre;
-    }
 
     public Consumo getConsumos_idConsumo() {
         return Consumos_idconsumo;
@@ -85,13 +64,7 @@ public  class ReservaServicio {
         Consumos_idconsumo = consumos_idconsumo;
     }
 
-    public Utensilio getUtensilios_id() {
-        return Utensilios_id;
-    }
 
-    public void setUtensilios_id(Utensilio utensilios_id) {
-        Utensilios_id = utensilios_id;
-    }
 
     public double getPreciofinal() {
         return preciofinal;

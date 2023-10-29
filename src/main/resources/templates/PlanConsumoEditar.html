@@ -9,7 +9,7 @@
 
 <body>
     <br>
-    <form th:action="@{'/planesconsumo/'+${tipo}+'/edit/save'}" th:object ="${planesconsumo}" method="post">
+    <form th:action="@{'/planesconsumo/'+${id}+'/edit/save'}" th:object ="${planesconsumo}" method="post">
         <div th:replace="~{fragments/planConsumoForm :: planConsumoForm(titulo='editar tipo',planesconsumo=${planesconsumo})}">
     </form>
     

@@ -14,15 +14,15 @@ public class Producto  {
     private double precio;
 
     @ManyToOne
-    @JoinColumn(name = "tienda", referencedColumnName = "nombre")
+    @JoinColumn(name = "tiendaid", referencedColumnName = "id")
     private Tienda tienda;
 
     @ManyToOne
-    @JoinColumn(name = "smercado_nombre", referencedColumnName = "nombre")
+    @JoinColumn(name = "smercadoid", referencedColumnName = "id")
     private SMercado smercado_nombre;
 
     @ManyToOne
-    @JoinColumn(name = "Consumos_idconsumo", referencedColumnName = "idConsumo")
+    @JoinColumn(name = "consumoid", referencedColumnName = "id")
     private Consumo Consumos_idconsumo;
 
 

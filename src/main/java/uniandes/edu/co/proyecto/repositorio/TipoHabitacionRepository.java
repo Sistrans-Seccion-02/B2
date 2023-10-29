@@ -16,8 +16,6 @@ public interface TipoHabitacionRepository extends JpaRepository<TipoHabitacion, 
     @Query(value = "SELECT * FROM tiposhab", nativeQuery = true)
 
     Collection<TipoHabitacion> darTiposDeHabitacion();
-    
- 
 
     @Query(value = "SELECT * FROM tiposhab WHERE id = :id", nativeQuery = true)
     TipoHabitacion darTipoHabitacion(@Param("id") Integer id);

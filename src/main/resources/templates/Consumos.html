@@ -11,6 +11,7 @@
     <table class="table table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
+                <th>id</th>
                 <th>Fecha</th>
             
                 <th>Acciones</th>
@@ -19,13 +20,13 @@
         </thead>
         <th:block th:each="consumos:${consumos}">
             <tr>
-                <td th:text="${consumos.idConsumo}"></td>
+                <td th:text="${consumos.id}"></td>
                 <td th:text="${consumos.fecha}"></td>
                 
                 
                 <td>
-                    <a th:href="@{/consumos/{id}/edit(id=${consumos.idConsumo})}" >Editar</a>
-                    <a th:href="@{/consumos/{id}/delete(id=${consumos.idConsumo})}"onclick = "return confirm ('Estas seguro de borrar este consumo?')" > Eliminar</a>
+                    <a th:href="@{/consumos/{id}/edit(id=${consumos.id})}" >Editar</a>
+                    <a th:href="@{/consumos/{id}/delete(id=${consumos.id})}"onclick = "return confirm ('Estas seguro de borrar este consumo?')" > Eliminar</a>
 
 
             </tr>
