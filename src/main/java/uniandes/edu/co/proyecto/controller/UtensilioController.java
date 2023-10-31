@@ -22,6 +22,7 @@ public class UtensilioController{
     public String utensilios(Model model){
         model.addAttribute("utensilios", utensilioRepository.darUtensilios());
         model.addAttribute("consumos", consumoRepository.darConsumos());
+        System.out.println(consumoRepository.darConsumos());
         return "Utensilios";
     }
 
@@ -43,6 +44,7 @@ public class UtensilioController{
         Utensilio utensilio= utensilioRepository.darUtensilio(id);
         if(utensilio != null){
             model.addAttribute("utensilio", utensilio);
+            model.addAttribute("consumos", consumoRepository.darConsumos());
             return "UtensilioEditar";
         }
         else{

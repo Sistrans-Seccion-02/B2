@@ -23,7 +23,7 @@
                 <td th:text="${Utensilios.id}"></td>
                 <td th:text="${Utensilios.descripcion}"></td>
                 <td th:text="${Utensilios.precio}"></td>
-                <td th:text="${Utensilios.consumoid}"></td>
+                <td th:text="${Utensilios.consumoid.id}"></td>
                 <td>
                     <a th:href="@{/utensilios/{id}/edit(id=${Utensilios.id})}" >Editar</a>
                     <a th:href="@{/utensilios/{id}/delete(id=${Utensilios.id})} "onclick = "return confirm ('Estas seguro de borrar este servicio?')" > Eliminar</a>

@@ -20,10 +20,9 @@
             <label class="col-form-label" for="consumoid">Consumo:</label>
             <select class="form-control" id="consumoid" name="consumoid" required>
                 <th:block th:each="consumoid : ${consumos}" >
-                    <option th:value="${consumoid.id}" th:text="${consumoid.id}" th:selected="${utensilios != null && utensilios.consumoid != null && utensilios.consumoid.id == consumoid.id}"></option>
+                    <option th:value="${consumoid.id}" th:text="${consumoid.id}" th:selected="${utensilio != null && utensilio.consumoid != null && utensilio.consumoid.id == consumoid.id}"></option>
                 </th:block>
             </select><br>
-
 
 
 
