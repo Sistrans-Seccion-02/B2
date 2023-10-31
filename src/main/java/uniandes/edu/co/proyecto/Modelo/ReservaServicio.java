@@ -21,11 +21,9 @@ public  class ReservaServicio {
     
     
     @ManyToOne
-    @JoinColumn(name = "Consumos_idconsumo", referencedColumnName = "idConsumo")
+    @JoinColumn(name = "consumoid", referencedColumnName = "id")
     Consumo Consumos_idconsumo;
-    @ManyToOne
-    @JoinColumn(name = "Utensilios_id", referencedColumnName = "id")
-    Utensilio Utensilios_id;
+ 
     double preciofinal;
 
     public ReservaServicio(LocalDateTime fechayhorai, LocalDateTime fechayhoraf,  Consumo Consumos_idconsumo , double preciofinal) {
