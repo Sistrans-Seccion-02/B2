@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import uniandes.edu.co.proyecto.repositorio.ConsumoRepository;
 import uniandes.edu.co.proyecto.repositorio.ReservaServicioRepository;
 import uniandes.edu.co.proyecto.Modelo.ReservaServicio;
 
@@ -14,10 +16,13 @@ import uniandes.edu.co.proyecto.Modelo.ReservaServicio;
 public class ReservaServicioController {
     @Autowired
     private ReservaServicioRepository reservaServicioRepository;
+    @Autowired
+    private ConsumoRepository consumoRepository;
 
     @GetMapping("/reservasServicio")
     public String reservasServicio(Model model){
         model.addAttribute("reservasServicio",reservaServicioRepository.darReservasServicio());
+        model.addAttribute("consumos", consumoRepository.darConsumos());
         return "ReservasServicio";
     }
 
@@ -26,19 +31,17 @@ public class ReservaServicioController {
         model.addAttribute("reservaServicio", new ReservaServicio());
         return "ReservaServicioNuevo";       
     }
-/*
+
     @PostMapping("/reservasServicio/new/save")
     public String reservaServicioGuardar(@ModelAttribute ReservaServicio reservaServicio){
         reservaServicioRepository.insertarReservaServicio(reservaServicio.getFechayhorai(), reservaServicio.getFechayhoraf(), 
-        reservaServicio.getSpas_nombre().getNombre(), reservaServicio.getSalones_nombre().getNombre(),
-        reservaServicio.getConsumos_idConsumo().getIdConsumo(), reservaServicio.getUtensilios_id().getId(), 
-        reservaServicio.getPreciofinal());
+        reservaServicio.getConsumoid().getId(), reservaServicio.getPrecio(), reservaServicio.getDescripcion());
         return "redirect:/reservasServicio";
     }
- */
-    @GetMapping("/reservasServicio/{idreservas}/edit")
-    public String reservaServicioEditarForm(@PathVariable("idreservas") Integer idreservas, Model model){
-        ReservaServicio reservaServicio = reservaServicioRepository.darReservaServicio(idreservas);
+
+    @GetMapping("/reservasServicio/{id}/edit")
+    public String reservaServicioEditarForm(@PathVariable("id") Integer id, Model model){
+        ReservaServicio reservaServicio = reservaServicioRepository.darReservaServicio(id);
         if(reservaServicio != null){
             model.addAttribute("reservaServicio", reservaServicio);
             return "ReservaServicioEditar";
@@ -47,18 +50,16 @@ public class ReservaServicioController {
         }
     }
 
-  /*  @PostMapping("/reservasServicio/{idreservas}/edit/save")    
-    public String reservaServicioEditarGuardar(@PathVariable("idreservas") Integer idreservas, @ModelAttribute ReservaServicio reservaServicio){
-        reservaServicioRepository.actualizarReservaServicio(idreservas, reservaServicio.getFechayhorai(), reservaServicio.getFechayhoraf(), 
-        reservaServicio.getSpas_nombre().getNombre(), reservaServicio.getSalones_nombre().getNombre(),
-        reservaServicio.getConsumos_idConsumo().getIdConsumo(), reservaServicio.getUtensilios_id().getId(), 
-        reservaServicio.getPreciofinal());
+    @PostMapping("/reservasServicio/{id}/edit/save")    
+    public String reservaServicioEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute ReservaServicio reservaServicio){
+        reservaServicioRepository.actualizarReservaServicio(id, reservaServicio.getFechayhorai(), reservaServicio.getFechayhoraf(), 
+        reservaServicio.getConsumoid().getId(), reservaServicio.getPrecio(), reservaServicio.getDescripcion());
         return "redirect:/reservasServicio";
     }   
- */
-    @GetMapping("/reservasServicio/{idreservas}/delete")
-    public String reservaServicioEliminar(@PathVariable("idreservas") Integer idreservas){
-        reservaServicioRepository.eleminarReservaServicio(idreservas);
+ 
+    @GetMapping("/reservasServicio/{id}/delete")
+    public String reservaServicioEliminar(@PathVariable("id") Integer id){
+        reservaServicioRepository.eleminarReservaServicio(id);
         return "redirect:/reservasServicio";
     }
 

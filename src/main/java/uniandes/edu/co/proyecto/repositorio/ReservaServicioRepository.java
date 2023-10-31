@@ -17,21 +17,21 @@ public interface ReservaServicioRepository extends JpaRepository<ReservaServicio
     @Query(value = "SELECT * FROM ReservasServicio", nativeQuery = true)
     Collection<ReservaServicio> darReservasServicio();
 
-    @Query(value = "SELECT * FROM ReservasServicio WHERE idreservas = :idreservas", nativeQuery = true)
-    ReservaServicio darReservaServicio(@Param("idreservas") Integer idreservas);
+    @Query(value = "SELECT * FROM ReservasServicio WHERE id = :id", nativeQuery = true)
+    ReservaServicio darReservaServicio(@Param("id") Integer id);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO ReservasSalon (idreservas, fechayhorai, fechayhoraf, Spas_nombre, Salones_nombre, Consumos_idconsumo, Utensilios_id, preciofinal) VALUES (B2_sequence.nextval, :fechayhorai, :fechayhoraf, :Spas_nombre, :Salones_nombre, :Consumos_idconsumo, :Utensilios_id, :preciofinal)", nativeQuery = true)
-    void insertarReservaServicio(@Param("fechayhorai") LocalDateTime fechayhorai, @Param("fechayhoraf") LocalDateTime fechayhoraf, @Param("Spas_nombre") String Spas_nombre, @Param("Salones_nombre") String Salones_nombre, @Param("Consumos_idconsumo") Integer Consumos_idconsumo, @Param("Utensilios_id") Integer Utensilios_id, @Param("preciofinal") double preciofinal);
+    @Query(value = "INSERT INTO ReservasServicio (fechayhorai, fechayhoraf, consumoid, precio, descripcion, id) VALUES (:fechayhorai, :fechayhoraf, :consumoid, :precio, :descripcion, B2_sequence.nextval)", nativeQuery = true)
+    void insertarReservaServicio(@Param("fechayhorai") LocalDateTime fechayhorai, @Param("fechayhoraf") LocalDateTime fechayhoraf, @Param("consumoid") Integer consumoid, @Param("precio") double precio, @Param("descripcion") String descripcion);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE ReservasSalon SET fechayhorai = :fechayhorai, fechayhoraf = :fechayhoraf, Spas_nombre = :Spas_nombre, Salones_nombre =:Salones_nombre, Consumos_idconsumo=:Consumos_idconsumo, Utensilios_id=:Utensilios_id, preciofinal =:preciofinal WHERE idreservas = :idreservas", nativeQuery = true)
-    void actualizarReservaServicio(@Param("idreservas") Integer idreservas, @Param("fechayhorai") LocalDateTime fechayhorai, @Param("fechayhoraf") LocalDateTime fechayhoraf, @Param("Spas_nombre") String Spas_nombre, @Param("Salones_nombre") String Salones_nombre, @Param("Consumos_idconsumo") Integer Consumos_idconsumo, @Param("Utensilios_id") Integer Utensilios_id, @Param("preciofinal") double preciofinal);
+    @Query(value = "UPDATE ReservasServicio SET fechayhorai = :fechayhorai, fechayhoraf = :fechayhoraf, consumoid=:consumoid, precio=:precio, descripcion=:descripcion  WHERE id = :id", nativeQuery = true)
+    void actualizarReservaServicio(@Param("id") Integer id, @Param("fechayhorai") LocalDateTime fechayhorai, @Param("fechayhoraf") LocalDateTime fechayhoraf, @Param("consumoid") Integer consumoid, @Param("precio") double precio, @Param("descripcion") String descripcion);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM ReservasSalon WHERE idreservas = :idreservas", nativeQuery = true)
-    void eleminarReservaServicio(@Param("idreservas") Integer idreservas);
+    @Query(value = "DELETE FROM ReservasServicio WHERE id = :id", nativeQuery = true)
+    void eleminarReservaServicio(@Param("id") Integer id);
 }

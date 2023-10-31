@@ -10,27 +10,24 @@
     <div th:fragment="ReservaServicioForm(titulo)" class="container border border-2 w-25">
         <h1 class="text-center" th:text="${titulo}"></h1>
         <form>
-            <label class="col-form-label">Id Reserva</label>
-            <input class="form-control" type="number" id="idreservas"
-            name="idreservas" required th:value="${reservaServicio.idreservas}"/><br>
+            <label class="col-form-label">Id</label>
+            <input class="form-control" type="number" id="id"
+            name="id" required th:value="${reservaServicio.id}"/><br>
             <label class="col-form-label">Fecha Inicial</label>
             <input class="form-control" type="text" id="fechayhorai"
             name="fechayhorai" required th:value="${reservaServicio.fechayhorai}"/><br>
             <label class="col-form-label">Fecha Final</label>
             <input class="form-control" type="text" id="fechayhoraf"
             name="fechayhoraf" required th:value="${reservaServicio.fechayhoraf}"/><br>
-            <label class="col-form-label">Nombre Spa</label>
-            <input class="form-control" type="text" id="Spas_nombre"
-            name="Spas_nombre" required th:value="${reservaServicio.Spas_nombre}"/><br>
-            <label class="col-form-label">Nombre Salon</label>
-            <input class="form-control" type="text" id="Salones_nombre"
-            name="Salones_nombre" required th:value="${reservaServicio.Salones_nombre}"/><br>
-            <label class="col-form-label">Id consumo</label>
-            <input class="form-control" type="number" id="Consumos_idconsumo"
-            name="Consumos_idconsumo" required th:value="${reservaServicio.Consumos_idconsumo}"/><br>
-            <label class="col-form-label">Id utensilio</label>
-            <input class="form-control" type="number" id="Utensilios_id"
-            name="Utensilios_id" required th:value="${reservaServicio.Utensilios_id}"/><br>
+            <label class="col-form-label">Precio</label>
+            <input class="form-control" type="text" id="precio"
+            name="precio" required th:value="${reservaServicio.precio}"/><br>
+            <label class="col-form-label">Descripcion</label>
+            <input class="form-control" type="text" id="descripcion"
+            name="descripcion" required th:value="${reservaServicio.descripcion}"/><br>
+            <label class="col-form-label">Consumo id</label>
+            <input class="form-control" type="text" id="consumoid"
+            name="consumoid" required th:value="${reservaServicio.consumoid}"/><br>
             <div class="text_center">
                 <input type="submit" value="Guardar" class="btn btn-primary"/>
                 <a th:href="@{/reservasServicio}" class="btn btn-primary">Cancelar</a>

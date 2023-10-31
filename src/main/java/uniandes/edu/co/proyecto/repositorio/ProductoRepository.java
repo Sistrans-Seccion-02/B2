@@ -13,23 +13,23 @@ public interface ProductoRepository extends JpaRepository<Producto, String> {
     @Query(value = "SELECT * FROM  Productos", nativeQuery = true )
     Collection<Producto> darProductos();
     
-    @Query(value = "SELECT * FROM Productos WHERE nombre = :nombre", nativeQuery = true)
-    Producto darProducto(@Param("nombre") String nombre);
+    @Query(value = "SELECT * FROM Productos WHERE id = :id", nativeQuery = true)
+    Producto darProducto(@Param("id") Integer id);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Productos (nombre, precio, smercados_nombre, tiendas_nombre, Consumos_idconsumo ) VALUES (:nombre, :precio, :smercados_nombre, :tiendas_nombre, :Consumos_idconsumo)", nativeQuery = true)
-    void insertarProducto(@Param("nombre") String nombre, @Param("precio") double precio, @Param("smercados_nombre") String smercados_nombre, @Param("tiendas_nombre") String tiendas_nombre, @Param("Consumos_idconsumo") Integer Consumos_idconsumo);
+    @Query(value = "INSERT INTO Productos (nombre, consumoid, id, tiendaid, smercadoid, preciofinal) VALUES (:nombre, :consumoid, , B2.nextval, :tiendaid, :smercadoid, :preciofinal)", nativeQuery = true)
+    void insertarProducto(@Param("nombre") String nombre, @Param("consumoid") Integer consumoid, @Param("tiendaid") Integer tiendaid, @Param("smercadoid") Integer smercadoid, @Param("preciofinal") double preciofinal);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Productos SET nombre=:nombre, precio=:precio, smercados_nombre=:smercados_nombre, tiendas_nombre=:tiendas_nombre, Consumos_idconsumo=:Consumos_idconsumo WHERE nombre=:nombre", nativeQuery = true)
-    void actualizarProducto(@Param("nombre") String nombre, @Param("precio") double precio,  @Param("smercados_nombre") String smercados_nombre, @Param("tiendas_nombre") String tiendas_nombre, @Param("Consumos_idconsumo") Integer Consumos_idconsumo);
+    @Query(value = "UPDATE Productos SET nombre=:nombre, consumoid=:consumoid, tiendaid=:tiendaid, smercadoid=:smercadoid, preciofinal=:preciofinal WHERE id=:id", nativeQuery = true)
+    void actualizarProducto(@Param("id") Integer id, @Param("nombre") String nombre, @Param("consumoid") Integer consumoid, @Param("tiendaid") Integer tiendaid, @Param("smercadoid") Integer smercadoid, @Param("preciofinal") double preciofinal);
    
     @Modifying
     @Transactional
-    @Query(value= "DELETE FROM Productos WHERE nombre=:nombre", nativeQuery = true)
-    void eliminarProducto(@Param("nombre") String nombre);
+    @Query(value= "DELETE FROM Productos WHERE id=:id", nativeQuery = true)
+    void eliminarProducto(@Param("id") Integer id);
 }
 
 

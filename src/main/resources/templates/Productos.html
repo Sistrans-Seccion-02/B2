@@ -11,25 +11,27 @@
     <table class="table table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
+                <th>Id</th>
                 <th>Nombre</th>
-                <th>Precio</th>
-                <th>Tienda</th>
-                <th>Super Mercado</th>
-                <th>id Consumo</th>
+                <th>Precio Final</th>
+                <th>Consumo Id</th>
+                <th>Tienda Id</th>
+                <th>Mercado Id</th>
 
             </tr>
         </thead>
         <th:block th:each="Productos:${productos}">
             <tr>
+                <td th:text="${Productos.id}"></td>
                 <td th:text="${Productos.nombre}"></td>
-                <td th:text="${Productos.precio}"></td>
-                <td th:text="${Productos.tiendas_nombre}"></td>
-                <td th:text="${Productos.smercados_nombre}"></td>
-                <td th:text="${Productos.Consumos_idconsumo}"></td>
+                <td th:text="${Productos.preciofinal}"></td>
+                <td th:text="${Productos.consumoid}"></td>
+                <td th:text="${Productos.tiendaid}"></td>
+                <td th:text="${Productos.smercadoid}"></td>
 
                 <td>
-                    <a th:href="@{/productos/{nombre}/edit(nombre=${Productos.nombre})}" >Editar</a>
-                    <a th:href="@{/productos/{nombre}/delete(nombre=${Productos.nombre})} "onclick = "return confirm ('Estas seguro de borrar este producto?')" > Eliminar</a>
+                    <a th:href="@{/productos/{id}/edit(id=${Productos.id})}" >Editar</a>
+                    <a th:href="@{/productos/{id}/delete(id=${Productos.id})} "onclick = "return confirm ('Estas seguro de borrar este producto?')" > Eliminar</a>
 
                 </td>
             </tr>

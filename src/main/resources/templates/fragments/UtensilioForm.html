@@ -10,9 +10,24 @@
     <div th:fragment="UtensilioForm(titulo)" class="container border border-2 w-25">
         <h1 class="text-center" th:text="${titulo}"></h1>
         <form>
-            <label class="col-form-label">Nombre</label>
-            <input class="form-control" type="text" id="nombre"
-            name="nombre" required th:value="${utensilio.nombre}"/><br>
+            <label class="col-form-label">Descripcion</label>
+            <input class="form-control" type="text" id="descripcion"
+            name="descripcion" required th:value="${utensilio.descripcion}"/><br>
+            <label class="col-form-label">Precio</label>
+            <input class="form-control" type="text" id="precio"
+            name="precio" required th:value="${utensilio.precio}"/>
+
+            <label class="col-form-label" for="consumoid">Consumo:</label>
+            <select class="form-control" id="consumoid" name="consumoid" required>
+                <th:block th:each="consumoid : ${consumos}" >
+                    <option th:value="${consumoid.id}" th:text="${consumoid.id}" th:selected="${utensilios != null && utensilios.consumoid != null && utensilios.consumoid.id == consumoid.id}"></option>
+                </th:block>
+            </select><br>
+
+
+
+
+
             <div class="text_center">
                 <input type="submit" value="Guardar" class="btn btn-primary"/>
                 <a th:href="@{/utensilios}" class="btn btn-primary">Cancelar</a>

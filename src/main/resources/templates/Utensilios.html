@@ -4,25 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
-    <title>Prestamo de Utensilios</title>
+    <title>Servicios</title>
 </head>
 <body>
-    <div> Lista de utensilios</div>
+    <div> Lista de Servicios</div>
     <table class="table table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
                 <th>id</th>
-                <th>nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Consumo</th>
 
             </tr>
         </thead>
         <th:block th:each="Utensilios:${utensilios}">
             <tr>
                 <td th:text="${Utensilios.id}"></td>
-                <td th:text="${Utensilios.nombre}"></td>
+                <td th:text="${Utensilios.descripcion}"></td>
+                <td th:text="${Utensilios.precio}"></td>
+                <td th:text="${Utensilios.consumoid}"></td>
                 <td>
                     <a th:href="@{/utensilios/{id}/edit(id=${Utensilios.id})}" >Editar</a>
-                    <a th:href="@{/utensilios/{id}/delete(id=${Utensilios.id})} "onclick = "return confirm ('Estas seguro de borrar este utensilio?')" > Eliminar</a>
+                    <a th:href="@{/utensilios/{id}/delete(id=${Utensilios.id})} "onclick = "return confirm ('Estas seguro de borrar este servicio?')" > Eliminar</a>
 
                 </td>
             </tr>

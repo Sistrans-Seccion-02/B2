@@ -13,26 +13,22 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "ReservasServicio")
 public  class ReservaServicio {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer idreservas;
     private LocalDateTime fechayhorai;
     private LocalDateTime fechayhoraf;
-    
-    
     @ManyToOne
-    @JoinColumn(name = "consumoid", referencedColumnName = "id")
-    Consumo Consumos_idconsumo;
- 
-    double preciofinal;
-
-    public ReservaServicio(LocalDateTime fechayhorai, LocalDateTime fechayhoraf,  Consumo Consumos_idconsumo , double preciofinal) {
+    @JoinColumn(name="consumoid", referencedColumnName = "id")
+    private Consumo consumoid;
+    private double precio;
+    private String descripcion;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Integer id;
+    
+    public ReservaServicio(LocalDateTime fechayhorai, LocalDateTime fechayhoraf, String descripcion, double precio) {
         this.fechayhorai = fechayhorai;
         this.fechayhoraf = fechayhoraf;
-        
-        this.Consumos_idconsumo = Consumos_idconsumo;
-    
-        this.preciofinal = preciofinal;
+        this.descripcion = descripcion;
+        this.precio = precio;
     }
 
     public ReservaServicio() 
@@ -54,25 +50,28 @@ public  class ReservaServicio {
         this.fechayhoraf = fechayhoraf;
     }
 
-    
-
-
-    public Consumo getConsumos_idConsumo() {
-        return Consumos_idconsumo;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setConsumos_idConsumo(Consumo consumos_idconsumo) {
-        Consumos_idconsumo = consumos_idconsumo;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-
-
-    public double getPreciofinal() {
-        return preciofinal;
+    public double getPrecio() {
+        return precio;
     }
 
-    public void setPreciofinal(double preciofinal) {
-        this.preciofinal = preciofinal;
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public Consumo getConsumoid() {
+        return consumoid;
+    }
+
+    public void setConsumoid(Consumo consumoid) {
+        this.consumoid = consumoid;
     }
 
     

@@ -7,7 +7,7 @@
     <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
-    <form th:action="@{'/productos/'+${nombre}+'/edit/save'}" th:object ="${producto}" method="post">
+    <form th:action="@{'/productos/'+${id}+'/edit/save'}" th:object ="${producto}" method="post">
         <div th:replace="~{fragments/ProductoForm :: ProductoForm(titulo='Editar Producto',producto=${producto})}"></div>
 </body>
 </html>
