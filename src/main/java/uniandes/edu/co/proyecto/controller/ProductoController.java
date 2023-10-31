@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import uniandes.edu.co.proyecto.Modelo.Producto;
+import uniandes.edu.co.proyecto.repositorio.ConsumoRepository;
 import uniandes.edu.co.proyecto.repositorio.ProductoRepository;
 import org.springframework.stereotype.Controller;
 
@@ -16,10 +17,13 @@ import org.springframework.stereotype.Controller;
 public class ProductoController {
     @Autowired
     private ProductoRepository productoRepository;
+    @Autowired
+    private ConsumoRepository consumoRepository;
 
     @GetMapping("/productos")
     public String productos(Model model) {
         model.addAttribute("productos", productoRepository.darProductos());
+        model.addAttribute("consumos", consumoRepository.darConsumos());
         return "Productos";
     }
     

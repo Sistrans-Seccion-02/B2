@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "Tiendas")
 public class Tienda  {
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String nombre;

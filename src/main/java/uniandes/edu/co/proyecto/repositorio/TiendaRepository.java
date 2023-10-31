@@ -14,23 +14,23 @@ public interface TiendaRepository extends JpaRepository<Tienda, String> {
     @Query(value = "SELECT * FROM  Tiendas", nativeQuery = true )
     Collection<Tienda> darTiendas();
     
-    @Query(value = "SELECT * FROM Tiendas WHERE nombre = :nombre", nativeQuery = true)
-    Tienda darTienda(@Param("nombre") String nombre);
+    @Query(value = "SELECT * FROM Tiendas WHERE id = :id", nativeQuery = true)
+    Tienda darTienda(@Param("id") Integer id);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Tiendas (nombre, horarioapertura, horariocierre, capacidad) VALUES (:nombre, :horarioapertura, :horariocierre, :capacidad)", nativeQuery = true)
+    @Query(value = "INSERT INTO Tiendas (nombre, horarioapertura, horariocierre, capacidad, id) VALUES (:nombre, :horarioapertura, :horariocierre, :capacidad, B2.nextval)", nativeQuery = true)
     void insertarTienda(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre, @Param("capacidad") int capacidad);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Tiendas SET nombre=:nombre, horarioapertura=:horarioapertura, horariocierre=:horariocierre, capacidad=:capacidad WHERE nombre=:nombre", nativeQuery = true)
-    void actualizarTienda(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre, @Param("capacidad") int capacidad);
+    @Query(value = "UPDATE Tiendas SET nombre=:nombre, horarioapertura=:horarioapertura, horariocierre=:horariocierre, capacidad=:capacidad WHERE id=:id", nativeQuery = true)
+    void actualizarTienda(@Param("id") Integer id, @Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre, @Param("capacidad") int capacidad);
    
     @Modifying
     @Transactional
-    @Query(value= "DELETE FROM Tiendas WHERE nombre=:nombre", nativeQuery = true)
-    void eliminarTienda(@Param("nombre") String nombre);
+    @Query(value= "DELETE FROM Tiendas WHERE id=:id", nativeQuery = true)
+    void eliminarTienda(@Param("id") Integer id);
 }
 
 

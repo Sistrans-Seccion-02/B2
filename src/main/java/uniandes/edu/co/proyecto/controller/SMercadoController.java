@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import uniandes.edu.co.proyecto.Modelo.SMercado;
 import uniandes.edu.co.proyecto.repositorio.SMercadoRepository;
 
-/*@Controller*/
 @Controller
 public class SMercadoController {
     @Autowired
@@ -34,7 +33,7 @@ public class SMercadoController {
         return "redirect:/SMercados";
     }
 
-    @GetMapping("/SMercados/{nombre}/edit") 
+    @GetMapping("/SMercados/{id}/edit") 
     public String SMercadoEditarForm(@PathVariable("nombre") String nombre, Model model) {
         SMercado SMercado = SMercadoRepository.darSMercado(nombre);
         if (SMercado != null) {
@@ -45,13 +44,13 @@ public class SMercadoController {
         }
     }
 
-    @PostMapping("/SMercados/{nombre}/edit/save")
+    @PostMapping("/SMercados/{id}/edit/save")
     public String SMercadoEditarGuardar(@PathVariable("nombre") String nombre, @ModelAttribute SMercado SMercado) {
         SMercadoRepository.actualizarSMercado(nombre, SMercado.getHorarioApertura(), SMercado.getHorarioCierre(), SMercado.getCapacidad());
         return "redirect:/SMercados";
     }
 
-    @GetMapping("/SMercados/{nombre}/delete")
+    @GetMapping("/SMercados/{id}/delete")
     public String SMercadoEliminar(@PathVariable("nombre") String nombre) {
         SMercadoRepository.eliminarSMercado(nombre);
         return "redirect:/SMercados";

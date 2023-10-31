@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import uniandes.edu.co.proyecto.Modelo.Tienda;
+import uniandes.edu.co.proyecto.repositorio.ConsumoRepository;
 import uniandes.edu.co.proyecto.repositorio.TiendaRepository;
 
 /*@Controller*/
@@ -15,10 +16,13 @@ import uniandes.edu.co.proyecto.repositorio.TiendaRepository;
 public class TiendaController {
     @Autowired
     private TiendaRepository tiendaRepository;
+    @Autowired
+    private ConsumoRepository consumoRepository;
 
     @GetMapping("/tiendas")
     public String tiendas(Model model) {
         model.addAttribute("tiendas", tiendaRepository.darTiendas());
+        model.addAttribute("consumos", consumoRepository.darConsumos());
         return "Tiendas";
     }
     
@@ -34,26 +38,26 @@ public class TiendaController {
         return "redirect:/tiendas";
     }
 
-    @GetMapping("/tiendas/{nombre}/edit") 
-    public String tiendaEditarForm(@PathVariable("nombre") String nombre, Model model) {
-        Tienda tienda = tiendaRepository.darTienda(nombre);
+    @GetMapping("/tiendas/{id}/edit") 
+    public String tiendaEditarForm(@PathVariable("id") Integer id, Model model) {
+        Tienda tienda = tiendaRepository.darTienda(id);
         if (tienda != null) {
-            model.addAttribute("nombre", nombre);
+            model.addAttribute("tienda", tienda);
             return "TiendaEditar";
         } else {
             return "redirect:/tiendas";
         }
     }
 
-    @PostMapping("/tiendas/{nombre}/edit/save")
-    public String tiendaEditarGuardar(@PathVariable("nombre") String nombre, @ModelAttribute Tienda tienda) {
-        tiendaRepository.actualizarTienda(nombre, tienda.getHorarioApertura(), tienda.getHorarioCierre(), tienda.getCapacidad());
+    @PostMapping("/tiendas/{id}/edit/save")
+    public String tiendaEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute Tienda tienda) {
+        tiendaRepository.actualizarTienda(id, tienda.getNombre(),tienda.getHorarioApertura(), tienda.getHorarioCierre(), tienda.getCapacidad());
         return "redirect:/tiendas";
     }
 
-    @GetMapping("/tiendas/{nombre}/delete")
-    public String tiendaEliminar(@PathVariable("nombre") String nombre) {
-        tiendaRepository.eliminarTienda(nombre);
+    @GetMapping("/tiendas/{id}/delete")
+    public String tiendaEliminar(@PathVariable("id") Integer id) {
+        tiendaRepository.eliminarTienda(id);
         return "redirect:/tiendas";
     }
 }

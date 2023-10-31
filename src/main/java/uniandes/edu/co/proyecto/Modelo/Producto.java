@@ -76,5 +76,13 @@ public class Producto  {
     public void setPreciofinal(double preciofinal) {
         this.preciofinal = preciofinal;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
     
 }

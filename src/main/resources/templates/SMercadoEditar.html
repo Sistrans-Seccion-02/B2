@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Super Mercado</title>
+    <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+    <form th:action="@{'/SMercados/'+${id}+'/edit/save'}" th:object ="${tienda}" method="post">
+        <div th:replace="~{fragments/SMercadoForm :: SMercadoForm(titulo='Editar Tienda',tienda=${tienda})}"></div>
+</body>
+</html>
