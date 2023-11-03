@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.Modelo.SMercado;
 
-public interface SMercadoRepository extends JpaRepository<SMercado, String> {
+public interface SMercadoRepository extends JpaRepository<SMercado, Integer> {
     @Query(value = "SELECT * FROM  SMercados", nativeQuery = true )
     Collection<SMercado> darSMercados();
     
