@@ -35,19 +35,19 @@ public class Tienda  {
         this.nombre = nombre;
     }
 
-    public LocalTime getHorarioApertura() {
+    public LocalTime getHorarioapertura() {
         return horarioapertura;
     }
 
-    public void setHorarioApertura(LocalTime horarioapertura) {
+    public void setHorarioapertura(LocalTime horarioapertura) {
         this.horarioapertura = horarioapertura;
     }
 
-    public LocalTime getHorarioCierre() {
+    public LocalTime getHorariocierre() {
         return horariocierre;
     }
 
-    public void setHorarioCierre(LocalTime horariocierre) {
+    public void setHorariocierre(LocalTime horariocierre) {
         this.horariocierre = horariocierre;
     }
 

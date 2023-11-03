@@ -14,23 +14,23 @@ public interface SMercadoRepository extends JpaRepository<SMercado, String> {
     @Query(value = "SELECT * FROM  SMercados", nativeQuery = true )
     Collection<SMercado> darSMercados();
     
-    @Query(value = "SELECT * FROM SMercados WHERE nombre = :nombre", nativeQuery = true)
-    SMercado darSMercado(@Param("nombre") String nombre);
+    @Query(value = "SELECT * FROM SMercados WHERE id = :id", nativeQuery = true)
+    SMercado darSMercado(@Param("id") Integer id);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO SMercados (nombre, horarioapertura, horariocierre, capacidad) VALUES (:nombre, :horarioapertura, :horariocierre, :capacidad)", nativeQuery = true)
+    @Query(value = "INSERT INTO SMercados (nombre, horarioapertura, horariocierre, capacidad, id) VALUES (:nombre, :horarioapertura, :horariocierre, :capacidad, B2.nextval)", nativeQuery = true)
     void insertarSMercado(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre, @Param("capacidad") Integer capacidad);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE SMercados SET nombre=:nombre, horarioapertura=:horarioapertura, horariocierre=:horariocierre, capacidad=:capacidad WHERE nombre=:nombre", nativeQuery = true)
-    void actualizarSMercado(@Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre, @Param("capacidad") Integer capacidad);
+    @Query(value = "UPDATE SMercados SET nombre=:nombre, horarioapertura=:horarioapertura, horariocierre=:horariocierre, capacidad=:capacidad WHERE id=:id", nativeQuery = true)
+    void actualizarSMercado(@Param("id") Integer id, @Param("nombre") String nombre, @Param("horarioapertura") LocalTime horarioapertura, @Param("horariocierre") LocalTime horariocierre, @Param("capacidad") Integer capacidad);
    
     @Modifying
     @Transactional
-    @Query(value= "DELETE FROM SMercados WHERE nombre=:nombre", nativeQuery = true)
-    void eliminarSMercado(@Param("nombre") String nombre);
+    @Query(value= "DELETE FROM SMercados WHERE id=:id", nativeQuery = true)
+    void eliminarSMercado(@Param("id") Integer id);
 }
 
 

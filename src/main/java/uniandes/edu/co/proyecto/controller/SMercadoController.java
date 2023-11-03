@@ -8,16 +8,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import uniandes.edu.co.proyecto.Modelo.SMercado;
+import uniandes.edu.co.proyecto.repositorio.ConsumoRepository;
 import uniandes.edu.co.proyecto.repositorio.SMercadoRepository;
 
 @Controller
 public class SMercadoController {
     @Autowired
     private SMercadoRepository SMercadoRepository;
+    @Autowired
+    private ConsumoRepository consumoRepository;
 
     @GetMapping("/SMercados")
     public String SMercados(Model model) {
         model.addAttribute("SMercados", SMercadoRepository.darSMercados());
+        model.addAttribute("consumos", consumoRepository.darConsumos());
         return "SMercado";
     }
     
@@ -29,15 +33,15 @@ public class SMercadoController {
 
     @PostMapping("/SMercados/new/save")
     public String SMercadoGuardar(@ModelAttribute SMercado SMercado) {
-        SMercadoRepository.insertarSMercado(SMercado.getNombre(), SMercado.getHorarioApertura(), SMercado.getHorarioCierre(), SMercado.getCapacidad());
+        SMercadoRepository.insertarSMercado(SMercado.getNombre(), SMercado.getHorarioapertura(), SMercado.getHorariocierre(), SMercado.getCapacidad());
         return "redirect:/SMercados";
     }
 
     @GetMapping("/SMercados/{id}/edit") 
-    public String SMercadoEditarForm(@PathVariable("nombre") String nombre, Model model) {
-        SMercado SMercado = SMercadoRepository.darSMercado(nombre);
+    public String SMercadoEditarForm(@PathVariable("id") Integer id, Model model) {
+        SMercado SMercado = SMercadoRepository.darSMercado(id);
         if (SMercado != null) {
-            model.addAttribute("nombre", nombre);
+            model.addAttribute("SMercado", SMercado);
             return "SMercadoEditar";
         } else {
             return "redirect:/SMercados";
@@ -45,14 +49,14 @@ public class SMercadoController {
     }
 
     @PostMapping("/SMercados/{id}/edit/save")
-    public String SMercadoEditarGuardar(@PathVariable("nombre") String nombre, @ModelAttribute SMercado SMercado) {
-        SMercadoRepository.actualizarSMercado(nombre, SMercado.getHorarioApertura(), SMercado.getHorarioCierre(), SMercado.getCapacidad());
+    public String SMercadoEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute SMercado SMercado) {
+        SMercadoRepository.actualizarSMercado(id, SMercado.getNombre(),SMercado.getHorarioapertura(), SMercado.getHorariocierre(), SMercado.getCapacidad());
         return "redirect:/SMercados";
     }
 
     @GetMapping("/SMercados/{id}/delete")
-    public String SMercadoEliminar(@PathVariable("nombre") String nombre) {
-        SMercadoRepository.eliminarSMercado(nombre);
+    public String SMercadoEliminar(@PathVariable("id") Integer id) {
+        SMercadoRepository.eliminarSMercado(id);
         return "redirect:/SMercados";
     }
 }
