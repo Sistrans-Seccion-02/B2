@@ -7,7 +7,7 @@
     <link rel ="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
-    <form th:action="@{'/SMercados/'+${id}+'/edit/save'}" th:object ="${mercados}" method="post">
-        <div th:replace="~{fragments/SMercadoForm :: SMercadoForm(titulo='Editar Tienda',tienda=${tienda})}"></div>
+    <form th:action="@{'/mercados/'+${id}+'/edit/save'}" th:object ="${mercado}" method="post">
+        <div th:replace="~{fragments/MercadoForm :: MercadoForm(titulo='Editar Mercados',mercados=${mercado})}"></div>
 </body>
 </html>

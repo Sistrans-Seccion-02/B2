@@ -18,46 +18,46 @@ public class SMercadoController {
     @Autowired
     private ConsumoRepository consumoRepository;
 
-    @GetMapping("/SMercados")
-    public String SMercados(Model model) {
-        model.addAttribute("SMercados", SMercadoRepository.darSMercados());
+    @GetMapping("/mercados")
+    public String mercados(Model model) {
+        model.addAttribute("mercados", SMercadoRepository.darSMercados());
         model.addAttribute("consumos", consumoRepository.darConsumos());
-        return "SMercado";
+        return "Mercados";
     }
     
-    @GetMapping("/SMercados/new")
-    public String SMercadoForm(Model model) {
-        model.addAttribute("SMercado", new SMercado());
-        return "SMercadoNuevo";
+    @GetMapping("/mercados/new")
+    public String mercadoForm(Model model) {
+        model.addAttribute("mercado", new SMercado());
+        return "MercadoNuevo";
     }
 
-    @PostMapping("/SMercados/new/save")
-    public String SMercadoGuardar(@ModelAttribute SMercado SMercado) {
+    @PostMapping("/mercados/new/save")
+    public String mercadoGuardar(@ModelAttribute SMercado SMercado) {
         SMercadoRepository.insertarSMercado(SMercado.getNombre(), SMercado.getHorarioapertura(), SMercado.getHorariocierre(), SMercado.getCapacidad());
-        return "redirect:/SMercados";
+        return "redirect:/mercados";
     }
 
-    @GetMapping("/SMercados/{id}/edit") 
-    public String SMercadoEditarForm(@PathVariable("id") Integer id, Model model) {
-        SMercado SMercado = SMercadoRepository.darSMercado(id);
-        if (SMercado != null) {
-            model.addAttribute("SMercado", SMercado);
-            return "SMercadoEditar";
+    @GetMapping("/mercados/{id}/edit") 
+    public String mercadoEditarForm(@PathVariable("id") Integer id, Model model) {
+        SMercado mercado = SMercadoRepository.darSMercado(id);
+        if (mercado != null) {
+            model.addAttribute("mercado", mercado);
+            return "MercadoEditar";
         } else {
-            return "redirect:/SMercados";
+            return "redirect:/mercados";
         }
     }
 
-    @PostMapping("/SMercados/{id}/edit/save")
-    public String SMercadoEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute SMercado SMercado) {
+    @PostMapping("/mercados/{id}/edit/save")
+    public String mercadoEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute SMercado SMercado) {
         SMercadoRepository.actualizarSMercado(id, SMercado.getNombre(),SMercado.getHorarioapertura(), SMercado.getHorariocierre(), SMercado.getCapacidad());
-        return "redirect:/SMercados";
+        return "redirect:/mercados";
     }
 
-    @GetMapping("/SMercados/{id}/delete")
-    public String SMercadoEliminar(@PathVariable("id") Integer id) {
+    @GetMapping("/mercados/{id}/delete")
+    public String mercadoEliminar(@PathVariable("id") Integer id) {
         SMercadoRepository.eliminarSMercado(id);
-        return "redirect:/SMercados";
+        return "redirect:/mercados";
     }
 }
 

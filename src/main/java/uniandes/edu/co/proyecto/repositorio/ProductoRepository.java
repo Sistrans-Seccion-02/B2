@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.Modelo.Producto;
 
-public interface ProductoRepository extends JpaRepository<Producto, String> {
+public interface ProductoRepository extends JpaRepository<Producto, Integer> {
     @Query(value = "SELECT * FROM  Productos", nativeQuery = true )
     Collection<Producto> darProductos();
     
@@ -18,7 +18,7 @@ public interface ProductoRepository extends JpaRepository<Producto, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Productos (nombre, consumoid, id, tiendaid, smercadoid, preciofinal) VALUES (:nombre, :consumoid, , B2.nextval, :tiendaid, :smercadoid, :preciofinal)", nativeQuery = true)
+    @Query(value = "INSERT INTO Productos (nombre, consumoid, id, tiendaid, smercadoid, preciofinal) VALUES (:nombre, :consumoid,  B2.nextval, :tiendaid, :smercadoid, :preciofinal)", nativeQuery = true)
     void insertarProducto(@Param("nombre") String nombre, @Param("consumoid") Integer consumoid, @Param("tiendaid") Integer tiendaid, @Param("smercadoid") Integer smercadoid, @Param("preciofinal") double preciofinal);
 
     @Modifying

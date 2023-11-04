@@ -21,14 +21,14 @@
         </thead>
         <th:block th:each="Mercados:${mercados}">
             <tr>
-                <td th:text="${mercados.id}"></td>
-                <td th:text="${mercados.nombre}"></td>
-                <td th:text="${mercados.horarioapertura}"></td>
-                <td th:text="${mercados.horariocierre}"></td>
-                <td th:text="${mercados.capacidad}"></td>
+                <td th:text="${Mercados.id}"></td>
+                <td th:text="${Mercados.nombre}"></td>
+                <td th:text="${Mercados.horarioapertura}"></td>
+                <td th:text="${Mercados.horariocierre}"></td>
+                <td th:text="${Mercados.capacidad}"></td>
                 <td>
-                    <a th:href="@{/SMercados/{id}/edit(id=${Mercados.id})}" >Editar</a>
-                    <a th:href="@{/SMercados/{id}/delete(id=${Mercados.id})} "onclick = "return confirm ('Estas seguro de borrar este utensilio?')" > Eliminar</a>
+                    <a th:href="@{/mercados/{id}/edit(id=${Mercados.id})}" >Editar</a>
+                    <a th:href="@{/mercados/{id}/delete(id=${Mercados.id})} "onclick = "return confirm ('Estas seguro de borrar este utensilio?')" > Eliminar</a>
 
                 </td>
             </tr>
@@ -40,6 +40,6 @@
     </table>
     <div>
         <a th:href="@{/}" class="btn btn-primary">Volver Atras</a>
-        <a th:href="@{SMercados/new}" class="btn btn-primary">Añadir Super Mercado</a>
+        <a th:href="@{mercados/new}" class="btn btn-primary">Añadir Super Mercado</a>
 </body>
 </html>
