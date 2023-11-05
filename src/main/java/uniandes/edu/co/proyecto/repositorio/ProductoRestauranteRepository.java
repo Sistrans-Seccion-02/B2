@@ -12,7 +12,7 @@ import uniandes.edu.co.proyecto.Modelo.ProductoRestaurante;
 public interface ProductoRestauranteRepository extends JpaRepository<ProductoRestaurante, Integer> {
 
     @Query(value = "SELECT * FROM  productosrest", nativeQuery = true )
-    Collection<ProductoRestaurante> darConsumosDeR();
+    Collection<ProductoRestaurante> darProductosRestaurante();
     
     @Query(value = "SELECT * FROM productosrest WHERE id = :id", nativeQuery = true)
     ProductoRestaurante darProductoRestaurante(@Param("id") Integer id);

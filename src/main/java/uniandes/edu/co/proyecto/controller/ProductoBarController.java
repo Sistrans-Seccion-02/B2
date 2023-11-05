@@ -33,7 +33,7 @@ public class ProductoBarController {
     public String productobarForm(Model model) {
         model.addAttribute("productobar", new ProductoBar());
         model.addAttribute("platosbebidas", platoBebidaRepositoryRepository.darPlatosBebidas());
-        model.addAttribute("rests", barRepository.darBares());
+        model.addAttribute("bares", barRepository.darBares());
         return "ProductoBarNuevo";
     }
 
