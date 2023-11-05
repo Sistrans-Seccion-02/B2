@@ -16,21 +16,21 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, String
     @Query(value = "SELECT * FROM Restaurantes", nativeQuery = true)
     Collection<Restaurante> darRestaurantes();
 
-    @Query(value = "SELECT * FROM Restaurantes WHERE nombre = :nombre", nativeQuery = true)
-    Restaurante darRestaurante(@Param("nombre") String nombre);
+    @Query(value = "SELECT * FROM Restaurantes WHERE id = :id", nativeQuery = true)
+    Restaurante darRestaurante(@Param("id") Integer id);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Restaurantes (nombre, horaApertura, horaCierre, capacidad) VALUES (:nombre, :horaApertura, :horaCierre, :capacidad)", nativeQuery = true)
-    void insertarRestaurante(@Param("nombre") String nombre, @Param("horaApertura") LocalTime horaApertura, @Param("horaCierre") LocalTime horaCierre, @Param("capacidad") Integer capacidad);
+    @Query(value = "INSERT INTO Restaurantes (id, nombre, tipo, horaApertura, horaCierre, capacidad) VALUES (B2.nextval, :nombre, :tipo, :horaApertura, :horaCierre, :capacidad)", nativeQuery = true)
+    void insertarRestaurante(@Param("nombre") String nombre, @Param("tipo") String tipo, @Param("horaApertura") LocalTime horaApertura, @Param("horaCierre") LocalTime horaCierre, @Param("capacidad") Integer capacidad);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Restaurantes SET horaApertura = :horaApertura, horaCierre = :horaCierre, capacidad = :capacidad WHERE nombre = :nombre", nativeQuery = true)
-    void actualizarRestaurante(@Param("nombre") String nombre, @Param("horaApertura") LocalTime horaApertura, @Param("horaCierre") LocalTime horaCierre, @Param("capacidad") Integer capacidad);
+    @Query(value = "UPDATE Restaurantes SET nombre=:nombre, tipo=:tipo, horaApertura = :horaApertura, horaCierre = :horaCierre, capacidad = :capacidad WHERE id = :id", nativeQuery = true)
+    void actualizarRestaurante(@Param("id") Integer id, @Param("nombre") String nombre, @Param("tipo") String tipo, @Param("horaApertura") LocalTime horaApertura, @Param("horaCierre") LocalTime horaCierre, @Param("capacidad") Integer capacidad);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM Restaurantes WHERE nombre = :nombre", nativeQuery = true)
-    void eleminarRestaurante(@Param("nombre") String nombre);
+    @Query(value = "DELETE FROM Restaurantes WHERE id = :id", nativeQuery = true)
+    void eliminarRestaurante(@Param("id") Integer id);
 }
