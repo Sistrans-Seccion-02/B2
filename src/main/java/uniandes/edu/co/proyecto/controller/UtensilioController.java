@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +36,7 @@ public class UtensilioController{
     
     @PostMapping("/utensilios/new/save")
     public String utensilioGuardar(@ModelAttribute Utensilio utensilio){
-        utensilioRepository.insertarUtensilio(utensilio.getDescripcion(), utensilio.getPrecio(), utensilio.getConsumoid().getId());
+        utensilioRepository.insertarUtensilio(utensilio.getDescripcion(), utensilio.getPrecio(), utensilio.getConsumoid().getId(), utensilio.getDuracion());
         return "redirect:/utensilios";
     
     }
@@ -54,7 +56,7 @@ public class UtensilioController{
 
     @PostMapping("/utensilios/{id}/edit/save")
      public String utensilioEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute Utensilio utensilio){
-        utensilioRepository.actualizarUtensilio(id,utensilio.getDescripcion(), utensilio.getPrecio(), utensilio.getConsumoid().getId());
+        utensilioRepository.actualizarUtensilio(id,utensilio.getDescripcion(), utensilio.getPrecio(), utensilio.getConsumoid().getId(), utensilio.getDuracion());
         return "redirect:/utensilios";
     }
     
@@ -68,5 +70,23 @@ public class UtensilioController{
     public String utensilioReq8(Model model){
         model.addAttribute("utensilios", utensilioRepository.darServiciosMenosConsumidos());
         return "ServicioReq8";
+    }
+
+    @GetMapping("/utensilios/req2")
+    public String utensilioReq2(Model model, LocalDateTime fechainicial, LocalDateTime fechafinal){
+        model.addAttribute("utensilios", utensilioRepository.darServiciosPoplares(fechainicial, fechafinal));
+        return "ServicioReq2";
+    }
+
+    @GetMapping("/utensilios/req4")
+    public String utensilioReq4(Model model, double precioinicial, double preciofinal){
+        model.addAttribute("utensilios", utensilioRepository.darServicioPorRangoPrecio(precioinicial, preciofinal));
+        return "ServicioReq4";
+    }
+
+    @GetMapping("/utensilios/req4.1")
+    public String utensilioReq41(Model model, double precioinicial, double preciofinal){
+        model.addAttribute("utensilios", utensilioRepository.darServicioPorRangoPrecio(precioinicial, preciofinal));
+        return "ServicioReq4.1";
     }
 }

@@ -16,6 +16,7 @@
                 <th>Descripcion</th>
                 <th>Precio</th>
                 <th>Id Consumo</th>
+                <th>Duracion</th>
 
             </tr>
         </thead>
@@ -25,6 +26,7 @@
                 <td th:text="${Utensilios.descripcion}"></td>
                 <td th:text="${Utensilios.precio}"></td>
                 <td th:text="${Utensilios.consumoid.id}"></td>
+                <td th:text="${Utensilios.duracion}"></td>
                 <td>
                     <a th:href="@{/utensilios/{id}/edit(id=${Utensilios.id})}" >Editar</a>
                     <a th:href="@{/utensilios/{id}/delete(id=${Utensilios.id})} "onclick = "return confirm ('Estas seguro de borrar este servicio?')" > Eliminar</a>
@@ -40,6 +42,7 @@
     <div>
         <a th:href="@{/}" class="btn btn-primary">Volver Atras</a>
         <a th:href="@{utensilios/new}" class="btn btn-primary">Añadir servicio</a>
+        <a th:href="@{utensilios/req2}" class="btn btn-primary">Ir a Req 2</a>
         <a th:href="@{utensilios/req8}" class="btn btn-primary">Ir a Req 8</a>
 </body>
 </html>

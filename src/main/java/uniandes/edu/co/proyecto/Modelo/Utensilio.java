@@ -19,12 +19,14 @@ public class Utensilio {
     @ManyToOne
     @JoinColumn(name="consumoid", referencedColumnName = "id")
     private Consumo consumoid;
+    private Integer duracion;
     
 
-    public Utensilio(String descripcion, double precio, Consumo consumoid) {
+    public Utensilio(String descripcion, double precio, Consumo consumoid, Integer duracion) {
         this.descripcion = descripcion;
         this.precio = precio;
         this.consumoid = consumoid;
+        this.duracion = duracion;
     }
 
     public Utensilio() {;}
@@ -59,6 +61,14 @@ public class Utensilio {
 
     public void setConsumoid(Consumo consumoid) {
         this.consumoid = consumoid;
+    }
+
+    public Integer getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(Integer duracion) {
+        this.duracion = duracion;
     }
 
     

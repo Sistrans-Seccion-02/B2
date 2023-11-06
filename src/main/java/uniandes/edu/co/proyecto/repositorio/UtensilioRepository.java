@@ -18,6 +18,12 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
                 String getSERVICIODESCRIPCION();
                 int getCANTIDADCONSUMO();
         }
+
+        public interface rtareq2{
+                int getSERVICIOID();
+                String getSERVICIODESCRIPCION();
+                int getCANTIDADCONSUMO();
+        }
         
     @Query(value = "SELECT * FROM  servicio", nativeQuery = true )
     Collection<Utensilio> darUtensilios();
@@ -28,13 +34,13 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO servicio (id, descripcion, precio, consumoid) VALUES (B2.nextval, :descripcion, :precio, :consumoid)", nativeQuery = true)
-    void insertarUtensilio(@Param("descripcion") String descripcion, @Param("precio") double precio, @Param("consumoid") Integer consumoid);
+    @Query(value = "INSERT INTO servicio (id, descripcion, precio, consumoid, duracion) VALUES (B2.nextval, :descripcion, :precio, :consumoid, :duracion)", nativeQuery = true)
+    void insertarUtensilio(@Param("descripcion") String descripcion, @Param("precio") double precio, @Param("consumoid") Integer consumoid, @Param("duracion") Integer duracion);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE servicio SET descripcion=:descripcion, precio=:precio, consumoid=:consumoid WHERE id=:id", nativeQuery = true)
-    void actualizarUtensilio(@Param("id") Integer id, @Param("descripcion") String descripcion, @Param("precio") double precio, @Param("consumoid") Integer consumoid);
+    @Query(value = "UPDATE servicio SET descripcion=:descripcion, precio=:precio, consumoid=:consumoid, duracion=:duracion WHERE id=:id", nativeQuery = true)
+    void actualizarUtensilio(@Param("id") Integer id, @Param("descripcion") String descripcion, @Param("precio") double precio, @Param("consumoid") Integer consumoid, @Param("duracion") Integer duracion);
    
     @Modifying
     @Transactional
@@ -43,14 +49,14 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
 
 //Consultas avanzadas
 
-    @Query(value = "SELECT s.id, s.descripcion, COUNT(c.id) AS cantidad_consumos\r\n" + //
+    @Query(value = "SELECT s.id AS SERVICIOID, s.descripcion AS SERVICIODESCRIPCION, COUNT(c.id) AS CANTIDADCONSUMO\r\n" + //
             "FROM servicio s\r\n" + //
             "LEFT JOIN consumos c ON s.consumoid = c.id\r\n" + //
             "WHERE c.fecha BETWEEN :fechainicial AND :fechafinal\r\n" + //
-            "GROUP BY s.id\r\n" + //
+            "GROUP BY s.id, s.descripcion\r\n" + //
             "ORDER BY COUNT(c.id) DESC\r\n" + //
             "FETCH FIRST 20 ROWS ONLY", nativeQuery = true)    
-    Collection<Utensilio> darServiciosPoplares(@Param("fechainicial") LocalDateTime fechainicial, @Param("fechafinal") LocalDateTime fechafinal);
+    Collection<rtareq2> darServiciosPoplares(@Param("fechainicial") LocalDateTime fechainicial, @Param("fechafinal") LocalDateTime fechafinal);
 
     @Query(value = "SELECT s.id AS SERVICIOID, s.descripcion AS SERVICIODESCRIPCION, COUNT(c.id) AS CANTIDADCONSUMO\r\n" + //
             "FROM servicio s\r\n" + //
