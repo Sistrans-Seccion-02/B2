@@ -12,6 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 import uniandes.edu.co.proyecto.Modelo.Utensilio;
 
 public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
+
+        public interface rtareq8{
+                int getSERVICIOID();
+                String getSERVICIODESCRIPCION();
+                int getCANTIDADCONSUMO();
+        }
+        
     @Query(value = "SELECT * FROM  servicio", nativeQuery = true )
     Collection<Utensilio> darUtensilios();
     
@@ -45,14 +52,14 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
             "FETCH FIRST 20 ROWS ONLY", nativeQuery = true)    
     Collection<Utensilio> darServiciosPoplares(@Param("fechainicial") LocalDateTime fechainicial, @Param("fechafinal") LocalDateTime fechafinal);
 
-    @Query(value = "SELECT s.id, s.descripcion, COUNT(c.id) AS cantidad_consumos\r\n" + //
+    @Query(value = "SELECT s.id AS SERVICIOID, s.descripcion AS SERVICIODESCRIPCION, COUNT(c.id) AS CANTIDADCONSUMO\r\n" + //
             "FROM servicio s\r\n" + //
             "LEFT JOIN consumos c ON s.consumoid = c.id\r\n" + //
             "WHERE c.fecha BETWEEN SYSDATE - 365 AND SYSDATE\r\n" + //
-            "GROUP BY s.id\r\n" + //
+            "GROUP BY s.id, s.descripcion\r\n" + //
             "HAVING COUNT(c.id) < 3\r\n" + //
-            "ORDER BY COUNT(c.id)", nativeQuery = true)
-    Collection<Utensilio> darServiciosMenosConsumidos();
+            "ORDER BY s.id, s.descripcion", nativeQuery = true)
+    Collection<rtareq8> darServiciosMenosConsumidos();
 
     @Query(value = "SELECT * FROM SERVICIO\r\n" + //
             "WHERE precio BETWEEN :precioinicial AND :preciofinal", nativeQuery = true)

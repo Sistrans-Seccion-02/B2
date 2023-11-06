@@ -1,5 +1,4 @@
 package uniandes.edu.co.proyecto.controller;
-import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,25 +20,9 @@ public class UtensilioController{
     private ConsumoRepository consumoRepository;
 
     @GetMapping("/utensilios")
-    public String utensilios(Model model, LocalDateTime fechainicial, LocalDateTime fechafinal, double precioinicial, double preciofinal,
-                            LocalDateTime fechai, LocalDateTime fechaf, String tipo){
-
-        if((Double.isNaN(precioinicial)) && (Double.isNaN(preciofinal)) && (fechai == null) && (fechaf == null) && (tipo == null || tipo.equals(""))){
-            model.addAttribute("utensilios", utensilioRepository.darServiciosPoplares(fechainicial, fechafinal));
-        }
-        else if((fechainicial == null) && (fechafinal == null) && (fechai == null) && (fechaf == null) && (tipo == null || tipo.equals(""))){
-            model.addAttribute("utensilios", utensilioRepository.darServicioPorRangoPrecio(precioinicial, preciofinal));
-        }
-        else if((Double.isNaN(precioinicial)) && (Double.isNaN(preciofinal)) && (fechainicial == null) && (fechafinal == null) && (tipo == null || tipo.equals(""))){
-            model.addAttribute("utensilios", utensilioRepository.darServicioPorRangoFecha(fechai, fechaf));
-        }
-        else if((Double.isNaN(precioinicial)) && (Double.isNaN(preciofinal)) && (fechai == null) && (fechaf == null) && (fechainicial==null) && (fechafinal==null)){
-            model.addAttribute("utensilios", utensilioRepository.darServicioPorTipo(tipo));
-        }
-        else{
-            model.addAttribute("utensilios", utensilioRepository.darUtensilios());
-            model.addAttribute("consumos", consumoRepository.darConsumos());
-        }            
+    public String utensilios(Model model){
+        model.addAttribute("utensilios", utensilioRepository.darUtensilios());
+        model.addAttribute("consumos", consumoRepository.darConsumos());        
         return "Utensilios";
     }
  
@@ -79,5 +62,11 @@ public class UtensilioController{
     public String utensilioEliminar(@PathVariable("id") Integer id){
         utensilioRepository.eliminarUtensilio(id);
         return "redirect:/utensilios";
+    }
+
+    @GetMapping("/utensilios/req8")
+    public String utensilioReq8(Model model){
+        model.addAttribute("utensilios", utensilioRepository.darServiciosMenosConsumidos());
+        return "ServicioReq8";
     }
 }
