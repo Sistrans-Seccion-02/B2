@@ -61,18 +61,6 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
 
    Collection<rtareq1> req1();
 
-    //RFC5 - MOSTRAR EL CONSUMO EN HOTELANDES POR UN USUARIO DADO, EN UN RANGO DE FECHAS INDICADO.
-        //Recuerde que un cliente puede alojarse en el hotel cuantas veces quiera.
-   // @Query(value="SELECT  FROM ")
-      //  double req5(@Param("usuario")Integer usuario, @Param("fechaInicio")String fechaInicio, @Param("fechaFin")String fechaFin);
-
-    // RFC9 - CONSULTAR CONSUMO EN HOTELANDES
-        //Se quiere conocer la información de los clientes que consumieron al menos una vez un determinado servicio
-        //del hotel, en un rango de fechas. Los resultados deben ser clasificados según un criterio deseado por quien
-        //realiza la consulta. En la clasificación debe ofrecerse la posibilidad de agrupamiento y ordenamiento de las
-        //respuestas según los intereses del usuario que consulta como, por ejemplo, por los datos del cliente, por fecha
-        //y número de veces que se utilizó el servicio. Esta operación está disponible para el recepcionista y el gerente
-        //del hotel.
-            
+   
     
 }
