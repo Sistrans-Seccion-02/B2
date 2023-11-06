@@ -19,7 +19,7 @@
                 </a>
             </h5>
             <di id="busqueda" class="collapse">
-                <form th:action="@{/utensilios/req2}" method="get">
+                <form th:action="@{/utensilios/req41}" method="get">
                     <label class="col-form-label" for="fecha">Fecha Inicial</label>
                     <input class="form-control" type="date" id="fechainicial" name="fechainicial" required><br>
                     <label class="col-form-label" for="fecha">Fecha Final</label>
@@ -41,15 +41,15 @@
             <tr>
                 <th>Id</th>
                 <th>Descripcion</th>
-                <th>Cantidad Consumo</th>
+                <th>Fecha Consumo</th>
 
             </tr>
         </thead>
         <th:block th:each="Utensilios:${utensilios}">
             <tr>
-                <td th:text="${Utensilios.getSERVICIOID}"></td>
-                <td th:text="${Utensilios.getSERVICIODESCRIPCION}"></td>
-                <td th:text="${Utensilios.getCANTIDADCONSUMO}"></td>
+                <td th:text="${Utensilios.getIDSERVICIO}"></td>
+                <td th:text="${Utensilios.getDESCRIPCIONSERVICIO}"></td>
+                <td th:text="${Utensilios.getFECHA}"></td>
             </tr>
 
 
