@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.Modelo.Restaurante;
 
-public interface RestauranteRepository extends JpaRepository<Restaurante, String>{
+public interface RestauranteRepository extends JpaRepository<Restaurante, Integer>{
     
     @Query(value = "SELECT * FROM Restaurantes", nativeQuery = true)
     Collection<Restaurante> darRestaurantes();

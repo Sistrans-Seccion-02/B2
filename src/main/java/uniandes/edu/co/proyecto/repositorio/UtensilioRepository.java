@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.repositorio;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,6 +33,41 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
     @Transactional
     @Query(value= "DELETE FROM servicio WHERE id=:id", nativeQuery = true)
     void eliminarUtensilio(@Param("id") Integer id);
+
+//Consultas avanzadas
+
+    @Query(value = "SELECT s.id, s.descripcion, COUNT(c.id) AS cantidad_consumos\r\n" + //
+            "FROM servicio s\r\n" + //
+            "LEFT JOIN consumos c ON s.consumoid = c.id\r\n" + //
+            "WHERE c.fecha BETWEEN :fechainicial AND :fechafinal\r\n" + //
+            "GROUP BY s.id\r\n" + //
+            "ORDER BY COUNT(c.id) DESC\r\n" + //
+            "FETCH FIRST 20 ROWS ONLY", nativeQuery = true)    
+    Collection<Utensilio> darServiciosPoplares(@Param("fechainicial") LocalDateTime fechainicial, @Param("fechafinal") LocalDateTime fechafinal);
+
+    @Query(value = "SELECT s.id, s.descripcion, COUNT(c.id) AS cantidad_consumos\r\n" + //
+            "FROM servicio s\r\n" + //
+            "LEFT JOIN consumos c ON s.consumoid = c.id\r\n" + //
+            "WHERE c.fecha BETWEEN SYSDATE - 365 AND SYSDATE\r\n" + //
+            "GROUP BY s.id\r\n" + //
+            "HAVING COUNT(c.id) < 3\r\n" + //
+            "ORDER BY COUNT(c.id)", nativeQuery = true)
+    Collection<Utensilio> darServiciosMenosConsumidos();
+
+    @Query(value = "SELECT * FROM SERVICIO\r\n" + //
+            "WHERE precio BETWEEN :precioinicial AND :preciofinal", nativeQuery = true)
+    Collection<Utensilio> darServicioPorRangoPrecio(@Param("precioinicial") double precioinicial, @Param("preciofinal") double preciofinal);
+
+    @Query(value = "SELECT * s.id, s.descripcion\r\n" + //
+            "FROM SERVICIO s\r\n" + //
+            "INNER JOIN CONSUMOS c ON s.consumoid = c.id\r\n" + //
+            "WHERE c.fecha BETWEEN :fechai AND :fechaf", nativeQuery = true)
+    Collection<Utensilio> darServicioPorRangoFecha(@Param("fechai") LocalDateTime fechai, @Param("fechaf") LocalDateTime fechaf);
+
+    @Query(value = "SELECT * FROM SERVICIO\r\n"+ //
+            "WHERE descripcion = :tipo", nativeQuery = true)
+    Collection<Utensilio> darServicioPorTipo(@Param("tipo") String tipo);
+
 }
 
 

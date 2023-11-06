@@ -25,9 +25,9 @@
                 <td th:text="${Productos.id}"></td>
                 <td th:text="${Productos.nombre}"></td>
                 <td th:text="${Productos.preciofinal}"></td>
-                <td th:text="${Productos.consumoid}"></td>
-                <td th:text="${Productos.tiendaid}"></td>
-                <td th:text="${Productos.smercadoid}"></td>
+                <td th:text="${Productos.consumoid.id}"></td>
+                <td th:text="${Productos.tiendaid.id}"></td>
+                <td th:text="${Productos.smercadoid.id}"></td>
 
                 <td>
                     <a th:href="@{/productos/{id}/edit(id=${Productos.id})}" >Editar</a>

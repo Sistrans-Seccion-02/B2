@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.Modelo.Bar;
 
-public interface BarRepository extends JpaRepository<Bar, String>{
+public interface BarRepository extends JpaRepository<Bar, Integer>{
     
     @Query(value = "SELECT * FROM Bares", nativeQuery = true)
     Collection<Bar> darBares();
