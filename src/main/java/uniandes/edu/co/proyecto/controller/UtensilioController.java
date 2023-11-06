@@ -1,7 +1,5 @@
 package uniandes.edu.co.proyecto.controller;
 
-import java.time.LocalDateTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +34,7 @@ public class UtensilioController{
     
     @PostMapping("/utensilios/new/save")
     public String utensilioGuardar(@ModelAttribute Utensilio utensilio){
-        utensilioRepository.insertarUtensilio(utensilio.getDescripcion(), utensilio.getPrecio(), utensilio.getConsumoid().getId(), utensilio.getDuracion());
+        utensilioRepository.insertarUtensilio(utensilio.getDescripcion(), utensilio.getPrecio(), utensilio.getConsumoid().getId());
         return "redirect:/utensilios";
     
     }
@@ -56,7 +54,7 @@ public class UtensilioController{
 
     @PostMapping("/utensilios/{id}/edit/save")
      public String utensilioEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute Utensilio utensilio){
-        utensilioRepository.actualizarUtensilio(id,utensilio.getDescripcion(), utensilio.getPrecio(), utensilio.getConsumoid().getId(), utensilio.getDuracion());
+        utensilioRepository.actualizarUtensilio(id,utensilio.getDescripcion(), utensilio.getPrecio(), utensilio.getConsumoid().getId());
         return "redirect:/utensilios";
     }
     
@@ -73,7 +71,7 @@ public class UtensilioController{
     }
 
     @GetMapping("/utensilios/req2")
-    public String utensilioReq2(Model model, LocalDateTime fechainicial, LocalDateTime fechafinal){
+    public String utensilioReq2(Model model, String fechainicial, String fechafinal){
         model.addAttribute("utensilios", utensilioRepository.darServiciosPoplares(fechainicial, fechafinal));
         return "ServicioReq2";
     }
@@ -85,7 +83,7 @@ public class UtensilioController{
     }
 
     @GetMapping("/utensilios/req41")
-    public String utensilioReq41(Model model, LocalDateTime fechainicial, LocalDateTime fechafinal){
+    public String utensilioReq41(Model model, String fechainicial, String fechafinal){
         model.addAttribute("utensilios", utensilioRepository.darServicioPorRangoFecha(fechainicial, fechafinal));
         return "ServicioReq41";
     }
