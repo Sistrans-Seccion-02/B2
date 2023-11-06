@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import uniandes.edu.co.proyecto.Modelo.PlanConsumo;
+
 import uniandes.edu.co.proyecto.Modelo.Reserva;
 import uniandes.edu.co.proyecto.repositorio.HabitacionRepository;
 import uniandes.edu.co.proyecto.repositorio.PlanConsumoRepository;
@@ -74,6 +74,20 @@ public class ReservaController {
     @GetMapping("/reservas/{id}/delete")
     public String reservaEliminar(@PathVariable("id") int id){
         reservaRepository.eliminarReserva(id);
+        return "redirect:/reservas";
+    }
+
+
+    @GetMapping("/reservas/{id}/checkIn")
+    public String checkIn(@PathVariable("id") int id){
+        reservaRepository.checkIn(id);
+        return "redirect:/reservas";
+    }
+
+
+    @GetMapping("/reservas/{id}/checkOut")
+    public String checkOut(@PathVariable("id") int id){
+        reservaRepository.checkOut(id);
         return "redirect:/reservas";
     }
 

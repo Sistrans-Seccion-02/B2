@@ -26,6 +26,13 @@ public class HabitacionController {
         model.addAttribute("habitaciones", habitacionRepository.darHabitaciones());
         return "Habitacion";
     }
+    @GetMapping("/habitaciones/req1")
+    public String req1(Model model){
+        model.addAttribute("habitaciones", habitacionRepository.req1());
+        return"Habitacionreq1";       
+    }
+
+
 
     @GetMapping("/habitaciones/new")
     public String habitacionForm(Model model){
