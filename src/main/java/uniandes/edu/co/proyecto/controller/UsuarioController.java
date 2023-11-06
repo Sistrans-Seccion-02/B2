@@ -34,19 +34,18 @@ public class UsuarioController {
         return "usuarioreq5";
     }
     @GetMapping("/usuarios/req9")
-    public String req9(Model model, String servicio, String fecha1, String fecha2, String op) {
+    public String req9(Model model, String servicio, String fecha1, String fecha2, String opcion) {
         
-        if ( op == null){
+        if ( opcion == null){
             model.addAttribute("usuarios", usuarioRepository.req9_NOMBRE(servicio, fecha1, fecha2));
         }
-        
-        else if(op.equals("ordenarPorNombre")){
+        else if(opcion.equals("ordenarPorNombre")){
             model.addAttribute("usuarios", usuarioRepository.req9_NOMBRE(servicio, fecha1, fecha2));
         }
-        else if(op.equals("ordenarPorId")){
+        else if(opcion.equals("ordenarPorId")){
             model.addAttribute("usuarios", usuarioRepository.req9_ID(servicio, fecha1, fecha2));
         }
-        else if(op.equals("agruparPorFecha")){
+        else if(opcion.equals("agruparPorFecha")){
             model.addAttribute("usuarios", usuarioRepository.req9_FECHA(servicio, fecha1, fecha2));
         }
         
