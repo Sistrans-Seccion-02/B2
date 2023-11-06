@@ -1,6 +1,8 @@
 package uniandes.edu.co.proyecto.Modelo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import java.time.LocalTime;
@@ -10,6 +12,8 @@ import java.time.LocalTime;
 public class Restaurante {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String nombre;
     private String tipo;
     private LocalTime horarioApertura;
@@ -26,7 +30,14 @@ public class Restaurante {
 
     public Restaurante() 
     {;}
+    
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public String getNombre() {
         return nombre;
     }
