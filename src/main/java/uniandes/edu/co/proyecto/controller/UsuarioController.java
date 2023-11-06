@@ -29,12 +29,7 @@ public class UsuarioController {
     }
     @GetMapping("/usuarios/req5")
     public String req5(Model model, Integer id, String fecha1, String fecha2) {
-        if((id == null) || (fecha1 == null) || (fecha2 == null)|| (id.equals("")) || (fecha1.equals("")) || (fecha2.equals(""))){
-            model.addAttribute("usuarios", usuarioRepository.req5(id, fecha1, fecha2));
-        }
-        else{
-            model.addAttribute("usuarios", usuarioRepository.req5(id, fecha1, fecha2));
-        }
+        model.addAttribute("usuarios", usuarioRepository.req5(id, fecha1, fecha2));
         
         return "usuarioreq5";
     }
