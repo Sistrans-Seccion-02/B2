@@ -48,12 +48,28 @@ public class UsuarioController {
         else if(opcion.equals("agruparPorFecha")){
             model.addAttribute("usuarios", usuarioRepository.req9_FECHA(servicio, fecha1, fecha2));
         }
-        
-       
-        
-        
         return "usuarioreq9";
     }
+
+      @GetMapping("/usuarios/req10")
+    public String req10(Model model, String servicio, String fecha1, String fecha2, String opcion) {
+        
+        if ( opcion == null){
+            model.addAttribute("usuarios", usuarioRepository.req10_NOMBRE(servicio, fecha1, fecha2));
+        }
+        else if(opcion.equals("ordenarPorNombre")){
+            model.addAttribute("usuarios", usuarioRepository.req10_NOMBRE(servicio, fecha1, fecha2));
+        }
+        else if(opcion.equals("ordenarPorId")){
+            model.addAttribute("usuarios", usuarioRepository.req10_ID(servicio, fecha1, fecha2));
+        }
+        else if(opcion.equals("agruparPorFecha")){
+            model.addAttribute("usuarios", usuarioRepository.req10_FECHA(servicio, fecha1, fecha2));
+        }
+        return "usuarioreq10";
+    }
+
+
 
     @GetMapping("/usuarios/new")
     public String usuarioForm(Model model){

@@ -119,7 +119,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
     "ORDER BY U.NOMBRE", nativeQuery = true)
     Collection<rtareq9_10_NOMBRE_ID> req10_NOMBRE(@Param("servicio") String servicio, @Param("fecha1") String fecha1, @Param("fecha2") String fecha2);
 
-    @Query(value = "SELECT DISTINCT U.ID, U.NOMBRE, S.DESCRIPCION  AS TIPO" + 
+    @Query(value = "SELECT DISTINCT U.ID, U.NOMBRE, S.DESCRIPCION  AS TIPO " + 
     "FROM SERVICIO S " +
     "JOIN CONSUMOS C ON C.ID = S.CONSUMOID " +
     "JOIN CONSUMODER CR ON CR.CONSUMOID = C.ID " +
@@ -129,12 +129,12 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
     "ORDER BY U.ID", nativeQuery = true)
     Collection<rtareq9_10_NOMBRE_ID> req10_ID(@Param("servicio") String servicio, @Param("fecha1") String fecha1, @Param("fecha2") String fecha2);
 
-    @Query(value ="SELECT C.FECHA, S.DESCRIPCION AS SERVICIO, COUNT(*) AS NUMERO_VECES_UTILIZADO"+
-    "FROM SERVICIO S"+
-    "JOIN CONSUMOS C ON C.ID = S.CONSUMOID"+
-   "JOIN CONSUMODER CRVE ON CR.CONSUMOID = C.ID"+
-    "JOIN RESERVAS R ON R.ID = CR.RESERVASID"+
-   "JOIN USUARIOS U ON U.ID = R.USUARIOSID"+
+    @Query(value ="SELECT C.FECHA, S.DESCRIPCION AS SERVICIO, COUNT(*) AS NUMERO_VECES_UTILIZADO "+
+    "FROM SERVICIO S "+
+    "JOIN CONSUMOS C ON C.ID = S.CONSUMOID "+
+   "JOIN CONSUMODER CR ON CR.CONSUMOID = C.ID "+
+    "JOIN RESERVAS R ON R.ID = CR.RESERVASID "+
+   "JOIN USUARIOS U ON U.ID = R.USUARIOSID "+
      "WHERE S.DESCRIPCION != :servicio AND C.FECHA BETWEEN TO_DATE(:fecha1, 'yyyy-mm-dd') AND TO_DATE(:fecha2, 'yyyy-mm-dd') " +
     "GROUP BY C.FECHA, S.DESCRIPCION", nativeQuery = true)
     Collection<rtareq9_10_FECHA> req10_FECHA(@Param("servicio") String servicio, @Param("fecha1") String fecha1, @Param("fecha2") String fecha2);
