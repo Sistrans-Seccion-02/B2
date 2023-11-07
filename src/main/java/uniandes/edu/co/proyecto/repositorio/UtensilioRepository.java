@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.repositorio;
 
+import java.time.LocalDate;
 import java.util.Collection;
 
 
@@ -20,9 +21,9 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
         }
 
         public interface rtareq2{
-                int getSERVICIOID();
                 String getSERVICIODESCRIPCION();
                 int getCANTIDADCONSUMO();
+                LocalDate getFECHACONSUMO();
         }
 
         public interface ratareq4{
@@ -79,11 +80,11 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
 
 //Consultas avanzadas
 
-    @Query(value = "SELECT s.id AS SERVICIOID, s.descripcion AS SERVICIODESCRIPCION, COUNT(c.id) AS CANTIDADCONSUMO\r\n" + //
+    @Query(value = "SELECT s.descripcion AS SERVICIODESCRIPCION, COUNT(c.id) AS CANTIDADCONSUMO, c.fecha AS FECHACONSUMO\r\n" + //
             "FROM servicio s\r\n" + //
             "LEFT JOIN consumos c ON s.consumoid = c.id\r\n" + //
             "WHERE c.fecha BETWEEN TO_DATE(:fechainicial, 'yyyy-mm-dd') AND TO_DATE(:fechafinal, 'yyyy-mm-dd')\r\n" + //
-            "GROUP BY s.id, s.descripcion\r\n" + //
+            "GROUP BY  s.descripcion, c.fecha\r\n" + //
             "ORDER BY COUNT(c.id) DESC\r\n" + //
             "FETCH FIRST 20 ROWS ONLY", nativeQuery = true)    
     Collection<rtareq2> darServiciosPoplares(@Param("fechainicial") String fechainicial, @Param("fechafinal") String fechafinal);
