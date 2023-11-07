@@ -26,8 +26,8 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
 
         public interface ratareq4{
                 int getid();
-                String getnombre();
-                double getpreciofinal();
+                String getdescripcion();
+                double getprecio();
         }
 
         public interface rtareq41{
@@ -43,7 +43,9 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
         }
 
         public interface rtareq12{
-
+                int getUSUARIOID();
+                String getNOMBRECLIENTE();
+                String getCEDULACLIENTE();
         }
         
     @Query(value = "SELECT * FROM  servicio", nativeQuery = true )
@@ -88,9 +90,9 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
             "ORDER BY s.id, s.descripcion", nativeQuery = true)
     Collection<rtareq8> darServiciosMenosConsumidos();
 
-    @Query(value = "SELECT id, nombre, preciofinal FROM SERVICIO\r\n" + //
+    @Query(value = "SELECT id, descripcion, precio FROM SERVICIO\r\n" + //
             "WHERE precio BETWEEN :precioinicial AND :preciofinal", nativeQuery = true)
-    Collection<ratareq4> darServicioPorRangoPrecio(@Param("precioinicial") double precioinicial, @Param("preciofinal") double preciofinal);
+    Collection<ratareq4> darServicioPorRangoPrecio(@Param("precioinicial") Double precioinicial, @Param("preciofinal") Double preciofinal);
 
     @Query(value = "SELECT s.id AS IDSERVICIO, s.descripcion AS DESCRIPCIONSERVICIO, c.fecha AS FECHA\r\n" + //
             "FROM SERVICIO s\r\n" + //
@@ -102,7 +104,29 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
             "WHERE descripcion = :tipo", nativeQuery = true)
     Collection<rtareq42> darServicioPorTipo(@Param("tipo") String tipo);
 
-//     @Query()
+//     @Query(value="SELECT u.id AS usuario_id, u.nombre AS nombre_cliente, u.cedula AS cedula_cliente,\r\n" + //
+//                     "       t.tipo AS tipo_usuario, t.descripcion AS descripcion_tipo_usuario,\r\n" + //
+//                     "       r.id AS reserva_id, r.fechaentrada, r.fechasalida, r.numpersonas, r.estado, r.precioreserva,\r\n" + //
+//                     "       rs.fechayhorai AS fecha_inicio_servicio, rs.fechayhoraf AS fecha_fin_servicio,\r\n" + //
+//                     "       rs.precio AS precio_servicio, rs.descripcion AS descripcion_servicio\r\n" + //
+//                     "FROM usuarios u\r\n" + //
+//                     "JOIN tiposusuario t ON u.tipoid = t.id\r\n" + //
+//                     "JOIN reservas r ON u.id = r.usuariosid\r\n" + //
+//                     "LEFT JOIN reservasservicio rs ON r.id = rs.reservaid\r\n" + //
+//                     "WHERE t.tipo = 'cliente'\r\n" + //
+//                     "AND (\r\n" + //
+//                     "    (SELECT COUNT(*) FROM reservas r2\r\n" + //
+//                     "     WHERE r2.usuariosid = u.id\r\n" + //
+//                     "     AND DATE_PART('quarter', r2.fechaentrada) = DATE_PART('quarter', CURRENT_DATE) - 1) > 0\r\n" + //
+//                     "    OR\r\n" + //
+//                     "    (SELECT COUNT(*) FROM reservasservicio rs2\r\n" + //
+//                     "     WHERE r.id = rs2.reservaid AND rs2.precio > 300000) > 0\r\n" + //
+//                     "    OR\r\n" + //
+//                     "    (SELECT COUNT(*) FROM reservasservicio rs3\r\n" + //
+//                     "     WHERE r.id = rs3.reservaid AND (rs3.descripcion = 'SPA' OR rs3.descripcion = 'Salon de reuniones')\r\n" + //
+//                     "     AND EXTRACT(HOUR FROM (rs3.fechayhoraf - rs3.fechayhorai)) > 4) > 0\r\n" + //
+//                     ")\r\n" + //
+//                     "ORDER BY u.id, r.id, rs.fechayhorai;")
 //     Collection<rtareq12> darClientesEstrella();
 
 }

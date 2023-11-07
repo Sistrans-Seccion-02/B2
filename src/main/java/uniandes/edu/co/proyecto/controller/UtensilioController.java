@@ -77,7 +77,7 @@ public class UtensilioController{
     }
 
     @GetMapping("/utensilios/req4")
-    public String utensilioReq4(Model model, double precioinicial, double preciofinal){
+    public String utensilioReq4(Model model, Double precioinicial, Double preciofinal){
         model.addAttribute("utensilios", utensilioRepository.darServicioPorRangoPrecio(precioinicial, preciofinal));
         return "ServicioReq4";
     }
@@ -93,4 +93,10 @@ public class UtensilioController{
         model.addAttribute("utensilios", utensilioRepository.darServicioPorTipo(tipo));
         return "ServicioReq42";
     }
+
+    // @GetMapping("/utensilios/req12")
+    // public String utensilioReq12(Model model){
+    //     model.addAttribute("utensilios", utensilioRepository.darClientesEstrella());
+    //     return "ServicioReq12";
+    // }
 }
