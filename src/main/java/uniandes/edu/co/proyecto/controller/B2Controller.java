@@ -32,6 +32,12 @@ public class B2Controller {
         // Lógica para el inicio de sesión del empleado o recepcionista
         return "indexRecepcionista"; // Esto redirige a la página del empleado o recepcionista
     }
+
+    @GetMapping("/indexGerente")
+    public String iniciarGerente() {
+        // Lógica para el inicio de sesión del empleado o recepcionista
+        return "indexGerente"; // Esto redirige a la página del empleado o recepcionista
+    }
     
 
     
