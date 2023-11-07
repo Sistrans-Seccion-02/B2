@@ -16,8 +16,6 @@
                 <th>Descripcion</th>
                 <th>Precio</th>
                 <th>Id Consumo</th>
-                <th>Duracion</th>
-
             </tr>
         </thead>
         <th:block th:each="Utensilios:${utensilios}">
@@ -26,7 +24,6 @@
                 <td th:text="${Utensilios.descripcion}"></td>
                 <td th:text="${Utensilios.precio}"></td>
                 <td th:text="${Utensilios.consumoid.id}"></td>
-                <td th:text="${Utensilios.duracion}"></td>
                 <td>
                     <a th:href="@{/utensilios/{id}/edit(id=${Utensilios.id})}" >Editar</a>
                     <a th:href="@{/utensilios/{id}/delete(id=${Utensilios.id})} "onclick = "return confirm ('Estas seguro de borrar este servicio?')" > Eliminar</a>
