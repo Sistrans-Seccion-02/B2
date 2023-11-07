@@ -2,7 +2,7 @@ package uniandes.edu.co.proyecto.repositorio;
 
 import java.util.Collection;
 
-import org.antlr.v4.runtime.atn.SemanticContext.AND;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -121,14 +121,14 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
                     "WHERE tu.tipo = 'empleado' u.id = :identifier;", nativeQuery = true)
     Collection<rtareq43> darServicioPorEmpleado(@Param("identifier") Integer identifier);
 
-    @Query(value="SELECT DISTINCT u.id AS IDUSUARIO, u.nombre AS NOMBREUSUARIO, u.cedula AS CEDULAUSUARIO\r\n" + //
-                    "FROM usuarios u\r\n" + //
-                    "JOIN reservas r ON u.id = r.usuariosid\r\n" + //
-                    "JOIN consumoder cd ON r.id = cd.reservasid\r\n" + //
-                    "JOIN consumo c ON cd.reservasid = c.id\r\n" + //
-                    "JOIN reservasservicio rs ON c.id = rs.consumoid\r\n" + //
-                    "JOIN tiposusuario tu ON u.tipoid = tu.id\r\n" + //
-                    "WHERE rs.precio >= 300000;",nativeQuery = true)
+    @Query(value="SELECT DISTINCT u.id AS IDUSUARIO, u.nombre AS NOMBREUSUARIO, u.cedula AS CEDULAUSUARIO " + //
+                    "FROM usuarios u " + //
+                    "JOIN reservas r ON u.id = r.usuariosid " + //
+                    "JOIN consumoder cd ON r.id = cd.reservasid " + //
+                    "JOIN consumos c ON cd.reservasid = c.id " + //
+                    "JOIN reservasservicio rs ON c.id = rs.consumoid " + //
+                    "JOIN tiposusuario tu ON u.tipoid = tu.id " + //
+                    "WHERE rs.precio >= 300000 ",nativeQuery = true)
     Collection<rtareq12> darClientesEstrella();
 }
 
