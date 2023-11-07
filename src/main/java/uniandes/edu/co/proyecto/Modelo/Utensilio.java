@@ -19,6 +19,7 @@ public class Utensilio {
     @ManyToOne
     @JoinColumn(name="consumoid", referencedColumnName = "id")
     private Consumo consumoid;
+
     
 
     public Utensilio(String descripcion, double precio, Consumo consumoid) {
@@ -61,6 +62,5 @@ public class Utensilio {
         this.consumoid = consumoid;
     }
 
-    
 }
 

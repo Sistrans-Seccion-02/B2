@@ -69,4 +69,40 @@ public class UtensilioController{
         model.addAttribute("utensilios", utensilioRepository.darServiciosMenosConsumidos());
         return "ServicioReq8";
     }
+
+    @GetMapping("/utensilios/req2")
+    public String utensilioReq2(Model model, String fechainicial, String fechafinal){
+        model.addAttribute("utensilios", utensilioRepository.darServiciosPoplares(fechainicial, fechafinal));
+        return "ServicioReq2";
+    }
+
+    @GetMapping("/utensilios/req4")
+    public String utensilioReq4(Model model, Double precioinicial, Double preciofinal){
+        model.addAttribute("utensilios", utensilioRepository.darServicioPorRangoPrecio(precioinicial, preciofinal));
+        return "ServicioReq4";
+    }
+
+    @GetMapping("/utensilios/req41")
+    public String utensilioReq41(Model model, String fechainicial, String fechafinal){
+        model.addAttribute("utensilios", utensilioRepository.darServicioPorRangoFecha(fechainicial, fechafinal));
+        return "ServicioReq41";
+    }
+
+    @GetMapping("/utensilios/req42")
+    public String utensilioReq42(Model model, String tipo){
+        model.addAttribute("utensilios", utensilioRepository.darServicioPorTipo(tipo));
+        return "ServicioReq42";
+    }
+
+    @GetMapping("/utensilios/req43")
+    public String utensilioReq43(Model model, Integer identifier){
+        model.addAttribute("utensilios", utensilioRepository.darServicioPorEmpleado(identifier));
+        return "ServicioReq43";
+    }
+
+    @GetMapping("/utensilios/req12")
+    public String utensilioReq12(Model model){
+        model.addAttribute("utensilios", utensilioRepository.darClientesEstrella());
+        return "ServicioReq12";
+    }
 }
