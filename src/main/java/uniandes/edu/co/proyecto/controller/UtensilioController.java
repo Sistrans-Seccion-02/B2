@@ -89,14 +89,20 @@ public class UtensilioController{
     }
 
     @GetMapping("/utensilios/req42")
-    public String utensilioReq41(Model model, String tipo){
+    public String utensilioReq42(Model model, String tipo){
         model.addAttribute("utensilios", utensilioRepository.darServicioPorTipo(tipo));
         return "ServicioReq42";
     }
 
-    // @GetMapping("/utensilios/req12")
-    // public String utensilioReq12(Model model){
-    //     model.addAttribute("utensilios", utensilioRepository.darClientesEstrella());
-    //     return "ServicioReq12";
-    // }
+    @GetMapping("/utensilios/req43")
+    public String utensilioReq43(Model model, Integer identifier){
+        model.addAttribute("utensilios", utensilioRepository.darServicioPorEmpleado(identifier));
+        return "ServicioReq43";
+    }
+
+    @GetMapping("/utensilios/req12")
+    public String utensilioReq12(Model model){
+        model.addAttribute("utensilios", utensilioRepository.darClientesEstrella());
+        return "ServicioReq12";
+    }
 }

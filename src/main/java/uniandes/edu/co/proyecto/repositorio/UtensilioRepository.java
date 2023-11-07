@@ -2,6 +2,7 @@ package uniandes.edu.co.proyecto.repositorio;
 
 import java.util.Collection;
 
+import org.antlr.v4.runtime.atn.SemanticContext.AND;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -42,10 +43,16 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
                 double getPRECIOSER();
         }
 
+        public interface rtareq43{
+                int getIDSER();
+                String getNOMBRESER();
+                double getPRECIOSER();
+        }
+
         public interface rtareq12{
-                int getUSUARIOID();
-                String getNOMBRECLIENTE();
-                String getCEDULACLIENTE();
+                String getNOMBREUSUARIO();
+                int getIDUSUARIO();
+                String getCEDULAUSUARIO();
         }
         
     @Query(value = "SELECT * FROM  servicio", nativeQuery = true )
@@ -104,31 +111,25 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
             "WHERE descripcion = :tipo", nativeQuery = true)
     Collection<rtareq42> darServicioPorTipo(@Param("tipo") String tipo);
 
-//     @Query(value="SELECT u.id AS usuario_id, u.nombre AS nombre_cliente, u.cedula AS cedula_cliente,\r\n" + //
-//                     "       t.tipo AS tipo_usuario, t.descripcion AS descripcion_tipo_usuario,\r\n" + //
-//                     "       r.id AS reserva_id, r.fechaentrada, r.fechasalida, r.numpersonas, r.estado, r.precioreserva,\r\n" + //
-//                     "       rs.fechayhorai AS fecha_inicio_servicio, rs.fechayhoraf AS fecha_fin_servicio,\r\n" + //
-//                     "       rs.precio AS precio_servicio, rs.descripcion AS descripcion_servicio\r\n" + //
-//                     "FROM usuarios u\r\n" + //
-//                     "JOIN tiposusuario t ON u.tipoid = t.id\r\n" + //
-//                     "JOIN reservas r ON u.id = r.usuariosid\r\n" + //
-//                     "LEFT JOIN reservasservicio rs ON r.id = rs.reservaid\r\n" + //
-//                     "WHERE t.tipo = 'cliente'\r\n" + //
-//                     "AND (\r\n" + //
-//                     "    (SELECT COUNT(*) FROM reservas r2\r\n" + //
-//                     "     WHERE r2.usuariosid = u.id\r\n" + //
-//                     "     AND DATE_PART('quarter', r2.fechaentrada) = DATE_PART('quarter', CURRENT_DATE) - 1) > 0\r\n" + //
-//                     "    OR\r\n" + //
-//                     "    (SELECT COUNT(*) FROM reservasservicio rs2\r\n" + //
-//                     "     WHERE r.id = rs2.reservaid AND rs2.precio > 300000) > 0\r\n" + //
-//                     "    OR\r\n" + //
-//                     "    (SELECT COUNT(*) FROM reservasservicio rs3\r\n" + //
-//                     "     WHERE r.id = rs3.reservaid AND (rs3.descripcion = 'SPA' OR rs3.descripcion = 'Salon de reuniones')\r\n" + //
-//                     "     AND EXTRACT(HOUR FROM (rs3.fechayhoraf - rs3.fechayhorai)) > 4) > 0\r\n" + //
-//                     ")\r\n" + //
-//                     "ORDER BY u.id, r.id, rs.fechayhorai;")
-//     Collection<rtareq12> darClientesEstrella();
+    @Query(value="SELECT u.id AS IDUSUARIO, u.nombre AS NOMBREUSUARIO, rs.descripcion AS DESCRIPCIONSERVICIO, rs.precio AS PRECIOSERVICIO\r\n" + //
+                    "FROM tiposusuario tu\r\n" + //
+                    "JOIN usuarios u ON tu.id = u.tipoid\r\n" + //
+                    "JOIN reservas r ON u.id = r.usuariosid\r\n" + //
+                    "JOIN consumoder cr ON r.id = cr.reservasid\r\n" + //
+                    "JOIN consumos c ON cr.consumoid = c.id\r\n" + //
+                    "JOIN reservasservicio rs ON c.id = rs.consumoid\r\n" + //
+                    "WHERE tu.tipo = 'empleado' u.id = :identifier;", nativeQuery = true)
+    Collection<rtareq43> darServicioPorEmpleado(@Param("identifier") Integer identifier);
 
+    @Query(value="SELECT DISTINCT u.id AS IDUSUARIO, u.nombre AS NOMBREUSUARIO, u.cedula AS CEDULAUSUARIO\r\n" + //
+                    "FROM usuarios u\r\n" + //
+                    "JOIN reservas r ON u.id = r.usuariosid\r\n" + //
+                    "JOIN consumoder cd ON r.id = cd.reservasid\r\n" + //
+                    "JOIN consumo c ON cd.reservasid = c.id\r\n" + //
+                    "JOIN reservasservicio rs ON c.id = rs.consumoid\r\n" + //
+                    "JOIN tiposusuario tu ON u.tipoid = tu.id\r\n" + //
+                    "WHERE rs.precio >= 300000;",nativeQuery = true)
+    Collection<rtareq12> darClientesEstrella();
 }
 
 

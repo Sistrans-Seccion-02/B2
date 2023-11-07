@@ -12,17 +12,17 @@
     <table class="table table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
-                <th>Id Cliente</th>
-                <th>Nobre</th>
+                <th>Nombre Cliente</th>
+                <th>Id</th>
                 <th>Cedula</th>
 
             </tr>
         </thead>
         <th:block th:each="Utensilios:${utensilios}">
             <tr>
-                <td th:text="${Utensilios.getUSUARIOID}"></td>
-                <td th:text="${Utensilios.getNOMBRECLIENTE}"></td>
-                <td th:text="${Utensilios.getCEDULACLIENTE}"></td>
+                <td th:text="${Utensilios.getNOMBREUSUARIO}"></td>
+                <td th:text="${Utensilios.getIDUSUARIO}"></td>
+                <td th:text="${Utensilios.getCEDULAUSUARIO}"></td>
             </tr>
 
 
