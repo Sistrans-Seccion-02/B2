@@ -50,7 +50,7 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
     "FROM " + 
     "    HABITACION H " + 
     "    INNER JOIN RESERVAS R ON R.HABITACIONID = H.ID " + 
-    "    INNER JOIN CONSUMODER C ON C.CONSUMOID = R.ID " + 
+    "    INNER JOIN CONSUMODER C ON C.RESERVASID = R.ID " + 
     "    INNER JOIN SERVICIO S ON S.CONSUMOID = C.CONSUMOID " +
     "WHERE  " + 
     "      R.FECHAENTRADA >= TRUNC(SYSDATE) - INTERVAL '1' YEAR   " + 
