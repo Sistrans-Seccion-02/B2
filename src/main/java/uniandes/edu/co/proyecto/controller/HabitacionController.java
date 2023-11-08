@@ -32,6 +32,11 @@ public class HabitacionController {
         return"Habitacionreq1";       
     }
 
+    @GetMapping("/habitaciones/req3")
+    public String req3(Model model) {
+        model.addAttribute("habitaciones", habitacionRepository.req3());
+        return "Habitacionreq3";
+    }
 
 
     @GetMapping("/habitaciones/new")

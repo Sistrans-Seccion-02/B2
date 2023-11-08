@@ -19,13 +19,13 @@ public class BarController {
     @GetMapping("/bares")
     public String bares(Model model) {
         model.addAttribute("bares", barRepository.darBares());
-        return "Bares";
+        return "bares";
     }
     
     @GetMapping("/bares/new")
     public String barForm(Model model) {
         model.addAttribute("bar", new Bar());
-        return "BarNuevo";
+        return "barNuevo";
     }
 
     @PostMapping("/bares/new/save")
@@ -39,7 +39,7 @@ public class BarController {
         Bar bar = barRepository.darBar(id);
         if (bar != null) {
             model.addAttribute("bar", bar);
-            return "BarEditar";
+            return "barEditar";
         } else {
             return "redirect:/bares";
         }

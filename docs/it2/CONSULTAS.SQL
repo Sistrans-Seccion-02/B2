@@ -24,6 +24,27 @@ WHERE c.fecha BETWEEN TO_DATE(:fechainicial, 'yyyy-mm-dd') AND TO_DATE(:fechafin
 GROUP BY s.id, s.descripcion 
 ORDER BY COUNT(c.id) DESC FETCH FIRST 20 ROWS ONLY 
 
+--Req 3
+SELECT habitacion.id AS ID_HABITACION,
+    ROUND(COALESCE(
+    (SUM(
+      CASE
+        WHEN reservas.fechaentrada = reservas.fechasalida THEN 1
+        WHEN reservas.fechaentrada < (TRUNC(SYSDATE) - 365) THEN (reservas.fechasalida - (TRUNC(SYSDATE) - 365)) + 1
+        ELSE (reservas.fechasalida - reservas.fechaentrada) + 1
+      END
+    ) / 365.0) * 100,
+    0
+    ), 2) AS OCCUPANCY_PERCENTAGE
+    FROM
+      habitacion
+    LEFT JOIN
+      reservas
+      ON habitacion.id = reservas.habitacionid
+      AND reservas.fechaentrada >= TRUNC(SYSDATE) - 365
+    GROUP BY
+      habitacion.id;
+
 -- Req4
 SELECT id, descripcion, precio FROM SERVICIO 
 WHERE precio BETWEEN :precioinicial AND :preciofinal 
@@ -94,6 +115,32 @@ JOIN USUARIOS U ON U.ID = R.USUARIOSID
 WHERE S.DESCRIPCION = 'SPA' AND C.FECHA BETWEEN '1/1/80' AND '31/12/10'
 GROUP BY C.FECHA, S.DESCRIPCION;
 
+--Req6
+SELECT trunc(fecha), COUNT(fecha) AS suma_consumos
+FROM consumos
+GROUP BY trunc(fecha)
+ORDER BY suma_consumos DESC
+FETCH FIRST 10 ROWS ONLY;
+
+--Req7
+SELECT U.id, U.nombre, SUM(S.PRECIO) AS Justificacion
+FROM USUARIOS U
+INNER JOIN Reservas R ON U.id = R.usuariosid
+INNER JOIN consumoder CR ON R.id = CR.reservasid
+INNER JOIN consumos C ON C.id = CR.consumoid
+INNER JOIN servicio S ON S.consumoid = C.id
+WHERE U.TIPOID = 2 AND R.fechaentrada >= trunc(sysdate) - 365
+GROUP BY U.id, U.nombre
+HAVING Sum(s.precio) > 1000000
+UNION
+SELECT id, nombre, duracion_total_estadia
+FROM (
+    SELECT usuarios.id, usuarios.nombre, SUM(reservas.fechasalida - reservas.fechaentrada) AS duracion_total_estadia
+    FROM usuarios JOIN reservas ON usuarios.id = reservas.usuariosid WHERE usuarios.tipoid= 2 AND reservas.fechaentrada >= trunc(sysdate) - 365
+    GROUP BY usuarios.id, usuarios.nombre
+    )
+    WHERE duracion_total_estadia >= 14
+;
 
 
 --RFC10 - 

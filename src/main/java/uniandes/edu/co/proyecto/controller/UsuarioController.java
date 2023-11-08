@@ -33,6 +33,13 @@ public class UsuarioController {
         
         return "usuarioreq5";
     }
+
+    @GetMapping("/usuarios/req7")
+    public String req5(Model model) {
+        model.addAttribute("usuarios", usuarioRepository.req7());
+        return "usuarioreq7";
+    }
+    
     @GetMapping("/usuarios/req9")
     public String req9(Model model, String servicio, String fecha1, String fecha2, String opcion) {
         

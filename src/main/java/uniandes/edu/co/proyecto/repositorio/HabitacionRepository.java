@@ -21,6 +21,11 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
 
     }
     
+    public interface rtareq3{
+        int getID();
+        double getOCCUPANCY_PERCENTAGE();
+    }
+    
     @Query(value = "SELECT * FROM habitacion", nativeQuery = true)
 
     Collection<Habitacion> darHabitaciones();
@@ -61,6 +66,25 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
 
    Collection<rtareq1> req1();
 
-   
+   @Query(value = "SELECT habitacion.id AS ID_HABITACION,\r\n" + //
+           "    ROUND(COALESCE(\r\n" + //
+           "    (SUM(\r\n" + //
+           "      CASE\r\n" + //
+           "        WHEN reservas.fechaentrada = reservas.fechasalida THEN 1\r\n" + //
+           "        WHEN reservas.fechaentrada < (TRUNC(SYSDATE) - 365) THEN (reservas.fechasalida - (TRUNC(SYSDATE) - 365)) + 1\r\n" + //
+           "        ELSE (reservas.fechasalida - reservas.fechaentrada) + 1\r\n" + //
+           "      END\r\n" + //
+           "    ) / 365.0) * 100,\r\n" + //
+           "    0\r\n" + //
+           "    ), 2) AS OCCUPANCY_PERCENTAGE\r\n" + //
+           "    FROM\r\n" + //
+           "      habitacion\r\n" + //
+           "    LEFT JOIN\r\n" + //
+           "      reservas\r\n" + //
+           "      ON habitacion.id = reservas.habitacionid\r\n" + //
+           "      AND reservas.fechaentrada >= TRUNC(SYSDATE) - 365\r\n" + //
+           "    GROUP BY\r\n" + //
+           "      habitacion.id;", nativeQuery=true)
+    Collection<rtareq3> req3();
     
 }
