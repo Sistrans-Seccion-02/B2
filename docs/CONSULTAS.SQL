@@ -16,6 +16,28 @@ GROUP BY
     H.ID, S.DESCRIPCION 
 ORDER BY H.ID;
 
+-- Req 2
+SELECT s.id AS SERVICIOID, s.descripcion AS SERVICIODESCRIPCION, COUNT(c.id) AS CANTIDADCONSUMO 
+FROM servicio s 
+LEFT JOIN consumos c ON s.consumoid = c.id  
+WHERE c.fecha BETWEEN TO_DATE(:fechainicial, 'yyyy-mm-dd') AND TO_DATE(:fechafinal, 'yyyy-mm-dd')  
+GROUP BY s.id, s.descripcion 
+ORDER BY COUNT(c.id) DESC FETCH FIRST 20 ROWS ONLY 
+
+-- Req4
+SELECT id, descripcion, precio FROM SERVICIO 
+WHERE precio BETWEEN :precioinicial AND :preciofinal 
+
+-- Req4.1
+SELECT s.id AS IDSERVICIO, s.descripcion AS DESCRIPCIONSERVICIO, c.fecha AS FECHA 
+FROM SERVICIO s 
+INNER JOIN CONSUMOS c ON s.consumoid = c.id 
+WHERE c.fecha BETWEEN TO_DATE('2022-02-05', 'yyyy-mm-dd') AND TO_DATE('2022-02-10', 'yyyy-mm-dd') 
+
+-- Req4.2
+SELECT s.id AS IDSER, s.descripcion AS NOMBRESER, s.precio AS PRECIOSER FROM SERVICIO s 
+WHERE descripcion =: tipo
+
 -- req 5
 SELECT 
     R.USUARIOSID AS USUARIO_ID, 
@@ -109,5 +131,39 @@ JOIN USUARIOS U ON U.ID = R.USUARIOSID
 WHERE S.DESCRIPCION! = 'SPA' AND C.FECHA BETWEEN '1/1/80' AND '31/12/10'
 GROUP BY C.FECHA, S.DESCRIPCION;
 
+-- Req 8
+SELECT s.id AS SERVICIOID, s.descripcion AS SERVICIODESCRIPCION, COUNT(c.id) AS CANTIDADCONSUMO  
+FROM servicio s 
+LEFT JOIN consumos c ON s.consumoid = c.id  
+WHERE c.fecha BETWEEN SYSDATE - 365 AND SYSDATE  
+GROUP BY s.id, s.descripcion  HAVING COUNT(c.id) < 3   
+ORDER BY s.id, s.descripcion 
 
-
+-- Req 12
+SELECT DISTINCT u.id AS IDUSUARIO, u.nombre AS NOMBREUSUARIO, u.cedula AS CEDULAUSUARIO 
+FROM usuarios u  
+JOIN reservas r ON u.id = r.usuariosid 
+JOIN consumoder cd ON r.id = cd.reservasid  
+JOIN consumos c ON cd.reservasid = c.id 
+JOIN reservasservicio rs ON c.id = rs.consumoid 
+JOIN tiposusuario tu ON u.tipoid = tu.id 
+WHERE tu.tipo='cliente' AND ( 
+    (r.fechaentrada >= TRUNC(SYSDATE, 'Q') AND r.fechaentrada <= SYSDATE) 
+    OR EXISTS ( 
+        SELECT 1 
+        FROM reservasservicio rss 
+        WHERE c.id = rss.consumoid AND rss.precio > 300000 
+    ) 
+    OR ( 
+        rs.descripcion IN ('SPA', 'Salones de reuniones') 
+        AND (rs.fechayhoraf - rs.fechayhorai) > 4/24 
+    ) 
+) 
+OR EXISTS ( 
+        SELECT 1 
+        FROM reservas r2 
+        WHERE u.id = r2.usuariosid 
+        AND MONTHS_BETWEEN(TRUNC(SYSDATE), TRUNC(r2.fechaentrada)) <= 12 
+        AND (r2.fechasalida - r2.fechaentrada) <= 90 
+    ) 
+GROUP BY u.nombre, u.id, u.cedula; 
