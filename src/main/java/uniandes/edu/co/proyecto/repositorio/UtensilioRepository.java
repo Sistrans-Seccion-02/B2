@@ -23,7 +23,7 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
         public interface rtareq2{
                 String getSERVICIODESCRIPCION();
                 int getCANTIDADCONSUMO();
-                LocalDate getFECHACONSUMO();
+
         }
 
         public interface ratareq4{
@@ -80,11 +80,11 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
 
 //Consultas avanzadas
 
-    @Query(value = "SELECT s.descripcion AS SERVICIODESCRIPCION, COUNT(c.id) AS CANTIDADCONSUMO, c.fecha AS FECHACONSUMO\r\n" + //
+    @Query(value = "SELECT s.descripcion AS SERVICIODESCRIPCION, COUNT(c.id) AS CANTIDADCONSUMO\r\n" + //
             "FROM servicio s\r\n" + //
             "LEFT JOIN consumos c ON s.consumoid = c.id\r\n" + //
             "WHERE c.fecha BETWEEN TO_DATE(:fechainicial, 'yyyy-mm-dd') AND TO_DATE(:fechafinal, 'yyyy-mm-dd')\r\n" + //
-            "GROUP BY  s.descripcion, c.fecha\r\n" + //
+            "GROUP BY  s.descripcion\r\n" + //
             "ORDER BY COUNT(c.id) DESC\r\n" + //
             "FETCH FIRST 20 ROWS ONLY", nativeQuery = true)    
     Collection<rtareq2> darServiciosPoplares(@Param("fechainicial") String fechainicial, @Param("fechafinal") String fechafinal);
@@ -122,14 +122,34 @@ public interface UtensilioRepository extends JpaRepository<Utensilio, Integer> {
                     "WHERE tu.tipo = 'empleado' u.id = :identifier;", nativeQuery = true)
     Collection<rtareq43> darServicioPorEmpleado(@Param("identifier") Integer identifier);
 
-    @Query(value="SELECT DISTINCT u.id AS IDUSUARIO, u.nombre AS NOMBREUSUARIO, u.cedula AS CEDULAUSUARIO " + //
-                    "FROM usuarios u " + //
-                    "JOIN reservas r ON u.id = r.usuariosid " + //
-                    "JOIN consumoder cd ON r.id = cd.reservasid " + //
-                    "JOIN consumos c ON cd.reservasid = c.id " + //
-                    "JOIN reservasservicio rs ON c.id = rs.consumoid " + //
-                    "JOIN tiposusuario tu ON u.tipoid = tu.id " + //
-                    "WHERE rs.precio >= 300000 ",nativeQuery = true)
+    @Query(value="SELECT DISTINCT u.id AS IDUSUARIO, u.nombre AS NOMBREUSUARIO, u.cedula AS CEDULAUSUARIO\r\n" + //
+                    "FROM usuarios u \r\n" + //
+                    "JOIN reservas r ON u.id = r.usuariosid\r\n" + //
+                    "JOIN consumoder cd ON r.id = cd.reservasid \r\n" + //
+                    "JOIN consumos c ON cd.reservasid = c.id\r\n" + //
+                    "JOIN reservasservicio rs ON c.id = rs.consumoid\r\n" + //
+                    "JOIN tiposusuario tu ON u.tipoid = tu.id\r\n" + //
+                    "WHERE tu.tipo='cliente' AND (\r\n" + //
+                    "    (r.fechaentrada >= TRUNC(SYSDATE, 'Q') AND r.fechaentrada <= SYSDATE)\r\n" + //
+                    "    OR EXISTS (\r\n" + //
+                    "        SELECT 1\r\n" + //
+                    "        FROM reservasservicio rss\r\n" + //
+                    "        WHERE c.id = rss.consumoid AND rss.precio > 300000\r\n" + //
+                    "    )\r\n" + //
+                    "    OR (\r\n" + //
+                    "        rs.descripcion IN ('SPA', 'Salones de reuniones')\r\n" + //
+                    "        AND (rs.fechayhoraf - rs.fechayhorai) > 4/24\r\n" + //
+                    "    )\r\n" + //
+                    ")\r\n" + //
+                    "OR EXISTS (\r\n" + //
+                    "        SELECT 1\r\n" + //
+                    "        FROM reservas r2\r\n" + //
+                    "        WHERE u.id = r2.usuariosid\r\n" + //
+                    "        AND MONTHS_BETWEEN(TRUNC(SYSDATE), TRUNC(r2.fechaentrada)) <= 12\r\n" + //
+                    "        AND (r2.fechasalida - r2.fechaentrada) <= 90\r\n" + //
+                    "    )\r\n" + //
+                    "\r\n" + //
+                    "GROUP BY u.nombre, u.id, u.cedula",nativeQuery = true)
     Collection<rtareq12> darClientesEstrella();
 }
 
