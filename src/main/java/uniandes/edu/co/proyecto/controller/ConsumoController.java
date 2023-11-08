@@ -22,6 +22,12 @@ public class ConsumoController {
         return "consumos";
     }
     
+    @GetMapping("/consumos/req6")
+    public String req6(Model model) {
+        model.addAttribute("consumos", consumoRepository.req6());
+        return "Consumosreq6";
+    }
+
     @GetMapping("/consumos/new")
     public String consumoForm(Model model) {
         model.addAttribute("consumo", new Consumo());

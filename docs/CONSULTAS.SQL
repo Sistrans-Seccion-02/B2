@@ -25,29 +25,25 @@ GROUP BY s.id, s.descripcion
 ORDER BY COUNT(c.id) DESC FETCH FIRST 20 ROWS ONLY 
 
 --Req 3
-SELECT
-  habitacion.id AS ID_HABITACION,
-  COALESCE(
+SELECT habitacion.id AS ID_HABITACION,
+    ROUND(COALESCE(
     (SUM(
       CASE
         WHEN reservas.fechaentrada = reservas.fechasalida THEN 1
         WHEN reservas.fechaentrada < (TRUNC(SYSDATE) - 365) THEN (reservas.fechasalida - (TRUNC(SYSDATE) - 365)) + 1
-        --WHEN reservas.fechasalida < TRUNC(SYSDATE) - 365 THEN (reservas.fechaentrada - (TRUNC(SYSDATE) - 365)) + 1
         ELSE (reservas.fechasalida - reservas.fechaentrada) + 1
       END
     ) / 365.0) * 100,
     0
-  ) AS occupancy_percentage
-FROM
-  habitacion
-LEFT JOIN
-  reservas
-  ON habitacion.id = reservas.habitacionid
-  AND reservas.fechaentrada >= TRUNC(SYSDATE) - 365
-GROUP BY
-  habitacion.id
-ORDER BY
-  habitacion.id;
+    ), 2) AS OCCUPANCY_PERCENTAGE
+    FROM
+      habitacion
+    LEFT JOIN
+      reservas
+      ON habitacion.id = reservas.habitacionid
+      AND reservas.fechaentrada >= TRUNC(SYSDATE) - 365
+    GROUP BY
+      habitacion.id;
 
 -- Req4
 SELECT id, descripcion, precio FROM SERVICIO 

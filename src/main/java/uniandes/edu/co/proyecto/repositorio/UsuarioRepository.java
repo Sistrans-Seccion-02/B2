@@ -3,6 +3,7 @@ package uniandes.edu.co.proyecto.repositorio;
 
 import java.util.Collection;
 
+import org.antlr.v4.runtime.atn.SemanticContext.AND;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -23,6 +24,11 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
         String getTIPO_CONSUMO();
         double getCOSTO();
 
+    }
+    public interface rtareq7 {
+        int getID();
+        String getNOMBRE();
+        int getJustificacion();
     }
     public interface rtareq9_10_NOMBRE_ID{
          int getID();
@@ -72,8 +78,26 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
     Collection<rtareq5> req5(@Param("id") Integer id, @Param("fecha1") String fecha1, @Param("fecha2") String fecha2);
 
     
-
-
+    //RFC7 - ENCONTRAR LOS BUENOS CLIENTES
+    @Query(value = "SELECT U.id, U.nombre, SUM(S.PRECIO) AS Justificacion\r\n" + //
+            "FROM USUARIOS U\r\n" + //
+            "INNER JOIN Reservas R ON U.id = R.usuariosid\r\n" + //
+            "INNER JOIN consumoder CR ON R.id = CR.reservasid\r\n" + //
+            "INNER JOIN consumos C ON C.id = CR.consumoid\r\n" + //
+            "INNER JOIN servicio S ON S.consumoid = C.id\r\n" + //
+            "WHERE U.TIPOID = 2 AND R.fechaentrada >= trunc(sysdate) - 365\r\n" + //
+            "GROUP BY U.id, U.nombre\r\n" + //
+            "HAVING Sum(s.precio) > 1000000\r\n" + //
+            "UNION\r\n" + //
+            "SELECT id, nombre, duracion_total_estadia\r\n" + //
+            "FROM (\r\n" + //
+            "    SELECT usuarios.id, usuarios.nombre, SUM(reservas.fechasalida - reservas.fechaentrada) AS duracion_total_estadia\r\n" + //
+            "    FROM usuarios JOIN reservas ON usuarios.id = reservas.usuariosid WHERE usuarios.tipoid= 2 AND reservas.fechaentrada >= trunc(sysdate) - 365\r\n" + //
+            "    GROUP BY usuarios.id, usuarios.nombre\r\n" + //
+            "    )\r\n" + //
+            "    WHERE duracion_total_estadia >= 14\r\n" + //
+            ";", nativeQuery = true)
+    Collection<rtareq7> req7();
 
     //RFC9
     @Query(value = "SELECT DISTINCT U.ID, U.NOMBRE, S.DESCRIPCION AS TIPO " + 
