@@ -16,7 +16,8 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
 
     public interface rtareq6{
         String getFECHA();
-        int getSUMA_CONSUMOS();
+        int getTotal_del_dia();
+        int getOCUPACION();
     }
 
     @Query(value = "SELECT * FROM  Consumos", nativeQuery = true )
@@ -41,11 +42,13 @@ public interface ConsumoRepository extends JpaRepository<Consumo, Integer> {
     @Query(value = "DELETE FROM Consumos WHERE id = :id", nativeQuery = true)
     void eliminarConsumo(@Param("id")Integer id);
 
-    @Query(value = "SELECT trunc(fecha) AS FECHA, COUNT(fecha) AS SUMA_CONSUMOS\r\n" + //
-            " FROM consumos\r\n" + //
-            " GROUP BY trunc(fecha)\r\n" + //
-            " ORDER BY suma_consumos DESC\r\n" + //
-            " FETCH FIRST 10 ROWS ONLY;", nativeQuery=true)
+    @Query(value = "SELECT TRUNC(CONSUMOS.FECHA) AS FECHA, SUM(S.PRECIO) AS Total_del_dia  , COUNT(DISTINCT R.ID ) AS OCUPACION\r\n" + //
+            " FROM RESERVAS R \r\n" + //
+            " INNER JOIN CONSUMODER C ON R.ID = C.RESERVASID\r\n" + //
+            " INNER JOIN CONSUMOS ON CONSUMOS.ID= C.CONSUMOID\r\n" + //
+            " INNER JOIN SERVICIO S ON S.CONSUMOID = CONSUMOS.ID \r\n" + //
+            " GROUP BY TRUNC(CONSUMOS.FECHA)\r\n" + //
+            " ORDER BY OCUPACION desc", nativeQuery=true)
     Collection<rtareq6> req6();
 }
 

@@ -79,7 +79,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 
     
     //RFC7 - ENCONTRAR LOS BUENOS CLIENTES
-    @Query(value = "SELECT U.id, U.nombre, SUM(S.PRECIO) AS Justificacion\r\n" + //
+    @Query(value = "SELECT U.id as ID, U.nombre as NOMBRE, SUM(S.PRECIO) AS Justificacion\r\n" + //
             "FROM USUARIOS U\r\n" + //
             "INNER JOIN Reservas R ON U.id = R.usuariosid\r\n" + //
             "INNER JOIN consumoder CR ON R.id = CR.reservasid\r\n" + //
@@ -95,8 +95,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
             "    FROM usuarios JOIN reservas ON usuarios.id = reservas.usuariosid WHERE usuarios.tipoid= 2 AND reservas.fechaentrada >= trunc(sysdate) - 365\r\n" + //
             "    GROUP BY usuarios.id, usuarios.nombre\r\n" + //
             "    )\r\n" + //
-            "    WHERE duracion_total_estadia >= 14\r\n" + //
-            ";", nativeQuery = true)
+            "    WHERE duracion_total_estadia >= 14", nativeQuery = true)
     Collection<rtareq7> req7();
 
     //RFC9
