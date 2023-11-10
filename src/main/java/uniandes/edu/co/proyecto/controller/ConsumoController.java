@@ -19,7 +19,7 @@ public class ConsumoController {
     @GetMapping("/consumos")
     public String consumos(Model model) {
         model.addAttribute("consumos", consumoRepository.darConsumos());
-        return "consumos";
+        return "Consumos";
     }
     
     @GetMapping("/consumos/req6")
@@ -37,7 +37,7 @@ public class ConsumoController {
     @PostMapping("/consumos/new/save")
     public String consumoGuardar(@ModelAttribute Consumo consumo) {
         consumoRepository.insertarConsumo(consumo.getFecha());
-        return "redirect:/consumos";
+        return "redirect:/Consumos";
         
     }
 
@@ -57,14 +57,14 @@ public class ConsumoController {
             System.out.println(id);
             consumoRepository.actualizarConsumo(((Integer) id), consumo.getFecha());
                     
-            return "redirect:/consumos";
+            return "redirect:/Consumos";
         }
 
 
     @GetMapping("/consumos/{id}/delete")
     public String consumoEliminar(@PathVariable("id") Integer id) {
         consumoRepository.eliminarConsumo(id);
-        return "redirect:/consumos";
+        return "redirect:/Consumos";
     }
 }
 

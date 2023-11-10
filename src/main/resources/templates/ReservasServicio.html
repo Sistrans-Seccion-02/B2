@@ -20,18 +20,18 @@
 
             </tr>
         </thead>
-        <th:block th:each="Reservas:${reservas}">
+        <th:block th:each="reservasServicio:${reservasServicio}">
             <tr>
-                <td th:text="${Reservas.id}"></td>
-                <td th:text="${Reservas.fechayhorai}"></td>
-                <td th:text="${Reservas.fechayhoraf}"></td>
-                <td th:text="${Reservas.precio}"></td>
-                <td th:text="${Reservas.descripcion}"></td>
-                <td th:text="${Reservas.consumoid}"></td>
+                <td th:text="${reservasServicio.id}"></td>
+                <td th:text="${reservasServicio.fechayhorai}"></td>
+                <td th:text="${reservasServicio.fechayhoraf}"></td>
+                <td th:text="${reservasServicio.precio}"></td>
+                <td th:text="${reservasServicio.descripcion}"></td>
+                <td th:text="${reservasServicio.consumoid.id}"></td>
 
                 <td>
-                    <a th:href="@{/reservasServicio/{id}/edit(id=${Reservas.id})}" >Editar</a>
-                    <a th:href="@{/reservasServicio/{id}/delete(id=${Reservas.id})} "onclick = "return confirm ('Estas seguro de borrar esta reserva de servicio?')" > Eliminar</a>
+                    <a th:href="@{/reservasServicio/{id}/edit(id=${reservasServicio.id})}" >Editar</a>
+                    <a th:href="@{/reservasServicio/{id}/delete(id=${reservasServicio.id})} "onclick = "return confirm ('Estas seguro de borrar esta reserva de servicio?')" > Eliminar</a>
 
                 </td>
             </tr>
