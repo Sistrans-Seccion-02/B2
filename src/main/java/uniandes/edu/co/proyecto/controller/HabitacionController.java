@@ -37,7 +37,11 @@ public class HabitacionController {
         model.addAttribute("habitaciones", habitacionRepository.req3());
         return "Habitacionreq3";
     }
-
+    @GetMapping("/habitaciones/req11")
+    public String req11(Model model) {
+        model.addAttribute("habitaciones", habitacionRepository.req11());
+        return "Habitacionreq11";
+    }
 
     @GetMapping("/habitaciones/new")
     public String habitacionForm(Model model){

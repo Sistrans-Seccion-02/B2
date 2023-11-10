@@ -116,11 +116,13 @@ WHERE S.DESCRIPCION = 'SPA' AND C.FECHA BETWEEN '1/1/80' AND '31/12/10'
 GROUP BY C.FECHA, S.DESCRIPCION;
 
 --Req6
-SELECT trunc(fecha), COUNT(fecha) AS suma_consumos
-FROM consumos
-GROUP BY trunc(fecha)
-ORDER BY suma_consumos DESC
-FETCH FIRST 10 ROWS ONLY;
+SELECT TRUNC(CONSUMOS.FECHA), SUM(S.PRECIO) AS Total_del_dia  , COUNT(DISTINCT R.ID ) AS OCUPACION
+FROM RESERVAS R 
+INNER JOIN CONSUMODER C ON R.ID = C.RESERVASID
+INNER JOIN CONSUMOS ON CONSUMOS.ID= C.CONSUMOID
+INNER JOIN SERVICIO S ON S.CONSUMOID = CONSUMOS.ID 
+GROUP BY TRUNC(CONSUMOS.FECHA)
+ORDER BY OCUPACION desc;
 
 --Req7
 SELECT U.id, U.nombre, SUM(S.PRECIO) AS Justificacion
@@ -185,6 +187,58 @@ LEFT JOIN consumos c ON s.consumoid = c.id
 WHERE c.fecha BETWEEN SYSDATE - 365 AND SYSDATE  
 GROUP BY s.id, s.descripcion  HAVING COUNT(c.id) < 3   
 ORDER BY s.id, s.descripcion 
+
+--Req 11a
+SELECT 
+    YearWeek,
+    habitacionid,
+    RoomBookings
+FROM (
+    SELECT 
+        TO_CHAR(TRUNC(reservas.fechaentrada, 'IW'), 'IYYY-IW') AS YearWeek, 
+        reservas.habitacionid,
+        COUNT(*) AS RoomBookings,
+        RANK() OVER (PARTITION BY TO_CHAR(TRUNC(reservas.fechaentrada, 'IW'), 'IYYY-IW') ORDER BY COUNT(*) DESC) as rnk
+    FROM 
+        reservas 
+    WHERE 
+        reservas.fechaentrada >= ADD_MONTHS(TRUNC(SYSDATE, 'YY'), -12)
+        AND reservas.fechaentrada < TRUNC(SYSDATE, 'YY')
+    GROUP BY 
+        TO_CHAR(TRUNC(reservas.fechaentrada, 'IW'), 'IYYY-IW'), 
+        reservas.habitacionid
+) 
+WHERE 
+    rnk = 1
+ORDER BY 
+    YearWeek;
+--Req 11b
+SELECT 
+    YearWeek,
+    id AS ID_CONSUMO,
+    ServiceConsumptions
+FROM (
+    SELECT 
+        TO_CHAR(TRUNC(reservas.fechaentrada, 'IW'), 'IYYY-IW') AS YearWeek, 
+        servicio.id,
+        COUNT(*) AS ServiceConsumptions,
+        RANK() OVER (PARTITION BY TO_CHAR(TRUNC(reservas.fechaentrada, 'IW'), 'IYYY-IW') ORDER BY COUNT(*) DESC) as rnk
+    FROM 
+        reservas
+        JOIN consumoder ON reservas.id = consumoder.reservasid
+        JOIN consumos ON consumoder.consumoid = consumos.id
+        JOIN servicio ON consumos.id = servicio.consumoid
+    WHERE 
+        reservas.fechaentrada >= ADD_MONTHS(TRUNC(SYSDATE, 'YY'), -12)
+        AND reservas.fechaentrada < TRUNC(SYSDATE, 'YY')
+    GROUP BY 
+        TO_CHAR(TRUNC(reservas.fechaentrada, 'IW'), 'IYYY-IW'), 
+        servicio.id
+) 
+WHERE 
+    rnk = 1
+ORDER BY 
+    YearWeek, SERVICECONSUMPTIONS;
 
 -- Req 12
 SELECT DISTINCT u.id AS IDUSUARIO, u.nombre AS NOMBREUSUARIO, u.cedula AS CEDULAUSUARIO 

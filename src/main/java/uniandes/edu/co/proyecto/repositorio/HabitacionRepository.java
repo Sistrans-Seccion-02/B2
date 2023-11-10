@@ -22,10 +22,16 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
     }
     
     public interface rtareq3{
-        int getID();
+        int getID_HABITACION();
         double getOCCUPANCY_PERCENTAGE();
     }
     
+    public interface rtareq11{
+        String getYearWeek();
+        int gethabitacionid();
+        int getRoomBookings();
+    }
+
     @Query(value = "SELECT * FROM habitacion", nativeQuery = true)
 
     Collection<Habitacion> darHabitaciones();
@@ -84,7 +90,33 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
            "      ON habitacion.id = reservas.habitacionid\r\n" + //
            "      AND reservas.fechaentrada >= TRUNC(SYSDATE) - 365\r\n" + //
            "    GROUP BY\r\n" + //
-           "      habitacion.id;", nativeQuery=true)
+           "      habitacion.id", nativeQuery=true)
     Collection<rtareq3> req3();
     
+
+    
+    @Query(value = "SELECT \r\n" + //
+            "    YearWeek,\r\n" + //
+            "    habitacionid,\r\n" + //
+            "    RoomBookings\r\n" + //
+            "FROM (\r\n" + //
+            "    SELECT \r\n" + //
+            "        TO_CHAR(TRUNC(reservas.fechaentrada, 'IW'), 'IYYY-IW') AS YearWeek, \r\n" + //
+            "        reservas.habitacionid,\r\n" + //
+            "        COUNT(*) AS RoomBookings,\r\n" + //
+            "        RANK() OVER (PARTITION BY TO_CHAR(TRUNC(reservas.fechaentrada, 'IW'), 'IYYY-IW') ORDER BY COUNT(*) DESC) as rnk\r\n" + //
+            "    FROM \r\n" + //
+            "        reservas \r\n" + //
+            "    WHERE \r\n" + //
+            "        reservas.fechaentrada >= ADD_MONTHS(TRUNC(SYSDATE, 'YY'), -12)\r\n" + //
+            "        AND reservas.fechaentrada < TRUNC(SYSDATE, 'YY')\r\n" + //
+            "    GROUP BY \r\n" + //
+            "        TO_CHAR(TRUNC(reservas.fechaentrada, 'IW'), 'IYYY-IW'), \r\n" + //
+            "        reservas.habitacionid\r\n" + //
+            ") \r\n" + //
+            "WHERE \r\n" + //
+            "    rnk = 1\r\n" + //
+            "ORDER BY \r\n" + //
+            "    YearWeek", nativeQuery=true)
+    Collection<rtareq11> req11();
 }
