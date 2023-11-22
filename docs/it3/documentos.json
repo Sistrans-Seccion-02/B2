@@ -114,5 +114,121 @@ db.createCollection("reservas", {
     }
  });
  
+ db.createCollection("tiendas", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: ["id", "nombre", "horarioApertura", "horarioCierre", "capacidad"],
+         properties: {
+            id: {
+               bsonType: "int"
+            },
+            nombre: {
+               bsonType: "string"
+            },
+            horarioApertura: {
+               bsonType: "date"
+            },
+            horarioCierre: {
+               bsonType: "date"
+            },
+            capacidad: {
+               bsonType: "int"
+            },
+            productos: {
+               bsonType: "array",
+               items: {
+                  bsonType: "objectId"
+               }
+            }
+         }
+      }
+   }
+});
  
- 
+db.createCollection("supermercados", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: ["id", "nombre", "horarioApertura", "horarioCierre", "capacidad"],
+         properties: {
+            id: {
+               bsonType: "int"
+            },
+            nombre: {
+               bsonType: "string"
+            },
+            horarioApertura: {
+               bsonType: "date"
+            },
+            horarioCierre: {
+               bsonType: "date"
+            },
+            capacidad: {
+               bsonType: "int"
+            },
+            productos: {
+               bsonType: "array",
+               items: {
+                  bsonType: "objectId"
+               }
+            }
+         }
+      }
+   }
+});
+
+db.createCollection("restaurantes", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: ["id", "nombre", "tipo", "horarioApertura", "horarioCierre", "capacidad"],
+         properties: {
+            id: {
+               bsonType: "int"
+            },
+            nombre: {
+               bsonType: "string"
+            },
+            tipo: {
+               bsonType: "string"
+            },
+            horarioApertura: {
+               bsonType: "date"
+            },
+            horarioCierre: {
+               bsonType: "date"
+            },
+            capacidad: {
+               bsonType: "int"
+            },
+            platosYBebidas: {
+               bsonType: "array",
+               items: {
+                  bsonType: "objectId"
+               }
+            }
+         }
+      }
+   }
+});
+
+db.createCollection("habitaciones", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: ["id", "capacidad", "tipoHabitacion"],
+         properties: {
+            id: {
+               bsonType: "int"
+            },
+            capacidad: {
+               bsonType: "int"
+            },
+            tipoHabitacion: {
+               bsonType: "object"
+            }
+         }
+      }
+   }
+});
