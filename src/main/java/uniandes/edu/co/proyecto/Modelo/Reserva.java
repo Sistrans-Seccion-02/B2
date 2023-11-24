@@ -1,61 +1,56 @@
 package uniandes.edu.co.proyecto.Modelo;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Entity
-@Table(name="reservas")
 
+@Document(collection = "reservas")
 
 public  class Reserva {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+   
+    private String id;
+    @Field("fechaEntrada")
     private Date fechaentrada;
+     @Field("fechaSalida")
     private Date fechasalida;
+     @Field("numPersonas")
     private Integer numpersonas;
+     @Field("estado")
     private boolean estado;
+     @Field("precioReserva")
     private double precioreserva;
-    @ManyToOne
-    @JoinColumn(name = "usuariosid", referencedColumnName = "id")
-    private Usuario usuarioId;
-
-    @ManyToOne
-    @JoinColumn(name = "planid", referencedColumnName = "id")
-    private PlanConsumo planId;
-
-    @ManyToOne
-    @JoinColumn(name = "habitacionid", referencedColumnName = "id")
-    private Habitacion habitacionId;
+    @Field ("docUsuario")
+    private String docusuario;
+    @Field("habitaciones")
+    private List<HabitacionEmbedded> habitaciones;
+ 
    
 
     public Reserva(Date fechaentrada, Date fechasalida, Integer numpersonas, boolean estado, double precioreserva,
-            Usuario usuarioid, PlanConsumo planId, Habitacion habitacionId ) {
+            String docusuario, List<HabitacionEmbedded> habitaciones) {
         this.fechaentrada = fechaentrada;
         this.fechasalida = fechasalida;
         this.numpersonas = numpersonas;
         this.estado = estado;
         this.precioreserva = precioreserva;
-        this.usuarioId = usuarioid;
-        this.planId = planId;
-        this.habitacionId = habitacionId;
+        this.docusuario = docusuario;
+        this.habitaciones = habitaciones;
+     
     }
+    public Reserva(){}
 
-    public Reserva() 
-    {;}
+   
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -99,26 +94,18 @@ public  class Reserva {
         this.precioreserva = precioreserva;
     }
 
-    public Usuario getUsuarioId() {
-        return usuarioId;
+    public String getdocusuario() {
+        return docusuario;
     }
 
-    public void setUsuarioId(Usuario usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setUsuarioId(String docusuario) {
+        this.docusuario = docusuario;
     }
-
-    public Habitacion getHabitacionId() {
-        return habitacionId;
+    public List<HabitacionEmbedded> getHabitaciones() {
+        return habitaciones;
     }
-    public void setHabitacionId(Habitacion habitacionId) {
-        this.habitacionId = habitacionId;
-    }
-
-    public PlanConsumo getPlanid() {
-        return planId;
-    }
-    public void setPlanId(PlanConsumo planId) {
-        this.planId = planId;
+    public void setHabitaciones(List<HabitacionEmbedded> habitaciones) {
+        this.habitaciones = habitaciones;
     }
 
     

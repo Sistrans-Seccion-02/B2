@@ -1,8 +1,13 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,73 +26,67 @@ public class ReservaController {
 
     @Autowired
     private ReservaRepository reservaRepository;
-    @Autowired
-    private UsuarioRepository  usuarioRepository;
-    @Autowired
-    private PlanConsumoRepository  planConsumoRepository;
+    
     @Autowired
     private HabitacionRepository  habitacionRepository;
 
     @GetMapping("/reservas")
     public String reservas(Model model) {
-        model.addAttribute("reservas", reservaRepository.darReservas());
+        model.addAttribute("reservas", reservaRepository.findAll());
         return "reserva";
     }
 
     @GetMapping("/reservas/new")
     public String reservaForm(Model model){
         model.addAttribute("reserva", new Reserva());
-        model.addAttribute("usuarios", usuarioRepository.darUsuarios());
-        model.addAttribute("planes", planConsumoRepository.darplanesConsumo());
-        model.addAttribute("habitaciones", habitacionRepository.darHabitaciones());
+       
+        //model.addAttribute("habitaciones", habitacionRepository.darHabitaciones());
 
         return"reservaNueva";       
     }
 
     @PostMapping("/reservas/new/save")
     public String reservaGuardar(@ModelAttribute Reserva reserva){
-        reservaRepository.insertarReserva(reserva.getFechaentrada(), reserva.getFechasalida(), reserva.getNumpersonas(), reserva.isEstado(), reserva.getPrecioreserva(), reserva.getUsuarioId().getId(), reserva.getPlanid().getId(), reserva.getHabitacionId().getId());
+        reservaRepository.save(reserva);
         return "redirect:/reservas";
     
     }
 
     @GetMapping("/reservas/{id}/edit")
-    public String reservaEditarForm(@PathVariable("id") int id, Model model){
-        Reserva reserva= reservaRepository.darReserva(id);
-        if(reserva != null){
-            model.addAttribute("reserva", reserva);
-            model.addAttribute("usuarios", usuarioRepository.darUsuarios());
-            model.addAttribute("planes", planConsumoRepository.darplanesConsumo());
-            model.addAttribute("habitaciones", habitacionRepository.darHabitaciones());
-            return "ReservaEditar";
-        }
-        else{
-            return "redirect:/reservas";
+    public ResponseEntity<Reserva> reservaEditarForm(@PathVariable("id") String id, @ModelAttribute Reserva reserva){
+        Optional<Reserva> reservaExistente= reservaRepository.findById(id);
+       if (reservaExistente.isPresent()) {
+            //bebida.setId(id); // Asegura que el ID sea el mismo que el proporcionado en la URL
+            Reserva reservaAct = reservaRepository.save(reserva);
+            return new ResponseEntity<Reserva>(reservaAct, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<Reserva>(HttpStatus.NOT_FOUND);
         }
     }
-    @PostMapping("/reservas/{id}/edit/save")
-     public String reservaEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute Reserva reserva){
-        reservaRepository.actualizarReserva(id, reserva.getFechaentrada(), reserva.getFechasalida(), reserva.getNumpersonas(), reserva.isEstado(), reserva.getPrecioreserva(), reserva.getUsuarioId().getId(), reserva.getPlanid().getId(), reserva.getHabitacionId().getId());
-        return "redirect:/reservas";
-    }
+    
 
-    @GetMapping("/reservas/{id}/delete")
-    public String reservaEliminar(@PathVariable("id") int id){
-        reservaRepository.eliminarReserva(id);
-        return "redirect:/reservas";
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarReserva(@PathVariable String id) {
+        Optional<Reserva> reservaExistente = reservaRepository.findById(id);
+        if (reservaExistente.isPresent()) {
+            reservaRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 
     @GetMapping("/reservas/{id}/checkIn")
-    public String checkIn(@PathVariable("id") int id){
-        reservaRepository.checkIn(id);
+    public String checkIn(@PathVariable String id){
+        reservaRepository.setEstado(id,true);
         return "redirect:/reservas";
     }
 
 
     @GetMapping("/reservas/{id}/checkOut")
-    public String checkOut(@PathVariable("id") int id){
-        reservaRepository.checkOut(id);
+    public String checkOut(@PathVariable String id){
+        reservaRepository.setEstado(id,false);
         return "redirect:/reservas";
     }
 

@@ -16,7 +16,7 @@ import uniandes.edu.co.proyecto.repositorio.ReservaRepository;
 
 @Controller
 public class ConsumoDeRController {
-
+/*
     @Autowired
     private ConsumoDeRRepository consumoDeRRepository;
     @Autowired
@@ -67,6 +67,7 @@ public class ConsumoDeRController {
         consumoDeRRepository.eliminarConsumoDeR(id);
         return "redirect:/consumosDeR";
     }
+     */
 }
 
 
